@@ -1,33 +1,59 @@
 package ec.ups.edu.sistemafinanciero.modelo;
 
-public class Persona {
+import java.io.Serializable;
 
-	private String identificacion;
-	private String tipoid;
+import javax.ejb.Stateless;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Persona", schema = "public")
+public class Persona implements Serializable{
+
+	@Id
+	@SequenceGenerator(name = "id_persona_seq", sequenceName = "id_persona_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_persona_seq")
+	@Column(name = "id_persona", updatable = false, unique = true, nullable = false)
+	private Long id;
+	@Column(name = "persona_cedula")
+	private String cedulaString;
+	@Column(name = "persona_nombre")
 	private String nombre;
+	@Column(name = "persona_nombre")
 	private String apellido;
+	@Column(name = "persona_email")
 	private String email;
-	
+
 	public Persona() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public String getIdentificacion() {
-		return identificacion;
+	
+	public Persona(String cedulaString, String nombre, String apellido, String email) {
+		super();
+		this.cedulaString = cedulaString;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
 	}
 
-	public void setIdentificacion(String identificacion) {
-		this.identificacion = identificacion;
+	public Long getId() {
+		return id;
 	}
-
-	public String getTipoid() {
-		return tipoid;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-	public void setTipoid(String tipoid) {
-		this.tipoid = tipoid;
+	public String getCedulaString() {
+		return cedulaString;
 	}
-
+	public void setCedulaString(String cedulaString) {
+		this.cedulaString = cedulaString;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -50,12 +76,6 @@ public class Persona {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "Persona [identificacion=" + identificacion + ", tipoid=" + tipoid + ", nombre=" + nombre + ", apellido="
-				+ apellido + ", email=" + email + "]";
 	}
 	
 }
