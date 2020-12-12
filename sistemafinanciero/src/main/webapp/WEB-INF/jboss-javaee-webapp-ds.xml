@@ -24,13 +24,13 @@
     <!-- The datasource is bound into JNDI at this location. We reference 
         this in META-INF/persistence.xml -->
     <datasource jndi-name="java:jboss/datasources/jboss-javaee-webappDS"
-        pool-name="jboss-javaee-webapp" enabled="true"
+        pool-name="sisfinancieroDS" enabled="true"
         use-java-context="true">
-        <connection-url>jdbc:mysql:mem:jboss-javaee-webapp;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
-        <driver>h2</driver>
+        <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
+        <driver>postgresql-driver</driver>
         <security>
-            <user-name>sa</user-name>
-            <password>sa</password>
+            <user-name>andres</user-name>
+            <password>Cuenca1234.</password>
         </security>
     </datasource>
 </datasources>
