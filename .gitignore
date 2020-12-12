@@ -1,1 +1,14 @@
+
+# IntelliJ
+out/
+.idea/workspace.xml
+
+# Maven output
+target
+
+#OS X stuff
+.DS_Store
+
+
 /.metadata/
+
