@@ -1,3 +1,4 @@
+
 # IntelliJ
 out/
 .idea/workspace.xml
@@ -7,4 +8,7 @@ target
 
 #OS X stuff
 .DS_Store
+
+
+/.metadata/
 
