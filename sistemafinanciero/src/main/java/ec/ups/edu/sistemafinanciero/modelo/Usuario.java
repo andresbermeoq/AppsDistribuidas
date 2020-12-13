@@ -12,5 +12,4 @@ public class Usuario implements Serializable {
 	private String passwordString;
 	private Date registrationDate;
 	private boolean estado;
-
 }
