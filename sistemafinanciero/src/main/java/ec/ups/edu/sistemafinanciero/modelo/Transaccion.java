@@ -16,6 +16,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Transaccion implements Serializable{
+	
+	private static final long SerialVersionUID = 1L;
+	
 	@Id
 	@SequenceGenerator(name = "tra_id_seq", sequenceName = "tra_id_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tra_id_seq")

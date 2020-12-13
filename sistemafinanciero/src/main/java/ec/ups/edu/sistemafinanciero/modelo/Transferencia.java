@@ -17,6 +17,8 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Transferencia implements Serializable{
 	
+	private static final long SerialVersionUID = 1L;
+	
 	@Id
 	@SequenceGenerator(name = "taf_id_seq", sequenceName = "taf_id_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "taf_id_seq")

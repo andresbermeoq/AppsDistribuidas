@@ -15,8 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import javassist.SerialVersionUID;
+
 @Entity
 public class Interbancario implements Serializable {
+	private static final long SerialVersionUID = 1L;
+	
 	@Id
 	@SequenceGenerator(name = "iba_id_seq", sequenceName = "iba_id_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "iba_id_seq")
