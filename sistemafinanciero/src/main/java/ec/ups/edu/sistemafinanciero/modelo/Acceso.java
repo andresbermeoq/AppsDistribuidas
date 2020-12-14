@@ -1,32 +1,45 @@
 package ec.ups.edu.sistemafinanciero.modelo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Acceso", schema = "public")
 public class acceso implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@SequenceGenerator(name = "acceso_id_seq", sequenceName = "acceso_id_seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "acceso_id_seq")
-	@Column(name = "acceso_id", updatable = false, unique = true, nullable = false)
-	private Long idLong;
+	@SequenceGenerator(name = "id_acceso_seq", sequenceName = "id_acceso_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_acceso_seq")
+	@Column(name = "id_acceso", updatable = false, unique = true, nullable = false)
+	private Long idAccesoLong;
+	
 	@Column(name = "acceso_fecha")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date accessDate;
+	
 	@Column(name = "acceso_tipo")
 	private String typeAccessString;
 	@Column(name = "acceso_observacion")
 	private String observationString;
+	
 	
 	public acceso() {
 		super();
@@ -40,12 +53,14 @@ public class acceso implements Serializable {
 		this.observationString = observationString;
 	}
 	
-	public Long getIdLong() {
-		return idLong;
+	public Long getIdAccesoLong() {
+		return idAccesoLong;
 	}
-	public void setIdLong(Long idLong) {
-		this.idLong = idLong;
+
+	public void setIdAccesoLong(Long idAccesoLong) {
+		this.idAccesoLong = idAccesoLong;
 	}
+
 	public Date getAccessDate() {
 		return accessDate;
 	}
