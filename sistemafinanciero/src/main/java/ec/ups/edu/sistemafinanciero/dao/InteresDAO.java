@@ -1,10 +1,12 @@
 package ec.ups.edu.sistemafinanciero.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
 
@@ -28,5 +30,10 @@ public class InteresDAO {
 	public boolean delete(int id) throws SQLException {
 		em.remove(id);
 		return true;		
+	}
+	public List<Interes> listInteres(){
+		String jpa = "SELECT v FROM Intereses";
+		Query q = em.createQuery(jpa, Interes.class);
+		return (List<Interes>) q.getResultList();
 	}
 }

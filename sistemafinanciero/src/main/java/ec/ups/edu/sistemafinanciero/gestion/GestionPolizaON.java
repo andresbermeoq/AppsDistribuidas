@@ -3,10 +3,27 @@ package ec.ups.edu.sistemafinanciero.gestion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestionPolizaON {
+import org.antlr.v4.parse.ResyncToEndOfRuleBlock;
 
-	public boolean savePoliza() {
-		return true;
+import ec.ups.edu.sistemafinanciero.dao.PolizaDAO;
+import ec.ups.edu.sistemafinanciero.modelo.Poliza;
+import ec.ups.edu.sistemafinanciero.modelo.Usuario;
+
+public class GestionPolizaON {
+	
+	private PolizaDAO pdao;
+	
+	public GestionPolizaON() {
+		
+	}
+	public boolean savePoliza(Poliza poliza) throws Exception {
+		try {
+			pdao.insert(poliza);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Se ha generado un error al guardar la poliza.");
+		}
 	}
 	public boolean validarPoliza() {
 		return true;
@@ -18,7 +35,13 @@ public class GestionPolizaON {
 	public String calculaValorPoliza(String poliza) {
 		return "";
 	}
-	public boolean updatePoliza() {
+	public boolean updatePoliza(Poliza poliza) throws Exception {
+		try {
+			pdao.update(poliza);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Error al actualizar la poliza");
+		}
 		return true;
 	}
 	public String searchPoliza() {
@@ -28,10 +51,15 @@ public class GestionPolizaON {
 		List<Object> lista = new ArrayList<Object>();
 		return lista;
 	}
-	public boolean deletePoliza() {
+	public boolean deletePoliza(int id) throws Exception {
+		try {
+			pdao.delete(id);
+		} catch (Exception e) {
+			throw new Exception("Se ha generado un error al borrar la poliza.");
+		}
 		return true;
 	}
-	public boolean aprobarPoliza() {
+	public boolean aprobarPoliza(Poliza poliza, Usuario usuario) throws Exception {
 		return true;
 	}
 }

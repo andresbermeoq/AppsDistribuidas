@@ -3,8 +3,19 @@ package ec.ups.edu.sistemafinanciero.gestion;
 import java.util.ArrayList;
 import java.util.List;
 
+import ec.ups.edu.sistemafinanciero.dao.InteresDAO;
+import ec.ups.edu.sistemafinanciero.modelo.Interes;
+
 public class GestionInteresON {
-	public boolean saveIntereses() {
+	private InteresDAO idao;
+	
+	public boolean saveIntereses(Interes interes) throws Exception {
+		try {
+			idao.insert(interes);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Se ha generado un error al guardar los intereses.");
+		}
 		return true;
 	}
 	public String searchIntereses() {
