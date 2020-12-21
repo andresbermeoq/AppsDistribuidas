@@ -28,8 +28,10 @@ public class Transaccion implements Serializable{
 	@Column(name = "tra_operacion", nullable = false, length = 10)
 	private String operacion;
 	
-	@Column(name = "tra_cajero")
+	@ManyToOne
+	@JoinColumn(name = "tra_fk_cajero")
 	private Cajero cajero;
+	
 	@Column(name = "tra_identificacion")
 	private String identificacion;
 	

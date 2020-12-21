@@ -24,14 +24,22 @@
     <!-- The datasource is bound into JNDI at this location. We reference 
         this in META-INF/persistence.xml -->
     <datasource jndi-name="java:jboss/datasources/sistemaDS"
-        pool-name="sisfinancieroDS" enabled="true"
-        use-java-context="true">
-        <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
+        pool-name="sistemaDS" enabled="true"
+        use-java-context="true" use-ccm="true">
+        <!-- <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
         <driver>postgresql-driver</driver>
         <security>
             <user-name>andres</user-name>
             <password>Cuenca1234.</password>
+        </security>-->
+        
+        <connection-url>jdbc:postgresql://localhost:5432/sistemafinancierodb</connection-url>
+        <driver>postgresql-driver</driver>
+        <security>
+            <user-name>postgres</user-name>
+            <password>Angel2019</password>
         </security>
+        
     </datasource>
 </datasources>
  

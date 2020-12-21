@@ -1,19 +1,29 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
-public class GestionPersonaON {
-	public boolean savePersona() {
-		return true;
+import java.sql.SQLException;
+
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import ec.ups.edu.sistemafinanciero.dao.personaDao;
+import ec.ups.edu.sistemafinanciero.modelo.Persona;
+
+@Named
+public class GestionPersonaON{
+	
+	@Inject
+	private personaDao personaDao;
+	
+	
+	public void guardar(Persona persona) {
+		try {
+			personaDao.guardarPersona(persona);
+		} catch (SQLException e) {
+			System.out.println("Error DAO:" + e.getMessage());
+			e.printStackTrace();
+		}
 	}
-	public String searchPersona() {
-		return "";
-	}
-	public boolean updatePersona() {
-		return true;
-	}
-	public boolean deletePersona() {
-		return true;
-	}
-	public boolean validarCedula() {
-		return true;
-	}
+	
+	
 }
