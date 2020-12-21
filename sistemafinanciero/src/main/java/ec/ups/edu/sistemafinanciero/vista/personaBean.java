@@ -36,7 +36,7 @@ public class personaBean {
 	
 	public String doGuardar() {
 		
-		System.out.println(persona);
+		//System.out.println(persona);
 		personaON.guardar(persona);
 		
 		return null;

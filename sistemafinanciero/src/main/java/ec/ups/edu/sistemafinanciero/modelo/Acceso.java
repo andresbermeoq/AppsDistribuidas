@@ -18,14 +18,14 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Acceso", schema = "public")
-public class acceso implements Serializable {
+public class Acceso implements Serializable {
 	
-<<<<<<< HEAD:sistemafinanciero/src/main/java/ec/ups/edu/sistemafinanciero/modelo/acceso.java
-=======
+//<<<<<<< HEAD:sistemafinanciero/src/main/java/ec/ups/edu/sistemafinanciero/modelo/acceso.java
+//=======
 	/**
 	 * 
 	 */
->>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a:sistemafinanciero/src/main/java/ec/ups/edu/sistemafinanciero/modelo/Acceso.java
+//>>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a:sistemafinanciero/src/main/java/ec/ups/edu/sistemafinanciero/modelo/Acceso.java
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -44,12 +44,12 @@ public class acceso implements Serializable {
 	private String observationString;
 	
 	
-	public acceso() {
+	public Acceso() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public acceso(Date accessDate, String typeAccessString, String observationString) {
+	public Acceso(Date accessDate, String typeAccessString, String observationString) {
 		super();
 		this.accessDate = accessDate;
 		this.typeAccessString = typeAccessString;

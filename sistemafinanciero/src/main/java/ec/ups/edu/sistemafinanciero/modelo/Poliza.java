@@ -33,9 +33,9 @@ public class Poliza implements Serializable{
 	@Column(name = "pol_plazo", nullable = false)
 	private int plazo;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "pol_fk_int_id")
-	private Interes interes;*/
+	private Interes interes;
 	
 	@Column(name = "pol_vinteres", nullable = false, precision = 2)
 	private double vinteres;
@@ -99,13 +99,13 @@ public class Poliza implements Serializable{
 		this.plazo = plazo;
 	}
 
-	/*public Interes getInteres() {
+	public Interes getInteres() {
 		return interes;
 	}
 
 	public void setInteres(Interes interes) {
 		this.interes = interes;
-	}*/
+	}
 
 	public double getTotal() {
 		return total;
@@ -179,7 +179,7 @@ public class Poliza implements Serializable{
 		this.asesorCta = asesorCta;
 	}
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	public double getVinteres() {
 		return vinteres;
 	}
@@ -188,15 +188,14 @@ public class Poliza implements Serializable{
 		this.vinteres = vinteres;
 	}
 
+//=======
 	@Override
-=======
-	/*@Override
->>>>>>> AngelJadan
+//>>>>>>> AngelJadan
 	public String toString() {
 		return "Poliza [id=" + id + ", capital=" + capital + ", plazo=" + plazo + ", interes=" + interes + ", vinteres="
 				+ vinteres + ", total=" + total + ", estado=" + estado + ", fsolicita=" + fsolicita + ", faprobado="
 				+ faprobado + ", fvencimiento=" + fvencimiento + ", observacion=" + observacion + ", cedula=" + cedula
 				+ ", planilla=" + planilla + ", asesorCta=" + asesorCta + "]";
-	}*/
+	}
 	
 }

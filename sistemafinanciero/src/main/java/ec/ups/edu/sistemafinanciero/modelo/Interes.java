@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Intereses", schema = "public")
+@Table(name = "Interes", schema = "public")
 public class Interes implements Serializable{
 	
 	private static final long SerialVersionUID = 1L;

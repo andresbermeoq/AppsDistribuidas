@@ -47,9 +47,8 @@ public class PolizaBeans {
 		try {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Calendar calendar = Calendar.getInstance();
-			
 			interes = ginteres.searchToDay(plazo, "2");			
-			
+			System.out.println("id interes: "+interes.getId());
 			poliza.setInteres(interes);
 			poliza.setPlazo(plazo);
 			
@@ -80,7 +79,6 @@ public class PolizaBeans {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	public void calTotal() {		
 	}

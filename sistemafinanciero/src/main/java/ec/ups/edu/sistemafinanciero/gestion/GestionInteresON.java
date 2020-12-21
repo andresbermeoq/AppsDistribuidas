@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -32,24 +31,7 @@ public class GestionInteresON {
 			e.printStackTrace();
 			return false;
 		}
-=======
-import ec.ups.edu.sistemafinanciero.dao.InteresDAO;
-import ec.ups.edu.sistemafinanciero.modelo.Interes;
-
-public class GestionInteresON {
-	private InteresDAO idao;
-	
-	public boolean saveIntereses(Interes interes) throws Exception {
-		try {
-			idao.insert(interes);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new Exception("Se ha generado un error al guardar los intereses.");
-		}
-		return true;
->>>>>>> AngelJadan
 	}
-
 	public Interes searchInteres(long id) {
 		Interes interes= new Interes();
 		try {

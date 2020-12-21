@@ -11,9 +11,7 @@ import ec.ups.edu.sistemafinanciero.modelo.Transferencia;
 
 @Stateless
 public class TransferenciaDAO {
-	@Inject
-	private Connection con;
-	
+		
 	@Inject
 	private EntityManager em;
 	
