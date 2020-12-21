@@ -210,8 +210,6 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.8</version>
 		</dependency>
-<<<<<<< HEAD
-=======
 		
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
@@ -219,10 +217,6 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
 		</dependency>
-		
-		
-        
->>>>>>> 00d3b1e878ea108522e94fe78973167bb4493b8c
     </dependencies>
 	
     <build>

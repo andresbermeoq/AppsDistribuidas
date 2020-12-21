@@ -23,7 +23,7 @@ public class LoginBean {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return true;
+		return "";
 	}
 
 }

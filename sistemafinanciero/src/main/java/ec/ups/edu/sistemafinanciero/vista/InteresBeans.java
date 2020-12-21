@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -28,8 +29,7 @@ public class InteresBeans {
 		intereses = new ArrayList<Interes>();
 	}	
 	public String doSave() {
-		gInter.saveIntereses(interes);
-		System.out.println("guardado.");
+		gInter.saveIntereses(interes);		
 		clearInteres();
 		return null;
 	}

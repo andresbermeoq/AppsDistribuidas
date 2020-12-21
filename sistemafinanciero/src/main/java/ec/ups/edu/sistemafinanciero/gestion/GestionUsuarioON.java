@@ -18,7 +18,7 @@ public class GestionUsuarioON {
 	
 	@Inject
 	private ClienteDAO clienteDAO;
-	
+		
 	
 	public boolean saveUsuario(Usuario isUsuario) {
 		
@@ -37,6 +37,12 @@ public class GestionUsuarioON {
 			System.out.println("Error Gestion Usuario: "+e.getMessage());
 		}
 		return true;
+	}
+	
+	public Usuario buscarUsuario(String usuario) {
+		Usuario user = new Usuario();
+		user = usuarioDAO.readUsuario(usuario);
+		return user;
 	}
 	
 	public void sendEmail() {

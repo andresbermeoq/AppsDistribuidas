@@ -16,8 +16,11 @@ import com.ibm.icu.text.NumberFormat;
 
 import ec.ups.edu.sistemafinanciero.gestion.GestionInteresON;
 import ec.ups.edu.sistemafinanciero.gestion.GestionPolizaON;
+import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
+import ec.ups.edu.sistemafinanciero.modelo.AsesorCta;
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
 import ec.ups.edu.sistemafinanciero.modelo.Poliza;
+import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Named
 @RequestScoped
@@ -27,6 +30,10 @@ public class PolizaBeans {
 	private GestionPolizaON gpoliza;
 	@Inject
 	private GestionInteresON ginteres;
+	@Inject
+	private GestionUsuarioON guser;
+	
+	private Usuario user;
 	private Poliza poliza;
 	private Interes interes;
 	private double valInteres;
@@ -34,21 +41,21 @@ public class PolizaBeans {
 	private Date thisDate;
 	private Date finDate;
 	private int plazo;
+	private AsesorCta acta;
 	
 	@PostConstruct
 	public void init() {
 		poliza = new Poliza();
 		interes = new Interes();
+		acta = new AsesorCta();
 		
 		thisDate = new Date();
-	}
-	
+	}	
 	public void calInteres() {
 		try {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Calendar calendar = Calendar.getInstance();
-			interes = ginteres.searchToDay(plazo, "2");			
-			System.out.println("id interes: "+interes.getId());
+			interes = ginteres.searchToDay(plazo, "2");
 			poliza.setInteres(interes);
 			poliza.setPlazo(plazo);
 			
@@ -80,9 +87,17 @@ public class PolizaBeans {
 			e.printStackTrace();
 		}
 	}
-	public void calTotal() {		
+	public boolean solPoliza() {		
+		try {
+			acta.setId(Long.parseLong("1"));
+			poliza.setId(user.getIdUsuarioLong());
+			poliza.setAsesorCta(acta);
+			gpoliza.savePoliza(poliza);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
-	
 	public GestionPolizaON getGpoliza() {
 		return gpoliza;
 	}
@@ -151,4 +166,27 @@ public class PolizaBeans {
 	public void setPlazo(int plazo) {
 		this.plazo = plazo;
 	}
+
+	public GestionUsuarioON getGuser() {
+		return guser;
+	}
+
+	public void setGuser(GestionUsuarioON guser) {
+		this.guser = guser;
+	}
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
+	public AsesorCta getActa() {
+		return acta;
+	}
+	public void setActa(AsesorCta acta) {
+		this.acta = acta;
+	}
+	
 }

@@ -3,6 +3,7 @@ package ec.ups.edu.sistemafinanciero.modelo;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 
 
 @Entity
+@SessionScoped
 @Table(name = "Usuario", schema = "public")
 public class Usuario implements Serializable {
 

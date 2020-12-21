@@ -42,21 +42,21 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Cedula" />
-			<h:inputText value="#{UsuarioBean.usuario.}" />
+			<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
 			<h:outputLabel value="Nombres" />
-			<h:inputText value="#{UsuarioBean.usuario.nombre}" />
+			<h:inputText value="#{usuarioBean.usuario.nombre}" />
 			<h:outputLabel value="Apellidos" />
-			<h:inputText value="#{UsuarioBean.usuario.apellido}" />
+			<h:inputText value="#{usuarioBean.usuario.apellido}" />
 			<h:outputLabel value="Email" />
-			<h:inputText value="#{UsuarioBean.usuario.email}" />
+			<h:inputText value="#{usuarioBean.usuario.email}" />
 			<h:outputLabel value="Tipo de Usuario" />
-			<h:inputText value="#{UsuarioBean.usuario.tipoString}" />
+			<h:inputText value="#{usuarioBean.usuario.tipoString}" />
 			<h:outputLabel value="Password" />
-			<h:inputText value="#{UsuarioBean.usuario.passwordString}" />
+			<h:inputText value="#{usuarioBean.usuario.passwordString}" />
 			<h:outputLabel value="Nombre de Usuario" />
-			<h:inputText value="#{UsuarioBean.usuario.nombreUsuarioString}" />
+			<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
 			<h:outputLabel value="Fecha de Registro" />
-			<h:inputText value="#{UsuarioBean.usuario.fechaRegistroDate}" />
+			<h:inputText value="#{usuarioBean.usuario.fechaRegistroDate}" />
 			<h:outputLabel value="" />
 			<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
 		</h:panelGrid>
