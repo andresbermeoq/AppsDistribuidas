@@ -217,6 +217,19 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		
+		<!-- Servidor de Correo-->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
+		
+        
+>>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
     </dependencies>
 	
     <build>
