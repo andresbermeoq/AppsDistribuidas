@@ -14,9 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
+@Table(name = "Polizas", schema = "public")
 public class Poliza implements Serializable{
 
 	@Id
@@ -31,9 +33,9 @@ public class Poliza implements Serializable{
 	@Column(name = "pol_plazo", nullable = false)
 	private int plazo;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "pol_fk_int_id")
-	private Interes interes;
+	private Interes interes;*/
 	
 	@Column(name = "pol_vinteres", nullable = false, precision = 2)
 	private double vinteres;
@@ -97,13 +99,13 @@ public class Poliza implements Serializable{
 		this.plazo = plazo;
 	}
 
-	public Interes getInteres() {
+	/*public Interes getInteres() {
 		return interes;
 	}
 
 	public void setInteres(Interes interes) {
 		this.interes = interes;
-	}
+	}*/
 
 	public double getTotal() {
 		return total;
@@ -177,6 +179,7 @@ public class Poliza implements Serializable{
 		this.asesorCta = asesorCta;
 	}
 
+<<<<<<< HEAD
 	public double getVinteres() {
 		return vinteres;
 	}
@@ -186,11 +189,14 @@ public class Poliza implements Serializable{
 	}
 
 	@Override
+=======
+	/*@Override
+>>>>>>> AngelJadan
 	public String toString() {
 		return "Poliza [id=" + id + ", capital=" + capital + ", plazo=" + plazo + ", interes=" + interes + ", vinteres="
 				+ vinteres + ", total=" + total + ", estado=" + estado + ", fsolicita=" + fsolicita + ", faprobado="
 				+ faprobado + ", fvencimiento=" + fvencimiento + ", observacion=" + observacion + ", cedula=" + cedula
 				+ ", planilla=" + planilla + ", asesorCta=" + asesorCta + "]";
-	}
+	}*/
 	
 }

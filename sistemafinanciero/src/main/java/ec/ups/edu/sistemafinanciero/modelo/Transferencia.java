@@ -13,8 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Transferencias", schema = "public")
 public class Transferencia implements Serializable{
 	
 	private static final long SerialVersionUID = 1L;
@@ -70,6 +72,10 @@ public class Transferencia implements Serializable{
 
 	public void setInterbancario(Interbancario interbancario) {
 		this.interbancario = interbancario;
+	}
+
+	public static long getSerialversionuid() {
+		return SerialVersionUID;
 	}
 	
 }

@@ -14,10 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import javassist.SerialVersionUID;
 
 @Entity
+@Table(name = "Interbancarios", schema = "public")
 public class Interbancario implements Serializable {
 	private static final long SerialVersionUID = 1L;
 	
@@ -49,4 +51,73 @@ public class Interbancario implements Serializable {
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "iba_fk_cliente")
 	private Cliente cliente;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
+	}
+
+	public String getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(String cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	public String getTipoCta() {
+		return tipoCta;
+	}
+
+	public void setTipoCta(String tipoCta) {
+		this.tipoCta = tipoCta;
+	}
+
+	public String getNombreTitular() {
+		return nombreTitular;
+	}
+
+	public void setNombreTitular(String nombreTitular) {
+		this.nombreTitular = nombreTitular;
+	}
+
+	public String getDniTitular() {
+		return dniTitular;
+	}
+
+	public void setDniTitular(String dniTitular) {
+		this.dniTitular = dniTitular;
+	}
+
+	public static long getSerialversionuid() {
+		return SerialVersionUID;
+	}
+
+	public List<Transferencia> getTransferencia() {
+		return transferencia;
+	}
+
+	public void setTransferencia(List<Transferencia> transferencia) {
+		this.transferencia = transferencia;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 }
