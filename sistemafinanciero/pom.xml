@@ -219,6 +219,13 @@
 		    <version>4.5.2</version>
 		</dependency>
 		
+		<!-- Servidor de Correo-->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
 		
         
     </dependencies>

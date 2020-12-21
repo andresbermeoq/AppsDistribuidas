@@ -43,6 +43,8 @@ public class Usuario implements Serializable {
 	private String nombreUsuarioString;
 	@Column(name = "usuario_fecha_registro")
 	private String fechaRegistroDate;
+	@Column(name = "usuario_admin")
+	private boolean isAdmin;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -111,6 +113,25 @@ public class Usuario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	public Set<Acceso> getAccesos() {
+		return accesos;
+	}
+	public void setAccesos(Set<Acceso> accesos) {
+		this.accesos = accesos;
+	}
+	public Set<Cliente> getClientes() {
+		return clientes;
+	}
+	public void setClientes(Set<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [idUsuarioLong=" + idUsuarioLong + ", cedulaString=" + cedulaString + ", nombre=" + nombre
