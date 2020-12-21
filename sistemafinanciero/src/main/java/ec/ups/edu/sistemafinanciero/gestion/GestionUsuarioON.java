@@ -57,8 +57,6 @@ public class GestionUsuarioON {
 			throw new GeneralException(201, "Password Incorrecto");
 		}
 	}
-	
-<<<<<<< HEAD
 	public Usuario buscarUsuario(String usuario) {
 		Usuario user = new Usuario();
 		user = usuarioDAO.readUsuario(usuario);
@@ -66,11 +64,9 @@ public class GestionUsuarioON {
 	}
 	
 	public void sendEmail() {
-=======
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 		
 		StringBuilder cuerpoMensaje = new StringBuilder("Querido Usuario: <strong>");
 		cuerpoMensaje.append(usuario.getNombre()).append("</strong><br>")

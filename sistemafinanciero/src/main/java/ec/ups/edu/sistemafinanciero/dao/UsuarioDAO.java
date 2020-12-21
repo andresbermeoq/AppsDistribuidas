@@ -7,14 +7,9 @@ import javax.ejb.NoSuchEntityException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-
-<<<<<<< HEAD
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
-=======
 import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
-
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
@@ -29,7 +24,6 @@ public class UsuarioDAO {
 	public void guardarUsuario(Usuario usuario) throws SQLException {
 		entityManager.persist(usuario);
 	}
-<<<<<<< HEAD
 
 	public Usuario readUsuario(String usuario) {
 		Usuario user = new Usuario();
@@ -45,7 +39,6 @@ public class UsuarioDAO {
 			return user;
 		}
 	}
-=======
 	
 	public Usuario obtenerUsuarioCorreoAdmin(String nombre) throws GeneralException {
 		try {
@@ -62,7 +55,4 @@ public class UsuarioDAO {
 			throw new GeneralException("ERROR DAO: "+e.getMessage());
 		}
 	}
-	
-	
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 }
