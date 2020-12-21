@@ -1,5 +1,6 @@
 package ec.ups.edu.sistemafinanciero.dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.ejb.Stateless;
@@ -10,6 +11,9 @@ import ec.ups.edu.sistemafinanciero.modelo.Transferencia;
 
 @Stateless
 public class TransferenciaDAO {
+	@Inject
+	private Connection con;
+	
 	@Inject
 	private EntityManager em;
 	

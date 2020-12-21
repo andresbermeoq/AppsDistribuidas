@@ -33,6 +33,19 @@
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+<<<<<<< HEAD
+=======
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/EstAngelMesiasJadanC/.m2/repository/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar" sourcepath="C:/Users/EstAngelMesiasJadanC/.m2/repository/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.archivename" value="javax.annotation-api-1.3.2.jar"/>
+			<attribute name="maven.groupId" value="javax.annotation"/>
+			<attribute name="maven.artifactId" value="javax.annotation-api"/>
+			<attribute name="maven.version" value="1.3.2"/>
+			<attribute name="maven.scope" value="compile"/>
+>>>>>>> main
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

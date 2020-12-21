@@ -37,6 +37,9 @@ public class Poliza implements Serializable{
 	@JoinColumn(name = "pol_fk_int_id")
 	private Interes interes;*/
 	
+	@Column(name = "pol_vinteres", nullable = false, precision = 2)
+	private double vinteres;
+	
 	@Column(name = "pol_total", nullable = false)
 	private double total;
 	
@@ -176,11 +179,23 @@ public class Poliza implements Serializable{
 		this.asesorCta = asesorCta;
 	}
 
+<<<<<<< HEAD
+	public double getVinteres() {
+		return vinteres;
+	}
+
+	public void setVinteres(double vinteres) {
+		this.vinteres = vinteres;
+	}
+
+	@Override
+=======
 	/*@Override
+>>>>>>> AngelJadan
 	public String toString() {
-		return "Poliza [id=" + id + ", capital=" + capital + ", plazo=" + plazo + ", interes=" + interes + ", total="
-				+ total + ", estado=" + estado + ", fsolicita=" + fsolicita + ", faprobado=" + faprobado
-				+ ", fvencimiento=" + fvencimiento + ", observacion=" + observacion + ", cedula=" + cedula
+		return "Poliza [id=" + id + ", capital=" + capital + ", plazo=" + plazo + ", interes=" + interes + ", vinteres="
+				+ vinteres + ", total=" + total + ", estado=" + estado + ", fsolicita=" + fsolicita + ", faprobado="
+				+ faprobado + ", fvencimiento=" + fvencimiento + ", observacion=" + observacion + ", cedula=" + cedula
 				+ ", planilla=" + planilla + ", asesorCta=" + asesorCta + "]";
 	}*/
 	
