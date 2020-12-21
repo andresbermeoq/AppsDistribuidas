@@ -1,38 +1,46 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import ec.ups.edu.sistemafinanciero.dao.ClienteDAO;
+import ec.ups.edu.sistemafinanciero.dao.UsuarioDAO;
+import ec.ups.edu.sistemafinanciero.modelo.Cliente;
+import ec.ups.edu.sistemafinanciero.modelo.Usuario;
+
+@Stateless
 public class GestionUsuarioON {
-	public boolean saveUsuario() {
+	
+	@Inject
+	private UsuarioDAO usuarioDAO;
+	
+	@Inject
+	private ClienteDAO clienteDAO;
+	
+	
+	public boolean saveUsuario(Usuario isUsuario) {
+		
+		try {
+			usuarioDAO.guardarUsuario(isUsuario);
+		} catch (SQLException e) {
+			System.out.println("Error Gestion Usuario:" + e.getMessage());
+		}
 		return true;
 	}
-	public boolean updateUsuario() {
+	
+	public boolean saveCliente(Cliente isCliente) {
+		try {
+			clienteDAO.guardarCliente(isCliente);
+		} catch (Exception e) {
+			System.out.println("Error Gestion Usuario: "+e.getMessage());
+		}
 		return true;
 	}
-	public String searchUsuario() {
-		return "";
+	
+	public void sendEmail() {
+		
 	}
-	public String genPassword() {
-		return "";
-	}
-	public boolean sendEmailUsuario() {
-		return true;
-	}
-	public boolean registrarAcceso() {
-		return true;
-	}
-	public boolean enviarIntento() {
-		return true;
-	}
-	public List<Object> listarAccesos() {
-		List<Object> lista = new ArrayList<Object>();
-		return lista;
-	}
-	public boolean blockUsuario() {
-		return true;
-	}
-	public boolean unblockUsuario() {
-		return true;
-	}
+	
 }

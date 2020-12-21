@@ -2,18 +2,14 @@ package ec.ups.edu.sistemafinanciero.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -47,6 +43,11 @@ public class Cliente implements Serializable {
 	@Column(name = "cliente_fecha_registro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_usuario_fk")
+	private Usuario usuario;
 	
 
 	public Cliente() {
