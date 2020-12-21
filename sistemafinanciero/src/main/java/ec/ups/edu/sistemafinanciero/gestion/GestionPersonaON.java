@@ -10,7 +10,11 @@ import ec.ups.edu.sistemafinanciero.dao.personaDao;
 import ec.ups.edu.sistemafinanciero.modelo.Persona;
 
 @Named
+<<<<<<< HEAD
 public class GestionPersonaON{
+=======
+public class GestionPersonaON implements GestionPersonaONRemoto {
+>>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a
 	
 	@Inject
 	private personaDao personaDao;

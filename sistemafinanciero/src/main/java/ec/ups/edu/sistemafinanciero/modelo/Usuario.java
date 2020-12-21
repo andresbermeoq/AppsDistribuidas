@@ -43,5 +43,6 @@ public class Usuario implements Serializable {
 	private Date fechaRegistroDate;
 	@Column(name = "usuario_estado")
 	private boolean estado;
+	
 
 }

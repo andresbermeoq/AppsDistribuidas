@@ -20,6 +20,12 @@ import javax.persistence.TemporalType;
 @Table(name = "Acceso", schema = "public")
 public class acceso implements Serializable {
 	
+<<<<<<< HEAD:sistemafinanciero/src/main/java/ec/ups/edu/sistemafinanciero/modelo/acceso.java
+=======
+	/**
+	 * 
+	 */
+>>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a:sistemafinanciero/src/main/java/ec/ups/edu/sistemafinanciero/modelo/Acceso.java
 	private static final long serialVersionUID = 1L;
 	
 	@Id
