@@ -2,17 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"> 
       
-       
 <!-- Bootstrap -->
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
 <h:head></h:head> 
 <body> 
-	<h1>Registro de Personas</h1>
-	
+
+	<h1 class="display-3">Pagina de Inicio</h1>
+		<hr></hr>
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +22,7 @@
 	  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      	<li class="nav-item active">
-		        		<a class="nav-link" href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
+		        		<a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
 		      	</li>
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="#">Features</a>
@@ -35,31 +36,29 @@
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
+		  	<h:outputLink class="btn btn-outline-primary" value="registroPersona.xhtml">Iniciar</h:outputLink>
 	  </span>
 	</nav>
 	
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Cedula" />
-			<h:inputText value="#{UsuarioBean.usuario.}" />
-			<h:outputLabel value="Nombres" />
-			<h:inputText value="#{UsuarioBean.usuario.nombre}" />
-			<h:outputLabel value="Apellidos" />
-			<h:inputText value="#{UsuarioBean.usuario.apellido}" />
-			<h:outputLabel value="Email" />
-			<h:inputText value="#{UsuarioBean.usuario.email}" />
-			<h:outputLabel value="Tipo de Usuario" />
-			<h:inputText value="#{UsuarioBean.usuario.tipoString}" />
-			<h:outputLabel value="Password" />
-			<h:inputText value="#{UsuarioBean.usuario.passwordString}" />
-			<h:outputLabel value="Nombre de Usuario" />
-			<h:inputText value="#{UsuarioBean.usuario.nombreUsuarioString}" />
-			<h:outputLabel value="Fecha de Registro" />
-			<h:inputText value="#{UsuarioBean.usuario.fechaRegistroDate}" />
-			<h:outputLabel value="" />
-			<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
-		</h:panelGrid>
-	</h:form>
+	<div class="container">
+		<h1>Registro de Usuarios</h1>
+		
+		<h:form>
+			<div class="form-group">
+	    		<label for="exampleInputEmail1">Usuario</label>
+				<h:inputText class="form-control" placeholder="Usuario"></h:inputText>
+	    		<small id="emailHelp" class="form-text text-muted">Ingrese su nombre de Usuario</small>
+  			</div>
+		  	<div class="form-group">
+		    	<label for="exampleInputPassword1">Password</label>
+		    	<h:inputText class="form-control" placeholder="Password"></h:inputText>
+		  	</div>
+  			<button type="submit" class="btn btn-primary">Ingresar</button>
+		</h:form>
+	</div>
+	
+	
+	
+
 </body> 
 </html>

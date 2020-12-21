@@ -7,12 +7,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import ec.ups.edu.sistemafinanciero.modelo.Persona;
-
+import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 
 @Stateless
-public class personaDao {
-	
+public class ClienteDAO {
+
 	@Inject
 	private Connection connection;
 	
@@ -20,9 +19,8 @@ public class personaDao {
 	private EntityManager entityManager;
 	
 	
-	public void guardarPersona(Persona persona) throws SQLException{
-		entityManager.persist(persona);	
+	public void guardarCliente(Cliente cliente) throws SQLException {
+		entityManager.persist(cliente);
 	}
 	
-
 }
