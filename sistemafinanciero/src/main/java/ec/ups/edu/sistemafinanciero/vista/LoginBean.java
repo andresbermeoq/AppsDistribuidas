@@ -30,11 +30,8 @@ public class LoginBean {
 			passwordString = "";
 			MessagesUtil.agregarMensajeError("El Correo o Password son incorrectos");
 		}
-<<<<<<< HEAD
+
 		return "";
-=======
-		return null;
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 	}
 	
 	public String logoutUser() {

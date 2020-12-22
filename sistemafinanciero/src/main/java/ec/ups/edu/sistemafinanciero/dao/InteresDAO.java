@@ -52,17 +52,11 @@ public class InteresDAO {
 		em.remove(id);
 		return true;		
 	}
-	public List<Interes> listIntTipo() throws SQLException{
+	
+	public List<Interes> listInteres(){
 		List<Interes> listado = new ArrayList<Interes>();
 		listado = em.createQuery(
 		         "Select a From Interes a", Interes.class).getResultList();
 		return listado;
-	}
-	
-	public List<Interes> listInteres(){
-		String jpa = "SELECT v FROM Intereses";
-		Query q = em.createQuery(jpa, Interes.class);
-		return (List<Interes>) q.getResultList();
-
 	}
 }

@@ -26,7 +26,7 @@ public class InteresBeans {
 	@PostConstruct
 	public void init() {
 		interes = new Interes();
-		intereses = new ArrayList<Interes>();
+		//intereses = new ArrayList<Interes>();
 	}	
 	public String doSave() {
 		gInter.saveIntereses(interes);		
@@ -42,7 +42,7 @@ public class InteresBeans {
 	}
 	public void listar() {
 		try {
-			intereses = gInter.listInteres();
+			intereses = gInter.listInteres();			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

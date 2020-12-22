@@ -210,15 +210,12 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.8</version>
 		</dependency>
-		
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
 		</dependency>
-<<<<<<< HEAD
-=======
 		
 		<!-- Servidor de Correo-->
 		<dependency>
@@ -226,10 +223,6 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
 		</dependency>
-		
-		
-        
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
     </dependencies>
 	
     <build>

@@ -63,7 +63,7 @@ public class GestionInteresON {
 
 		List<Interes> lista = new ArrayList<Interes>();
 		try {
-			lista = idao.listIntTipo();
+			lista = idao.listInteres();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -63,7 +63,6 @@ public class GestionUsuarioON {
 		return user;
 	}
 	
-	public void sendEmail() {
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";

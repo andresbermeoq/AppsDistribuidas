@@ -25,7 +25,8 @@ public class GestionPolizaON {
 			throw new Exception("Se ha generado un error al guardar la poliza.");
 		}
 	}
-	public boolean validarPoliza() {
+	public boolean validarPoliza(Poliza poliza, Long idTransaccion, Long idCliente ) {
+		
 		return true;
 	}
 	public float consultaSaldoCta() {

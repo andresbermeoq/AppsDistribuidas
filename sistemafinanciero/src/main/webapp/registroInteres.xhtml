@@ -77,34 +77,9 @@
          <div>
     	<div>
     		<h:form id="listado">
-					<h:selectOneMenu value="#{interesBeans.tInteres}">
-						<f:selectItem itemValue="1" itemLabel="Creditos" />
-						<f:selectItem itemValue="2" itemLabel="Polizas" />
-					</h:selectOneMenu>
 					<h:commandButton action="#{interesBeans.listar()}"
 						value="Consultar" />
-					<h:dataTable value="#{interesBeans.intereses}" var="intereses" class="table">
-    				<h:column>
-    					<f:facet name="header">Id</f:facet>
-    					#{interesBeans.interes.id}
-    				</h:column>
-    				<h:column>
-    					<f:facet name="header">Porcentaje</f:facet>
-    					#{interesBeans.interes.porcentaje}
-    				</h:column>
-    				<h:column>
-    					<f:facet name="header">Incio</f:facet>
-    					#{interesBeans.interes.porcentaje}
-    				</h:column>
-    				<h:column>
-    					<f:facet name="header">Fin</f:facet>
-    					#{interesBeans.interes.tiempofin}
-    				</h:column>
-    				<h:column>
-    					<f:facet name="header">Observaciones</f:facet>
-    					#{interesBeans.interes.observacion}
-    				</h:column>
-    			</h:dataTable>
+					
     		</h:form>    	
     	</div>
     </div>

@@ -1,4 +1,4 @@
-package ec.ups.edu.sistemafinanciero.util;
+package ec.ups.edu.sistemafinanciero.utils;
 
 import java.sql.Connection;
 import java.sql.SQLException;

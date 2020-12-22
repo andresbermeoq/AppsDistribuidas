@@ -25,11 +25,7 @@
              Hibernate property instead:
              <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          -->
-<<<<<<< HEAD
          <property name="javax.persistence.schema-generation.database.action" value="update"/>
-=======
-         <property name="javax.persistence.schema-generation.database.action" value="none"/>
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
          <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
          <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
       </properties>

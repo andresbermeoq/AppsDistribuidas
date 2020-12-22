@@ -1,13 +1,10 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-=======
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -23,23 +20,13 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 public class UsuarioBean {
 
 	@Inject
-<<<<<<< HEAD
 	private GestionUsuarioON usuarioON;
 
 	private Usuario usuario;
 	private Date factual;
 
-	public UsuarioBean() {
-		// TODO Auto-generated constructor stub
-	}
-
-=======
 	private GestionUsuarioON gestionUsuarioON;
 	
-	private Usuario usuario;
-	
-	
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 	@PostConstruct
 	public void init() {
 		usuario = new Usuario();
@@ -59,15 +46,6 @@ public class UsuarioBean {
 	}
 
 	public String doGuardar() {
-<<<<<<< HEAD
-
-		System.out.println(usuario);
-
-		usuarioON.saveUsuario(usuario);
-=======
-		
-		gestionUsuarioON.saveUsuario(usuario);
->>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
 		return null;
 	}
 	
