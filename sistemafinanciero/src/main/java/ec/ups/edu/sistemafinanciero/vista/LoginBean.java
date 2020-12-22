@@ -25,7 +25,7 @@ public class LoginBean {
 		try {
 			Usuario user = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
 			SessionUtil.setUsuarioLogeado(user);
-			return "pretty:inicio-administrativo";
+			return "templates/AdminView";
 		} catch (GeneralException e) {
 			passwordString = "";
 			MessagesUtil.agregarMensajeError("El Correo o Password son incorrectos");
