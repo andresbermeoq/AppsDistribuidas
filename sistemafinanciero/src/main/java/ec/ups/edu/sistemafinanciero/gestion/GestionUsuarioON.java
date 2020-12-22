@@ -15,6 +15,7 @@ import ec.ups.edu.sistemafinanciero.modelo.Acceso;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.utils.MailUtil;
+import ec.ups.edu.sistemafinanciero.utils.RandomUtil;
 
 @Stateless
 public class GestionUsuarioON {
@@ -38,7 +39,11 @@ public class GestionUsuarioON {
 	
 	public boolean saveCliente(Cliente isCliente) {
 		try {
+			System.out.println("Cliente Guardado");
 			clienteDAO.guardarCliente(isCliente);
+			String numeroCuenta = RandomUtil.generarNumeroCuenta();
+			System.out.println(numeroCuenta);
+			enviarCorreoInicial(isCliente.getUsuario(), numeroCuenta);
 		} catch (Exception e) {
 			System.out.println("Error Gestion Usuario: "+e.getMessage());
 		}
@@ -56,6 +61,25 @@ public class GestionUsuarioON {
 		}else {
 			throw new GeneralException(201, "Password Incorrecto");
 		}
+	}
+	
+	public void enviarCorreoInicial(Usuario usuarioCliente, String numeroCuenta) {
+		String asuntoMensaje = "Acceso a la Banca Virtual";
+		StringBuilder cuerpoMensaje = new StringBuilder("Estimado(a) Cliente: <strong>")
+				.append(usuarioCliente.getNombre()).append("</strong><br>")
+				.append("SISTEMA FINANCIERO notifica a Ud. la siguiente informacion <br>")
+				.append("========================================================== <br>")
+				.append("<strong> Num. CUENTA: </strong> ").append(numeroCuenta).append("<br>")
+				.append("<strong> USUARIO: </strong> ").append(usuarioCliente.getEmail()).append("<br>")
+				.append("<strong> CONTRASEÑA: </strong> ").append(usuarioCliente.getPasswordString()).append("<br>")
+				.append("========================================================== <br>");
+		CompletableFuture.runAsync(() -> {
+			try {
+				MailUtil.enviarCorreo(usuarioCliente.getEmail(), asuntoMensaje, cuerpoMensaje.toString());
+			} catch (MessagingException ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
 	
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
