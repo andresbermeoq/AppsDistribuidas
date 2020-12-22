@@ -27,6 +27,7 @@ public class GestionUsuarioON {
 	private ClienteDAO clienteDAO;
 	
 	
+	
 	public boolean saveUsuario(Usuario isUsuario) {
 		
 		try {
@@ -111,5 +112,9 @@ public class GestionUsuarioON {
 	
 	public List<Acceso> obtenerAccesos (long idUsuario) throws GeneralException {
 		return clienteDAO.obtenerAccesoClientes(idUsuario);
+	}
+	
+	public List<Usuario> obtenerUsuarios() throws GeneralException {
+		return usuarioDAO.obtenerTodosUsuarios();
 	}
 }
