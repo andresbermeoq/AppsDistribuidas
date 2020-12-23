@@ -1,6 +1,7 @@
 package ec.ups.edu.sistemafinanciero.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -42,7 +43,7 @@ public class Usuario implements Serializable {
 	@Column(name = "usuario_nombre_cuenta")
 	private String nombreUsuarioString;
 	@Column(name = "usuario_fecha_registro")
-	private String fechaRegistroDate;
+	private Date fechaRegistroDate;
 	@Column(name = "usuario_admin")
 	private boolean isAdmin;
 	
@@ -104,10 +105,10 @@ public class Usuario implements Serializable {
 	public void setNombreUsuarioString(String nombreUsuarioString) {
 		this.nombreUsuarioString = nombreUsuarioString;
 	}
-	public String getFechaRegistroDate() {
+	public Date getFechaRegistroDate() {
 		return fechaRegistroDate;
 	}
-	public void setFechaRegistroDate(String fechaRegistroDate) {
+	public void setFechaRegistroDate(Date fechaRegistroDate) {
 		this.fechaRegistroDate = fechaRegistroDate;
 	}
 	public static long getSerialversionuid() {
