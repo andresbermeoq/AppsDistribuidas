@@ -223,6 +223,19 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+		<dependency>
+		    <groupId>org.primefaces</groupId>
+		    <artifactId>primefaces</artifactId>
+		    <version>8.0</version>
+		</dependency>
+		
+		
+        
+>>>>>>> 45b9457c615e1e2920a06dc9568d8e82b8b26669
     </dependencies>
 	
     <build>

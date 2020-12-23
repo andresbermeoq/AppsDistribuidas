@@ -2,6 +2,7 @@ package ec.ups.edu.sistemafinanciero.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.NoSuchEntityException;
 import javax.ejb.Stateless;
@@ -37,6 +38,14 @@ public class UsuarioDAO {
 			System.out.println("Error en la consulta del usuario");
 		} finally {
 			return user;
+		}
+	}
+	
+	public List<Usuario> obtenerTodosUsuarios() throws GeneralException {
+		try {
+			return entityManager.createQuery("from Usuario").getResultList();
+		} catch (Exception e) {
+			throw new GeneralException("ERROR DAO USUARIO: "+e.getMessage());
 		}
 	}
 	

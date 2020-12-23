@@ -25,6 +25,7 @@ public class ClienteDAO {
 		entityManager.persist(cliente);
 	}
 	
+	
 	public List<Acceso> obtenerAccesoClientes(long idUsuario) throws GeneralException {
 		try {
 			return entityManager
@@ -32,7 +33,7 @@ public class ClienteDAO {
 					.setParameter("idUsuario", idUsuario)
 					.getResultList();
 		} catch (Exception e) {
-			throw new GeneralException("ERROR: "+e.getMessage());
+			throw new GeneralException("ERROR DAO ACCESO: "+e.getMessage());
 		}
 	}
 	

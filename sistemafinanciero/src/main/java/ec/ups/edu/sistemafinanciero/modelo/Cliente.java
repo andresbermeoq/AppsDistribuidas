@@ -46,7 +46,6 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
 	
-	
 	@ManyToOne
 	@JoinColumn(name = "cliente_usuario_fk")
 	private Usuario usuario;
