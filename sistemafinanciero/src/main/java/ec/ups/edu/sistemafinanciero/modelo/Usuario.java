@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -43,6 +45,7 @@ public class Usuario implements Serializable {
 	@Column(name = "usuario_nombre_cuenta")
 	private String nombreUsuarioString;
 	@Column(name = "usuario_fecha_registro")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
 	@Column(name = "usuario_admin")
 	private boolean isAdmin;

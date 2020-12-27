@@ -38,13 +38,14 @@ public class UsuarioDAO {
 	
 	public Usuario obtenerUsuarioCorreoAdmin(String nombre) throws GeneralException {
 		try {
-			String sql= "SELECT * FROM usuario usu WHERE usu.usuario_nombre_cuenta=:nombre AND usu.usuario_admin=:esCliente";
+			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre AND isAdmin = :esCliente ";
 			
-			return entityManager
-						.createQuery(sql, Usuario.class)
+			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
 						.setParameter("esCliente", false)
 						.getSingleResult();	
+	
+			
 		} catch (NoSuchEntityException ex) {
 			throw new GeneralException(101, "Usuario No Encontrado");
 		} catch (Exception e) {

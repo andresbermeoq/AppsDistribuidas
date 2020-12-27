@@ -3,17 +3,17 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-      
+  
 <!-- Bootstrap -->
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
-<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />    
 
-<h:head></h:head> 
+
+<h:head>Login</h:head> 
 <body> 
 
-	<h1 class="display-3">Pagina de Inicio</h1>
-		<hr></hr>
-
+	<h1>Login</h1>
+	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
 	  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      	<li class="nav-item active">
-		        		<a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
+		        		<a class="nav-link" href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
 		      	</li>
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="#">Features</a>
@@ -36,27 +36,28 @@
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="registroPersona.xhtml">Iniciar</h:outputLink>
+		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
 	  </span>
 	</nav>
 	
 	<div class="container">
-		<h1>Registro de Usuarios</h1>
-		
-		<h:form >
-			<div class="form-group">
-	    		<label for="exampleInputEmail1">Usuario</label>
-				<h:inputText class="form-control" placeholder="Usuario" value="#{loginBean.usernameString}" />
-	    		<small id="emailHelp" class="form-text text-muted">Ingrese su nombre de Usuario</small>
-  			</div>
-		  	<div class="form-group">
-		    	<label for="exampleInputPassword1">Password</label>
-		    	<h:inputText class="form-control" placeholder="Password" value="#{loginBean.passwordString}"/>
-		  	</div>
-		  	<h:commandButton action="#{loginBean.loginUser()}" class="btn btn-primary justify-content-center" value="Ingresar" />
+		<h:form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Nombre de Usuario</label>
+			<h:inputText class="form-control" value="#{loginBean.usernameString}" />
+			<small id="emailHelp" class="form-text text-muted">Ingrese un nombre de Usuario para iniciar Sesion</small>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<h:inputText class="form-control" value="#{loginBean.passwordString}" />
+		</div>
+			<h:commandButton class="btn btn-primary" action="#{loginBean.loginUser()}" value="Ingresar" />
 		</h:form>
 	</div>
 	
+
+	
+
 	
 	
 
