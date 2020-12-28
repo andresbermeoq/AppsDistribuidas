@@ -8,9 +8,20 @@ import javax.ejb.NoSuchEntityException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+<<<<<<< HEAD
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
+=======
+
+<<<<<<< HEAD
+import ec.ups.edu.sistemafinanciero.modelo.Interes;
+=======
+>>>>>>> AngelJadan
 import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
+<<<<<<< HEAD
+=======
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
@@ -25,6 +36,10 @@ public class UsuarioDAO {
 	public void guardarUsuario(Usuario usuario) throws SQLException {
 		entityManager.persist(usuario);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> AngelJadan
 
 	public Usuario readUsuario(String usuario) {
 		Usuario user = new Usuario();
@@ -40,6 +55,10 @@ public class UsuarioDAO {
 			return user;
 		}
 	}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> AngelJadan
 	
 	public List<Usuario> obtenerTodosUsuarios() throws GeneralException {
 		try {
@@ -51,17 +70,24 @@ public class UsuarioDAO {
 	
 	public Usuario obtenerUsuarioCorreoAdmin(String nombre) throws GeneralException {
 		try {
-			String sql= "SELECT * FROM usuario usu WHERE usu.usuario_nombre_cuenta=:nombre AND usu.usuario_admin=:esCliente";
+			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre AND isAdmin = :esCliente ";
 			
-			return entityManager
-						.createQuery(sql, Usuario.class)
+			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
 						.setParameter("esCliente", false)
 						.getSingleResult();	
+	
+			
 		} catch (NoSuchEntityException ex) {
 			throw new GeneralException(101, "Usuario No Encontrado");
 		} catch (Exception e) {
 			throw new GeneralException("ERROR DAO: "+e.getMessage());
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
 }

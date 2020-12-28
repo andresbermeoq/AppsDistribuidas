@@ -31,7 +31,15 @@ public class GestionUsuarioON {
 	public boolean saveUsuario(Usuario isUsuario) {
 		
 		try {
-			usuarioDAO.guardarUsuario(isUsuario);
+			
+			if(isUsuario.getTipoString().equals("Administrador")) {
+				isUsuario.setAdmin(true);
+				usuarioDAO.guardarUsuario(isUsuario);
+			}else {
+				usuarioDAO.guardarUsuario(isUsuario);
+			}
+				
+	
 		} catch (SQLException e) {
 			System.out.println("Error Gestion Usuario:" + e.getMessage());
 		}
@@ -53,11 +61,11 @@ public class GestionUsuarioON {
 
 	public Usuario validarUsuarioAdmin(String usuario, String password) throws GeneralException {
 		Usuario usuarioAdmin = usuarioDAO.obtenerUsuarioCorreoAdmin(usuario);
+		System.out.println("Usuario ON1: "+usuarioAdmin.toString());
 		
 		if(usuarioAdmin.getPasswordString().equals(password)) {
-			usuarioAdmin.setPasswordString("");
-			usuarioAdmin.setNombreUsuarioString(usuario);
-			usuarioAdmin.setAdmin(false);
+			
+			System.out.println("Usuario ON2: "+usuarioAdmin.toString());
 			return usuarioAdmin;
 		}else {
 			throw new GeneralException(201, "Password Incorrecto");
@@ -88,7 +96,21 @@ public class GestionUsuarioON {
 		});
 	}
 	
+<<<<<<< HEAD
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
+=======
+<<<<<<< HEAD
+	public Usuario buscarUsuario(String usuario) {
+		Usuario user = new Usuario();
+		user = usuarioDAO.readUsuario(usuario);
+		return user;
+	}
+	
+	public void sendEmail() {
+=======
+	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";
 		

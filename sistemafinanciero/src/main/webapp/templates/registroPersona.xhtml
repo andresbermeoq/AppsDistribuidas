@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
       
        
 <!-- Bootstrap -->
@@ -39,6 +40,7 @@
 	  </span>
 	</nav>
 	
+<<<<<<< HEAD
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Cedula" />
@@ -62,6 +64,9 @@
 		</h:panelGrid>
 	</h:form>
 		
+=======
+	
+>>>>>>> AngelJadan
 	<div class="container">
 		<h2>Registro de Usuarios</h2>
 		<h:form>
@@ -76,9 +81,18 @@
 					<h:outputLabel value="Email" />
 						<h:inputText value="#{usuarioBean.usuario.email}" />
 					<h:outputLabel value="Tipo de Usuario" />
-						<h:inputText value="#{usuarioBean.usuario.tipoString}" />
+						<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}" class="btn btn-outline-secondary dropdown-toggle">
+							<f:selectItem id="tipoDefault" itemLabel="-----" itemValue="#{null}" itemDisable="true"
+										noSelectionOption="true" />
+							<f:selectItem id="tipoAdmin" itemLabel="Administrador" itemValue="Administrador" itemDisable="true"
+										noSelectionOption="true"/>
+							<f:selectItem id="tipoCajero" itemLabel="Cajero" itemValue="Cajero" itemDisable="true"
+										noSelectionOption="true"/>
+							<f:selectItem id="tipoAsistente" itemLabel="Asistente de Captaciones" itemValue="Asistente de Captaciones" itemDisable="true"
+										noSelectionOption="true"/>
+						</h:selectOneMenu>
 					<h:outputLabel value="Fecha de Registro" />
-						<h:inputText value="#{usuarioBean.usuario.fechaRegistroDate}" />
+						<p:calendar value="#{usuarioBean.usuario.fechaRegistroDate}" showOn="button"/>
 					<h:outputLabel value="Nombres Cuenta" />
 						<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
 					<h:outputLabel value="Password Cuenta" />
@@ -89,5 +103,9 @@
 		</h:form>
 	</div>
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> AngelJadan
 </body> 
 </html>

@@ -2,17 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-  
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+       
 <!-- Bootstrap -->
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
-<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />    
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
-
-<h:head>Login</h:head> 
+<h:head></h:head> 
 <body> 
-
-	<h1>Login</h1>
+	<h1>Registro de Personas</h1>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
@@ -40,26 +39,27 @@
 	  </span>
 	</nav>
 	
-	<div class="container">
-		<h:form>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Nombre de Usuario</label>
-			<h:inputText class="form-control" value="#{loginBean.usernameString}" />
-			<small id="emailHelp" class="form-text text-muted">Ingrese un nombre de Usuario para iniciar Sesion</small>
-		</div>
-		<div class="form-group">
-			<label for="exampleInputPassword1">Password</label>
-			<h:inputText class="form-control" value="#{loginBean.passwordString}" />
-		</div>
-			<h:commandButton class="btn btn-primary" action="#{loginBean.loginUser()}" value="Ingresar" />
-		</h:form>
-	</div>
-	
-
-	
-
-	
-	
-
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Cedula" />
+			<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
+			<h:outputLabel value="Nombres" />
+			<h:inputText value="#{usuarioBean.usuario.nombre}" />
+			<h:outputLabel value="Apellidos" />
+			<h:inputText value="#{usuarioBean.usuario.apellido}" />
+			<h:outputLabel value="Email" />
+			<h:inputText value="#{usuarioBean.usuario.email}" />
+			<h:outputLabel value="Tipo de Usuario" />
+			<h:inputText value="#{usuarioBean.usuario.tipoString}" />
+			<h:outputLabel value="Password" />
+			<h:inputText value="#{usuarioBean.usuario.passwordString}" />
+			<h:outputLabel value="Nombre de Usuario" />
+			<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
+			<h:outputLabel value="Fecha de Registro" />
+			<h:inputText value="#{usuarioBean.usuario.fechaRegistroDate}" />
+			<h:outputLabel value="" />
+			<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
+		</h:panelGrid>
+	</h:form>
 </body> 
 </html>
