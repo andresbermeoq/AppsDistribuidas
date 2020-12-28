@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a4j="http://richfaces.org/a4j">
-
+	
 <h:head>
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -15,8 +15,8 @@
 <body>
 	<h:form>
 		<h:panelGrid columns="2">
-		<h:outputLabel value="Usuario:" />
-		<h:outputLabel value="#{polizaBeans.user.nombreUsuarioString}" />
+			<h:outputLabel value="Usuario:" />
+			<h:outputLabel value="#{polizaBeans.user.nombreUsuarioString}" />
 		</h:panelGrid>
 	</h:form>
 	<h:form>
@@ -65,7 +65,8 @@
 
 			<h:commandButton action="#{polizaBeans.calInteres()}"
 				class="btn btn-primary mb-2" value="Generar" />
-			<h:commandButton action="#{polizaBeans.solPoliza()}" value="Solicitar" class="btn btn-success"/>
+			<h:commandButton action="#{polizaBeans.solPoliza()}"
+				value="Solicitar" class="btn btn-success" />
 			<h:commandButton action="#" class="btn btn-danger" value="Cancelar" />
 		</h:panelGrid>
 	</h:form>

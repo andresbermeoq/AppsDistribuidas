@@ -38,7 +38,6 @@ public class InteresDAO {
 						
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error en consulta rango dia "+day+" tipo "+tipo);
 		}finally {
 			return interes;
 		}		

@@ -87,7 +87,6 @@ public class Cliente implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-<<<<<<< HEAD
 /*<<<<<<< HEAD
 =======
 */
@@ -99,7 +98,7 @@ public class Cliente implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-=======
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -113,7 +112,6 @@ public class Cliente implements Serializable {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
->>>>>>> aa7ca294b0cf6a86b250a9bb71041b10c9283e11
 	}
 	
 /*>>>>>>> AngelJadan

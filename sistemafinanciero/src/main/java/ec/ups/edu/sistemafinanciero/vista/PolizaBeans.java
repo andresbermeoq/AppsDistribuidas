@@ -1,5 +1,7 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.Format;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,6 +12,12 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
@@ -24,7 +32,8 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Named
 @RequestScoped
-public class PolizaBeans {
+@WebServlet("/SolicitudPoliza")
+public class PolizaBeans extends HttpServlet {
 	
 	@Inject
 	private GestionPolizaON gpoliza;
@@ -50,7 +59,7 @@ public class PolizaBeans {
 		acta = new AsesorCta();
 		
 		thisDate = new Date();
-	}	
+	}
 	public void calInteres() {
 		try {
 			NumberFormat formatter = new DecimalFormat("#0.00");

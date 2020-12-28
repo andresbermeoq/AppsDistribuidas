@@ -33,13 +33,19 @@ public class InteresBeans {
 		clearInteres();
 		return null;
 	}
+	/*
+	 * Metodo para limpiar los campos.
+	 */
 	public String clearInteres() {		
-		interes.setTiempofin(0);
+		interes.setTiempoInicial(0);
 		interes.setTiempofin(0);
 		interes.setPorcentaje(0.00);
 		interes.setObservacion("");
 		return null;
 	}
+	/*
+	 * Metodo para listar los intereses ya registrados.
+	 */
 	public void listar() {
 		try {
 			intereses = gInter.listInteres();			
