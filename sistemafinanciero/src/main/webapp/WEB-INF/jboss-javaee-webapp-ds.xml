@@ -26,11 +26,15 @@
     <datasource jndi-name="java:jboss/datasources/sistemaDS"
         pool-name="sistemaDS" enabled="true"
         use-java-context="true" use-ccm="true">
+<<<<<<< HEAD
 <!-- <<<<<<< HEAD -->
         <!-- <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
 =======
         <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
 >>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a
+=======
+        <connection-url>jdbc:postgresql://localhost:5432/apps_dis</connection-url>
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
         <driver>postgresql-driver</driver>
         <security>
             <user-name>andres</user-name>

@@ -217,6 +217,26 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		
+		<!-- Servidor de Correo-->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+		<dependency>
+		    <groupId>org.primefaces</groupId>
+		    <artifactId>primefaces</artifactId>
+		    <version>8.0</version>
+		</dependency>
+		
+		
+        
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
     </dependencies>
 	
     <build>

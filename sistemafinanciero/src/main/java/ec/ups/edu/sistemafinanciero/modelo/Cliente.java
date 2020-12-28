@@ -37,13 +37,14 @@ public class Cliente implements Serializable {
 	@Column(name = "id_cliente", updatable = false, unique = true, nullable = false)
 	private Long idClienteLong;
 	@Column(name = "cliente_cuenta")
-	private int cuenta;
+	private String cuenta;
+	
 	@Column(name = "cliente_tipo_cuenta")
-	private int tipoCuenta;
+	private String tipoCuenta;
+	
 	@Column(name = "cliente_fecha_registro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_usuario_fk")
@@ -55,15 +56,15 @@ public class Cliente implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Cliente(int cuenta, int tipoCuenta, Date fechaRegistroDate) {
+	public Cliente(String cuenta, String tipoCuenta, Date fechaRegistroDate, Usuario usuario) {
 		super();
 		this.cuenta = cuenta;
 		this.tipoCuenta = tipoCuenta;
 		this.fechaRegistroDate = fechaRegistroDate;
+		this.usuario = usuario;
 	}
 
-	
-	public int getCuenta() {
+	public String getCuenta() {
 		return cuenta;
 	}
 	public Long getIdClienteLong() {
@@ -74,14 +75,8 @@ public class Cliente implements Serializable {
 		this.idClienteLong = idClienteLong;
 	}
 
-	public void setCuenta(int cuenta) {
+	public void setCuenta(String cuenta) {
 		this.cuenta = cuenta;
-	}
-	public int getTipoCuenta() {
-		return tipoCuenta;
-	}
-	public void setTipoCuenta(int tipoCuenta) {
-		this.tipoCuenta = tipoCuenta;
 	}
 	public Date getFechaRegistroDate() {
 		return fechaRegistroDate;
@@ -92,6 +87,7 @@ public class Cliente implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+<<<<<<< HEAD
 /*<<<<<<< HEAD
 =======
 */
@@ -103,6 +99,21 @@ public class Cliente implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+=======
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public String getTipoCuenta() {
+		return tipoCuenta;
+	}
+
+	public void setTipoCuenta(String tipoCuenta) {
+		this.tipoCuenta = tipoCuenta;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
 	}
 	
 /*>>>>>>> AngelJadan

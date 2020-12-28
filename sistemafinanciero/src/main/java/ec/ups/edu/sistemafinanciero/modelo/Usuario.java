@@ -1,6 +1,7 @@
 package ec.ups.edu.sistemafinanciero.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.enterprise.context.SessionScoped;
@@ -15,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -44,7 +47,10 @@ public class Usuario implements Serializable {
 	@Column(name = "usuario_nombre_cuenta")
 	private String nombreUsuarioString;
 	@Column(name = "usuario_fecha_registro")
-	private String fechaRegistroDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaRegistroDate;
+	@Column(name = "usuario_admin")
+	private boolean isAdmin;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -104,15 +110,34 @@ public class Usuario implements Serializable {
 	public void setNombreUsuarioString(String nombreUsuarioString) {
 		this.nombreUsuarioString = nombreUsuarioString;
 	}
-	public String getFechaRegistroDate() {
+	public Date getFechaRegistroDate() {
 		return fechaRegistroDate;
 	}
-	public void setFechaRegistroDate(String fechaRegistroDate) {
+	public void setFechaRegistroDate(Date fechaRegistroDate) {
 		this.fechaRegistroDate = fechaRegistroDate;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	public Set<Acceso> getAccesos() {
+		return accesos;
+	}
+	public void setAccesos(Set<Acceso> accesos) {
+		this.accesos = accesos;
+	}
+	public Set<Cliente> getClientes() {
+		return clientes;
+	}
+	public void setClientes(Set<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [idUsuarioLong=" + idUsuarioLong + ", cedulaString=" + cedulaString + ", nombre=" + nombre
