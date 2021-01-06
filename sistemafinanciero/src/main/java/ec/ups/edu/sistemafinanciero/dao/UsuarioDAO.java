@@ -9,7 +9,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
 
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;

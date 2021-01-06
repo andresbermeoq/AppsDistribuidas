@@ -15,12 +15,12 @@ public class MailUtil {
 	
 	public static void enviarCorreo(String destinatario, String asunto, String cuerpo) throws AddressException, MessagingException {
 		
-		String remitente = "";
+		String remitente = "andipandi467@gmail.com";
 		
 		Properties properties = System.getProperties();
 		properties.put("mail.smtp.host", "smtp.gmail.com"); //Servidor de Google
 		properties.put("mail.smtp.user", remitente); 
-		properties.put("mail.smtp.clave", ""); 
+		properties.put("mail.smtp.clave", "weedman12"); 
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");  //Conexion al Servidor SMTP de manera segura
 		properties.put("mail.smtp.port", "587");  //Puerto Seguro de Google

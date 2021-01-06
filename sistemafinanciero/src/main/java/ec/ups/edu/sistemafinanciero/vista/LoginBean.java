@@ -3,7 +3,6 @@ package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,8 +15,8 @@ import ec.ups.edu.sistemafinanciero.utils.MessagesUtil;
 import ec.ups.edu.sistemafinanciero.utils.SessionUtil;
 
 @Named
-@RequestScoped
-public class LoginBean {
+@SessionScoped
+public class LoginBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -68,10 +67,5 @@ public class LoginBean {
 	public void setPasswordString(String passwordString) {
 		this.passwordString = passwordString;
 	}
-
-
-	
-	
-	
 
 }
