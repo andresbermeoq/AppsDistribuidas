@@ -16,8 +16,8 @@ public class MailUtil {
 	
 	public static void enviarCorreo(String destinatario, String asunto, String cuerpo) throws AddressException, MessagingException {
 		
-		String remitente = "andipandi467@gmail.com";
-		String claveString = "weedman12";
+		String remitente = "";
+		String claveString = "";
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com"); //Servidor de Google
