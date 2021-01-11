@@ -36,7 +36,13 @@ public class LoginBean implements Serializable {
 		try {
 			userUsuario = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
 			System.out.println("Usuario Bean: "+userUsuario.toString());
-			return "ClienteView";
+			if (userUsuario.getTipoString().equals("Administrador")) {
+				return "registroPersona";
+			}else if(userUsuario.getTipoString().equals("Cajero")) {
+				return "ClienteView";
+			}else if (userUsuario.getTipoString().equals("Cliente")) {
+				return "UsuarioView";
+			}
 		} catch (GeneralException e) {
 			MessagesUtil.agregarMensajeError("El Correo y Password es incorrecto");
 		}

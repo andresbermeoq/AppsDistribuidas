@@ -8,7 +8,10 @@
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
-<h:head>Administrador</h:head> 
+
+<h:head>
+	<title>Usuario</title>
+</h:head> 
 <body> 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
@@ -28,10 +31,13 @@
 		      	</li>
 		    </ul>
 	  </div>
+	  
 	  <span class="navbar-text">
 		  	<h:outputLink class="btn btn-outline-primary" value="#{loginBean.logoutUser()}">Iniciar</h:outputLink>
 	  </span>
 	</nav>
+	
+	<h1>Bienvenido Usuario</h1>
 
 </body> 
 </html>

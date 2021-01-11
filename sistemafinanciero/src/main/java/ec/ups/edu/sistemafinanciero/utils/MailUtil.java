@@ -1,5 +1,6 @@
 package ec.ups.edu.sistemafinanciero.utils;
 
+import java.net.PortUnreachableException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -16,27 +17,29 @@ public class MailUtil {
 	public static void enviarCorreo(String destinatario, String asunto, String cuerpo) throws AddressException, MessagingException {
 		
 		String remitente = "andipandi467@gmail.com";
+		String claveString = "weedman12";
 		
-		Properties properties = System.getProperties();
+		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com"); //Servidor de Google
-		properties.put("mail.smtp.user", remitente); 
-		properties.put("mail.smtp.clave", "weedman12"); 
+		properties.put("mail.smtp.port", "587");  //Puerto Seguro de Google
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");  //Conexion al Servidor SMTP de manera segura
-		properties.put("mail.smtp.port", "587");  //Puerto Seguro de Google
-		properties.put("mail.smtp.timeout", 1000);
+		properties.put("mail.smtp.user", remitente); 
+		properties.put("mail.smtp.clave", claveString); 
 		
 		Session session = Session.getDefaultInstance(properties);
 		MimeMessage message= new MimeMessage(session);
-		message.setFrom(new InternetAddress(remitente));
-		message.addRecipients(Message.RecipientType.TO, destinatario);
+		
+
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
 		message.setSubject(asunto);
 		message.setText(cuerpo, "utf-8", "html");
 		
 		Transport transport= session.getTransport("smtp");
-		transport.connect("smtp.gmail.com", remitente, "");
+		transport.connect("smtp.gmail.com", remitente, claveString);
 		transport.sendMessage(message, message.getAllRecipients());
 		transport.close();
+		System.out.println("Correo Enviado");
 	}
 
 }

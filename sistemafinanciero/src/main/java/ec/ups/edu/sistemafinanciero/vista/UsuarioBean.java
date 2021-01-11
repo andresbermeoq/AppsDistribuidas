@@ -8,8 +8,6 @@ import javax.inject.Named;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
-
-
 @Named
 @RequestScoped
 public class UsuarioBean {
@@ -18,6 +16,7 @@ public class UsuarioBean {
 	private GestionUsuarioON gestionUsuarioON;
 	
 	private Usuario usuario;
+
 	
 	
 	@PostConstruct
@@ -38,11 +37,23 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 	
+	public String obtenerNombreUsuario(String nombre, String apellido) {
+		return nombre+apellido;
+	}
+	
+	public String obtenerPasswordUsuario() {
+		return gestionUsuarioON.generarPassword();
+	}
+	
 	public String doGuardar() {
-		
+		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
+		usuario.setPasswordString(this.obtenerPasswordUsuario());
+		System.out.println("USUARIO" + usuario.toString());
+		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
 		gestionUsuarioON.saveUsuario(usuario);
 		return null;
 	}
+
 	
 	
 	

@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "Cliente", schema = "public")
+@Table(name = "CLIENTE", schema = "public")
 public class Cliente implements Serializable {
 	
 	/**
@@ -32,10 +32,8 @@ public class Cliente implements Serializable {
 	private Long idClienteLong;
 	@Column(name = "cliente_cuenta")
 	private String cuenta;
-	
 	@Column(name = "cliente_tipo_cuenta")
 	private String tipoCuenta;
-	
 	@Column(name = "cliente_fecha_registro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
@@ -94,6 +92,12 @@ public class Cliente implements Serializable {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [idClienteLong=" + idClienteLong + ", cuenta=" + cuenta + ", tipoCuenta=" + tipoCuenta
+				+ ", fechaRegistroDate=" + fechaRegistroDate + ", usuario=" + usuario + "]";
 	}
 	
 	

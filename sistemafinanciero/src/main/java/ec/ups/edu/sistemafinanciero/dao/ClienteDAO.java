@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Acceso;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
+import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
 public class ClienteDAO {

@@ -35,13 +35,12 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public Usuario obtenerUsuarioCorreoAdmin(String nombre) throws GeneralException {
+	public Usuario obtenerUsuario(String nombre) throws GeneralException {
 		try {
-			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre AND isAdmin = :esCliente ";
+			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre ";
 			
 			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
-						.setParameter("esCliente", false)
 						.getSingleResult();	
 	
 			

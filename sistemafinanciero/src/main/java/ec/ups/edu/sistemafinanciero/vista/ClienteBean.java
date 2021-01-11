@@ -11,6 +11,7 @@ import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
+import ec.ups.edu.sistemafinanciero.utils.RandomUtil;
 
 @Named
 @RequestScoped
@@ -21,12 +22,14 @@ public class ClienteBean {
 	private GestionUsuarioON gestionUsuarioON;
 	
 	private Cliente cliente;
+	private Usuario usuario;
 	
 	private List<Usuario> listaUsuarios;
 	
 	@PostConstruct
 	public void init() {
 		cliente = new Cliente();
+		usuario = new Usuario();
 		cargarListas();
 		
 	}
@@ -56,13 +59,40 @@ public class ClienteBean {
 		this.cliente = cliente;
 	}
 	
-	public String doGuardarCliente() {
-		
-		gestionUsuarioON.saveCliente(cliente);
-		return null;
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String obtenerNombreCliente(String nombre, String apellido) {
+		return "cli"+nombre+apellido;
 	}
 	
+	public String obtenerPasswordCliente() {
+		return RandomUtil.generarPassword();
+	}
 	
+	public String obtenerNumeroCuenta() {
+		return RandomUtil.generarNumeroCuenta();
+	}
 	
+	public String doGuardarCliente() {
+		usuario.setNombreUsuarioString(this.obtenerNombreCliente(usuario.getNombre(), usuario.getApellido()));
+		usuario.setPasswordString(this.obtenerPasswordCliente());
+		usuario.setTipoString("Cliente");
+		System.out.println("Usuario: " + usuario.toString());
+		
+		cliente.setCuenta(this.obtenerNumeroCuenta());
+		cliente.setUsuario(usuario);
+		System.out.println("Cliente: "+cliente.toString());
+		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
+		gestionUsuarioON.saveUsuario(usuario);
+		gestionUsuarioON.saveCliente(cliente);
+		
+		return null;
+	}
 	
 }

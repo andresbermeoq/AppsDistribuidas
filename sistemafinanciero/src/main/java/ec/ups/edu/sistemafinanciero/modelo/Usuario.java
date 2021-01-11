@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "Usuario", schema = "public")
+@Table(name = "USUARIO", schema = "public")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,8 +47,6 @@ public class Usuario implements Serializable {
 	@Column(name = "usuario_fecha_registro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
-	@Column(name = "usuario_admin")
-	private boolean isAdmin;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -117,12 +115,6 @@ public class Usuario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 	public Set<Acceso> getAccesos() {
 		return accesos;
 	}
@@ -143,8 +135,4 @@ public class Usuario implements Serializable {
 				+ passwordString + ", nombreUsuarioString=" + nombreUsuarioString + ", fechaRegistroDate="
 				+ fechaRegistroDate + "]";
 	}
-	
-	
-	
-
 }

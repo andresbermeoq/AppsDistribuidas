@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Transferencia", schema = "public")
+@Table(name = "TRANSFERENCIA")
 public class Transferencia implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,7 +28,7 @@ public class Transferencia implements Serializable {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "transaccion_fk")
-	private Transaccion transaccion;
+	private Transaccion transaccion_fk;
 
 	public Long getIdTransferencia() {
 		return idTransferencia;
@@ -47,16 +47,16 @@ public class Transferencia implements Serializable {
 	}
 
 	public Transaccion getTransaccion() {
-		return transaccion;
+		return transaccion_fk;
 	}
 
 	public void setTransaccion(Transaccion transaccion) {
-		this.transaccion = transaccion;
+		this.transaccion_fk = transaccion;
 	}
 
 	@Override
 	public String toString() {
-		return "Transferencia [idTransferencia=" + idTransferencia + ", monto=" + monto + ", transaccion=" + transaccion
+		return "Transferencia [idTransferencia=" + idTransferencia + ", monto=" + monto + ", transaccion=" + transaccion_fk
 				+ "]";
 	}
 	
