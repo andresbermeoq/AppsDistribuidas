@@ -27,8 +27,11 @@
         pool-name="sistemaDS" enabled="true"
         use-java-context="true" use-ccm="true">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 <!-- <<<<<<< HEAD -->
         <!-- <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>

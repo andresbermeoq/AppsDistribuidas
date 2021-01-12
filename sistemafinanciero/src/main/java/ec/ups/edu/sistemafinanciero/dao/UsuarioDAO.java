@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
 =======
 
@@ -26,6 +27,11 @@ import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 =======
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
 >>>>>>> AngelJadan
+=======
+import ec.ups.edu.sistemafinanciero.modelo.Interes;
+import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
+import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
+>>>>>>> AngelJadan
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
@@ -41,8 +47,11 @@ public class UsuarioDAO {
 		entityManager.persist(usuario);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 
 	public Usuario readUsuario(String usuario) {
@@ -60,7 +69,10 @@ public class UsuarioDAO {
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> AngelJadan
 =======
 >>>>>>> AngelJadan
 	
@@ -74,7 +86,11 @@ public class UsuarioDAO {
 	
 	public Usuario obtenerUsuario(String nombre) throws GeneralException {
 		try {
+<<<<<<< HEAD
 			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre ";
+=======
+			String sql= "select usu from Usuario usu WHERE nombreUsuarioString = :nombre AND isAdmin = :esCliente ";
+>>>>>>> AngelJadan
 			
 			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
@@ -88,9 +104,12 @@ public class UsuarioDAO {
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	
 	
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 }

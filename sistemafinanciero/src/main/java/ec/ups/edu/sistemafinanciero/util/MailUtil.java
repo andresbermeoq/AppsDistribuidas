@@ -1,4 +1,4 @@
-package ec.ups.edu.sistemafinanciero.utils;
+package ec.ups.edu.sistemafinanciero.util;
 
 import java.net.PortUnreachableException;
 import java.util.Properties;

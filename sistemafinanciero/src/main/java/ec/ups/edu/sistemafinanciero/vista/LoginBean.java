@@ -7,12 +7,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
-import ec.ups.edu.sistemafinanciero.utils.MessagesUtil;
-import ec.ups.edu.sistemafinanciero.utils.SessionUtil;
+import ec.ups.edu.sistemafinanciero.util.MessagesUtil;
+import ec.ups.edu.sistemafinanciero.util.SessionUtil;
 
 @Named
 @SessionScoped
@@ -47,6 +46,7 @@ public class LoginBean implements Serializable {
 			MessagesUtil.agregarMensajeError("El Correo y Password es incorrecto");
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		return "";
 =======
@@ -55,6 +55,9 @@ public class LoginBean implements Serializable {
 =======
 		return null;
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
+=======
+		return null;
 >>>>>>> AngelJadan
 	}
 	

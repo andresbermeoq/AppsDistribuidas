@@ -14,8 +14,8 @@ import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Acceso;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
-import ec.ups.edu.sistemafinanciero.utils.MailUtil;
-import ec.ups.edu.sistemafinanciero.utils.RandomUtil;
+import ec.ups.edu.sistemafinanciero.util.MailUtil;
+import ec.ups.edu.sistemafinanciero.util.RandomUtil;
 
 @Stateless
 public class GestionUsuarioON {
@@ -90,21 +90,24 @@ public class GestionUsuarioON {
 			}
 		});
 	}
+<<<<<<< HEAD
 	
 <<<<<<< HEAD
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> AngelJadan
 	public Usuario buscarUsuario(String usuario) {
 		Usuario user = new Usuario();
 		user = usuarioDAO.readUsuario(usuario);
 		return user;
 	}
-	
-	public void sendEmail() {
-=======
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
+<<<<<<< HEAD
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";

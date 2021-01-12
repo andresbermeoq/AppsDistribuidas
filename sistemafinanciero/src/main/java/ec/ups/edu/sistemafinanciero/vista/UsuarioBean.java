@@ -1,18 +1,24 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -28,13 +34,17 @@ public class UsuarioBean {
 
 	@Inject
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> AngelJadan
+=======
 >>>>>>> AngelJadan
 	private GestionUsuarioON usuarioON;
 
 	private Usuario usuario;
 	private Date factual;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 	private GestionUsuarioON gestionUsuarioON;
@@ -52,6 +62,10 @@ public class UsuarioBean {
 	
 	
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
+=======
+	private GestionUsuarioON gestionUsuarioON;
+		
 >>>>>>> AngelJadan
 	@PostConstruct
 	public void init() {
@@ -73,6 +87,7 @@ public class UsuarioBean {
 <<<<<<< HEAD
 
 	public String doGuardar() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -100,6 +115,12 @@ public class UsuarioBean {
 >>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 		gestionUsuarioON.saveUsuario(usuario);
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
+=======
+		System.out.println(usuario);
+
+		usuarioON.saveUsuario(usuario);		
+		gestionUsuarioON.saveUsuario(usuario);
 >>>>>>> AngelJadan
 		return null;
 	}
