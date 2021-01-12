@@ -22,8 +22,6 @@ import javax.inject.Named;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
-
-
 @Named
 @RequestScoped
 public class UsuarioBean {
@@ -50,6 +48,7 @@ public class UsuarioBean {
 	private GestionUsuarioON gestionUsuarioON;
 	
 	private Usuario usuario;
+
 	
 	
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
@@ -71,6 +70,7 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+<<<<<<< HEAD
 
 	public String doGuardar() {
 <<<<<<< HEAD
@@ -82,11 +82,28 @@ public class UsuarioBean {
 		usuarioON.saveUsuario(usuario);
 =======
 		
+=======
+	
+	public String obtenerNombreUsuario(String nombre, String apellido) {
+		return nombre+apellido;
+	}
+	
+	public String obtenerPasswordUsuario() {
+		return gestionUsuarioON.generarPassword();
+	}
+	
+	public String doGuardar() {
+		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
+		usuario.setPasswordString(this.obtenerPasswordUsuario());
+		System.out.println("USUARIO" + usuario.toString());
+		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
+>>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 		gestionUsuarioON.saveUsuario(usuario);
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
 >>>>>>> AngelJadan
 		return null;
 	}
+
 	
 	
 	

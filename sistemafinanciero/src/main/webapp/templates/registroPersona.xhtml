@@ -10,9 +10,11 @@
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
-<h:head></h:head> 
+<h:head>
+	<title>Registro de Usuarios Administrativos</title>
+</h:head> 
 <body> 
-	<h1>Registro de Personas</h1>
+	<h1>Registro de Usuarios</h1>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
@@ -68,16 +70,16 @@
 	
 >>>>>>> AngelJadan
 	<div class="container">
-		<h2>Registro de Usuarios</h2>
-		<h:form>
+		<h2>Usuarios Administrativos</h2>
+		<h:form id="registro">
 			<div class="form-group">
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Cedula" />
 						<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
 					<h:outputLabel value="Nombres" />
-						<h:inputText value="#{usuarioBean.usuario.nombre}" />
+						<h:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" />
 					<h:outputLabel value="Apellidos" />
-						<h:inputText value="#{usuarioBean.usuario.apellido}" />
+						<h:inputText id="apellido" value="#{usuarioBean.usuario.apellido}" />
 					<h:outputLabel value="Email" />
 						<h:inputText value="#{usuarioBean.usuario.email}" />
 					<h:outputLabel value="Tipo de Usuario" />
@@ -93,10 +95,10 @@
 						</h:selectOneMenu>
 					<h:outputLabel value="Fecha de Registro" />
 						<p:calendar value="#{usuarioBean.usuario.fechaRegistroDate}" showOn="button"/>
-					<h:outputLabel value="Nombres Cuenta" />
-						<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
-					<h:outputLabel value="Password Cuenta" />
-						<h:inputText value="#{usuarioBean.usuario.passwordString}" />
+						<br />
+					<h:outputLabel value="Usuario Cuenta" /> <br />
+						<h:outputLabel value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" /><br />
+						<h:outputLabel rendered="false" value="#{usuarioBean.usuario.passwordString}" action="#{usuarioBean.obtenerPassword()}"  />
 				</h:panelGrid>
 			</div>
 			<h:commandButton class="btn btn-primary btn-lg" action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />

@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Acceso", schema = "public")
+@Table(name = "ACCESO", schema = "public")
 public class Acceso implements Serializable {
 	
 	/**

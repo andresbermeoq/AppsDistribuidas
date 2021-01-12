@@ -13,10 +13,14 @@ import ec.ups.edu.sistemafinanciero.modelo.Interes;
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
 =======
 >>>>>>> AngelJadan
 import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
+=======
+
+>>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 <<<<<<< HEAD
 =======
@@ -68,13 +72,12 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public Usuario obtenerUsuarioCorreoAdmin(String nombre) throws GeneralException {
+	public Usuario obtenerUsuario(String nombre) throws GeneralException {
 		try {
-			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre AND isAdmin = :esCliente ";
+			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre ";
 			
 			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
-						.setParameter("esCliente", false)
 						.getSingleResult();	
 	
 			

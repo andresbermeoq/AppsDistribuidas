@@ -9,7 +9,9 @@
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />    
 
 
-<h:head>Login</h:head> 
+<h:head>
+	<title>LOGIN</title>
+</h:head> 
 <body> 
 
 	<h1>Login</h1>
@@ -49,7 +51,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">Password</label>
-			<h:inputText class="form-control" value="#{loginBean.passwordString}" />
+			<h:inputSecret  type="password" class="form-control" value="#{loginBean.passwordString}" />
 		</div>
 			<h:commandButton class="btn btn-primary" action="#{loginBean.loginUser()}" value="Ingresar" />
 		</h:form>

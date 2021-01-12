@@ -25,9 +25,19 @@
              Hibernate property instead:
              <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          -->
+<<<<<<< HEAD
          <property name="javax.persistence.schema-generation.database.action" value="update"/>
          <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
          <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
+=======
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.hbm2ddl.auto" value="create" />
+         <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+         <property name="hibernate.default_schema" value="public" />
+         <property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
+         <property name="hibernate.format_sql" value="true" /> <!-- Show SQL Code in console -->
+		 <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
+>>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
       </properties>
    </persistence-unit>
 </persistence>
