@@ -217,8 +217,6 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
 		</dependency>
-<<<<<<< HEAD
-=======
 		
 		<!-- Servidor de Correo-->
 		<dependency>
@@ -233,10 +231,6 @@
 		    <artifactId>primefaces</artifactId>
 		    <version>8.0</version>
 		</dependency>
-		
-		
-        
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
     </dependencies>
 	
     <build>
