@@ -21,12 +21,8 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-<<<<<<< HEAD
 @SessionScoped
 @Table(name = "Usuario", schema = "public")
-=======
-@Table(name = "USUARIO", schema = "public")
->>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;

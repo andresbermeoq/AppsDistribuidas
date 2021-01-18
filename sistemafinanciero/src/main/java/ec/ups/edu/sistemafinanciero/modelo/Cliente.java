@@ -85,34 +85,10 @@ public class Cliente implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
+
 /*<<<<<<< HEAD
 =======
 */
-	private Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	}
-=======
-=======
->>>>>>> AngelJadan
-=======
-	}
->>>>>>> AngelJadan
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -125,26 +101,11 @@ public class Cliente implements Serializable {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
 	}
 
 	@Override
 	public String toString() {
 		return "Cliente [idClienteLong=" + idClienteLong + ", cuenta=" + cuenta + ", tipoCuenta=" + tipoCuenta
 				+ ", fechaRegistroDate=" + fechaRegistroDate + ", usuario=" + usuario + "]";
-=======
->>>>>>> AngelJadan
 	}
-	
-/*>>>>>>> AngelJadan
-=======
-	
-	
-	
->>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a
-*/
 }

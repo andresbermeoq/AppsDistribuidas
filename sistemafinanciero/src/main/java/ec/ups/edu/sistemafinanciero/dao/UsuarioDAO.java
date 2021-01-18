@@ -8,30 +8,8 @@ import javax.ejb.NoSuchEntityException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import ec.ups.edu.sistemafinanciero.modelo.Interes;
-=======
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import ec.ups.edu.sistemafinanciero.modelo.Interes;
-=======
->>>>>>> AngelJadan
-import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
-=======
-
->>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
-<<<<<<< HEAD
-=======
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
-import ec.ups.edu.sistemafinanciero.modelo.Interes;
-import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
-import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
->>>>>>> AngelJadan
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
@@ -46,14 +24,6 @@ public class UsuarioDAO {
 	public void guardarUsuario(Usuario usuario) throws SQLException {
 		entityManager.persist(usuario);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
-
 	public Usuario readUsuario(String usuario) {
 		Usuario user = new Usuario();
 		try {
@@ -68,14 +38,6 @@ public class UsuarioDAO {
 			return user;
 		}
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
-	
 	public List<Usuario> obtenerTodosUsuarios() throws GeneralException {
 		try {
 			return entityManager.createQuery("from Usuario").getResultList();
@@ -86,11 +48,7 @@ public class UsuarioDAO {
 	
 	public Usuario obtenerUsuario(String nombre) throws GeneralException {
 		try {
-<<<<<<< HEAD
 			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre ";
-=======
-			String sql= "select usu from Usuario usu WHERE nombreUsuarioString = :nombre AND isAdmin = :esCliente ";
->>>>>>> AngelJadan
 			
 			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
@@ -103,13 +61,4 @@ public class UsuarioDAO {
 			throw new GeneralException("ERROR DAO: "+e.getMessage());
 		}
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
 }

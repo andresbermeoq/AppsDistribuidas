@@ -216,14 +216,14 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
 		</dependency>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+<!-- <<<<<<< HEAD
 <<<<<<< HEAD
 =======
->>>>>>> AngelJadan
+<<<<<<< HEAD
 =======
 >>>>>>> AngelJadan
+=======
+>>>>>>> AngelJadan-->
 		
 		<!-- Servidor de Correo-->
 		<dependency>
@@ -238,7 +238,7 @@
 		    <artifactId>primefaces</artifactId>
 		    <version>8.0</version>
 		</dependency>
-<<<<<<< HEAD
+<!--<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		
@@ -247,7 +247,7 @@
 >>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
 >>>>>>> AngelJadan
 =======
->>>>>>> AngelJadan
+>>>>>>> AngelJadan-->
     </dependencies>
 	
     <build>

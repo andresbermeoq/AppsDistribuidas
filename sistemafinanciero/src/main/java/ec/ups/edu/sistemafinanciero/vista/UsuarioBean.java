@@ -1,25 +1,9 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -33,48 +17,19 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 public class UsuarioBean {
 
 	@Inject
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
 	private GestionUsuarioON usuarioON;
 
 	private Usuario usuario;
 	private Date factual;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-	private GestionUsuarioON gestionUsuarioON;
-	
-=======
 	public UsuarioBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-=======
 	private GestionUsuarioON gestionUsuarioON;
-	
-	private Usuario usuario;
 
-	
-	
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
-	private GestionUsuarioON gestionUsuarioON;
-		
->>>>>>> AngelJadan
 	@PostConstruct
 	public void init() {
 		usuario = new Usuario();
-	}
-	
-	
-	public UsuarioBean() {
-		super();
 	}
 
 	public Usuario getUsuario() {
@@ -84,21 +39,6 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-<<<<<<< HEAD
-
-	public String doGuardar() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-		System.out.println(usuario);
-
-		usuarioON.saveUsuario(usuario);
-=======
-		
-=======
-	
 	public String obtenerNombreUsuario(String nombre, String apellido) {
 		return nombre+apellido;
 	}
@@ -112,24 +52,13 @@ public class UsuarioBean {
 		usuario.setPasswordString(this.obtenerPasswordUsuario());
 		System.out.println("USUARIO" + usuario.toString());
 		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
->>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 		gestionUsuarioON.saveUsuario(usuario);
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
 		System.out.println(usuario);
 
 		usuarioON.saveUsuario(usuario);		
 		gestionUsuarioON.saveUsuario(usuario);
->>>>>>> AngelJadan
 		return null;
 	}
-
-	
-	
-	
-	
-
 	public GestionUsuarioON getUsuarioON() {
 		return usuarioON;
 	}

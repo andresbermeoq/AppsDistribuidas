@@ -45,20 +45,7 @@ public class LoginBean implements Serializable {
 		} catch (GeneralException e) {
 			MessagesUtil.agregarMensajeError("El Correo y Password es incorrecto");
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-		return "";
-=======
-<<<<<<< HEAD
-		return "";
-=======
 		return null;
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
-		return null;
->>>>>>> AngelJadan
 	}
 	
 	public String logoutUser() {

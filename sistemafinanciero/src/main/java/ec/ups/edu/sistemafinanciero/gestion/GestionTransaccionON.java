@@ -1,5 +1,6 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,12 @@ public class GestionTransaccionON {
 		Transaccion transaccion = new Transaccion();
 		transaccion.setMonto(cantidad);
 		transaccion.setSaldoActual(transaccion.getSaldoAnterior() + cantidad);
-		transaccionDAO.guardarTransaccion(transaccion);
+		try {
+			transaccionDAO.insert(transaccion);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
@@ -33,7 +39,12 @@ public class GestionTransaccionON {
 		Transaccion transaccion = new Transaccion();
 		transaccion.setMonto(cantidad);
 		transaccion.setSaldoActual(transaccion.getSaldoAnterior() - cantidad);
-		transaccionDAO.guardarTransaccion(transaccion);
+		try {
+			transaccionDAO.insert(transaccion);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	

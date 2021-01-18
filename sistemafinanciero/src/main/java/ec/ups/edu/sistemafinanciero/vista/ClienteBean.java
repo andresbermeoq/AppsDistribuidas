@@ -11,7 +11,7 @@ import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
-import ec.ups.edu.sistemafinanciero.utils.RandomUtil;
+import ec.ups.edu.sistemafinanciero.util.RandomUtil;
 
 @Named
 @RequestScoped

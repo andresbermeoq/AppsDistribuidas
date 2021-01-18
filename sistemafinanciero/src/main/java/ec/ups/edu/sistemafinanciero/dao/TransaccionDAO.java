@@ -1,10 +1,8 @@
 package ec.ups.edu.sistemafinanciero.dao;
 
-<<<<<<< HEAD
 import java.sql.SQLException;
-=======
+
 import java.sql.Connection;
->>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -14,7 +12,6 @@ import ec.ups.edu.sistemafinanciero.modelo.Transaccion;
 
 @Stateless
 public class TransaccionDAO {
-<<<<<<< HEAD
 	@Inject
 	private EntityManager em;
 	
@@ -35,19 +32,3 @@ public class TransaccionDAO {
 		return true;		
 	}
 }
-=======
-	
-	@Inject
-	private Connection connection;
-	
-	@Inject
-	private EntityManager entityManager;
-	
-	public void guardarTransaccion(Transaccion transaccion) {
-		entityManager.persist(transaccion);
-	}
-	
-	
-
-}
->>>>>>> 4f91a000319243aed4ecae0435228b004ac742e6

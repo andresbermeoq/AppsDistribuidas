@@ -90,25 +90,7 @@ public class GestionUsuarioON {
 			}
 		});
 	}
-<<<<<<< HEAD
-	
-<<<<<<< HEAD
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
-=======
-<<<<<<< HEAD
-=======
->>>>>>> AngelJadan
-	public Usuario buscarUsuario(String usuario) {
-		Usuario user = new Usuario();
-		user = usuarioDAO.readUsuario(usuario);
-		return user;
-	}
-	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
-<<<<<<< HEAD
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";
 		
