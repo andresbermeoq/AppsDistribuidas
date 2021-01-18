@@ -6,6 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.hibernate.boot.model.source.internal.hbm.AbstractEntitySourceImpl;
+
 import ec.ups.edu.sistemafinancieroLocal.dao.ClienteDAO;
 import ec.ups.edu.sistemafinancieroLocal.dao.IntebancarioDAO;
 import ec.ups.edu.sistemafinancieroLocal.dao.TransaccionDAO;
@@ -111,7 +113,7 @@ public class GestionTransaccionON {
 				//Asigna el nuevo saldo actual.
 				transaccion.setSladoActual(nuevoSaldo);
 				estado = transaccionDAO.insert(transaccion);
-			}if (transaccion.getOperacion().equals("TRANSFERENCIA")) {
+			}if (transaccion.getOperacion().equals("TRANSFER")) {
 				nuevoSaldo = sActual-transaccion.getMonto();
 				transaccion.setSaldoAnterior(sActual);
 				transaccion.setSladoActual(nuevoSaldo);
@@ -141,10 +143,10 @@ public class GestionTransaccionON {
 			boolean estTransaccion = false;
 			boolean estTranferencia = false;
 			if (saldo >=transferencia.getTransaccion().getMonto()) {
+				transferencia.setMonto(transferencia.getTransaccion().getMonto());
 				estTransaccion = transaccion(transferencia.getTransaccion());
 				estTranferencia = transferenciaDAO.insert(transferencia);
 			}
-			estado = transferenciaDAO.insert(transferencia);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

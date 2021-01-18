@@ -103,11 +103,6 @@ public class TransaccionDAO {
 				.setParameter("cliente", id)
 				.getResultList();
 		for (Transaccion transaccion2 : list) {
-			System.out.print("FECHA: "+transaccion2.getFecha());
-			System.out.print("Monto "+transaccion2.getMonto());
-			System.out.print("Saldo anterior: "+transaccion2.getSaldoAnterior());
-			System.out.print("Saldo actual: "+transaccion2.getSladoActual());
-			System.out.println();
 			transaccion = transaccion2;
 		}
 		return transaccion;

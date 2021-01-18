@@ -18,12 +18,10 @@ public class TransferenciaDAO {
 	private EntityManager em;
 	
 	public boolean insert(Transferencia transferencia) throws SQLException {
-		System.out.println("Banco: "+transferencia.getInterbancario().getId());
-		System.out.println("Transferencia"+transferencia.getTransaccion().getId());
 		
 		String sql = "INSERT INTO public.transferencias("
 				+ "	taf_id, taf_monto, taf_fk_interbancario, taf_fk_transaccion)"
-				+ "	VALUES (?, ?, ?, ?, ?);";		
+				+ "	VALUES (?, ?, ?, ?);";		
 		em.createNativeQuery(sql)
 		.setParameter(1, transferencia.getId())
 		.setParameter(2, transferencia.getMonto())

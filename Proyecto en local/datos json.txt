@@ -1,38 +1,28 @@
 Para guardar una transaccion;
 ********************************************************************
 {
-    "agencia":"MALL DEL RIO",
+    "id":4,    ID DEL NUMERO DE TRANSFERENCIA
+    "interbancario":{
+    "id":2
+},
+    "transaccion":{
+    "agencia":"EN LINEA",
     "cajero":{
     "id":1
 },
     "cliente":{
     "cuenta":"123",
-    "fechaRegistroDate":"2021-01-04T05:00:00Z[UTC]",
     "idClienteLong":1,
-    "tipoCuenta":"1",
-    "usuario":{
-    "accesos":[],
-    "apellido":"CLIENTE1",
-    "cedulaString":"010106405237",
-    "clientes":[],
-    "email":"cliente1@gmail.com",
-    "fechaRegistroDate":"2021-01-13 16:26:00",
-    "idUsuarioLong":2,
-    "nombre":"CLIENTE1",
-    "nombreUsuarioString":"CLIENTE1",
-    "passwordString":"Cliente1",
-    "tipoString":"CLIENTE"
-}
+    "tipoCuenta":"1"
 },
-    "fecha":"2021-01-12T05:17:10Z[UTC]",
-    "id":2,
+    "fecha":"2021-01-18T15:16:10Z[UTC]",
+    "id":6,     ID DEL NUMERO DE TRANSACCION
     "identificacion":"01060405236",
-    "monto":350.0,
+    "monto":50.0,
     "nombre":"Angel Jadan",
     "observacion":"na",
-    "operacion":"DEPOSITO",
-    "saldoAnterior":200.0,
-    "sladoActual":550.0
+    "operacion":"TRANSFER"
+}
 }
 ********************************************
 Json para depositos, retiros.
@@ -54,3 +44,8 @@ Json para depositos, retiros.
     "operacion":"DEPOSITO"
 }
 ********************************************
+
+DELETE FROM public.transferencias
+	WHERE taf_id=4;
+DELETE FROM public.transacciones
+	WHERE tra_id=6;
