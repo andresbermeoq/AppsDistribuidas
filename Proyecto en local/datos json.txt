@@ -1,0 +1,37 @@
+Para guardar una transaccion;
+********************************************************************
+{
+    "agencia":"MALL DEL RIO",
+    "cajero":{
+    "id":1
+},
+    "cliente":{
+    "cuenta":"123",
+    "fechaRegistroDate":"2021-01-04T05:00:00Z[UTC]",
+    "idClienteLong":1,
+    "tipoCuenta":"1",
+    "usuario":{
+    "accesos":[],
+    "apellido":"CLIENTE1",
+    "cedulaString":"010106405237",
+    "clientes":[],
+    "email":"cliente1@gmail.com",
+    "fechaRegistroDate":"2021-01-13 16:26:00",
+    "idUsuarioLong":2,
+    "nombre":"CLIENTE1",
+    "nombreUsuarioString":"CLIENTE1",
+    "passwordString":"Cliente1",
+    "tipoString":"CLIENTE"
+}
+},
+    "fecha":"2021-01-12T05:17:10Z[UTC]",
+    "id":2,
+    "identificacion":"01060405236",
+    "monto":350.0,
+    "nombre":"Angel Jadan",
+    "observacion":"na",
+    "operacion":"DEPOSITO",
+    "saldoAnterior":200.0,
+    "sladoActual":550.0
+}
+********************************************
