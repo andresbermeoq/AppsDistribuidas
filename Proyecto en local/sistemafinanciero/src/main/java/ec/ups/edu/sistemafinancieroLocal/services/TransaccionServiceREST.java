@@ -115,8 +115,19 @@ public class TransaccionServiceREST {
 	@Produces("application/json")
 	@Consumes("application/json")
 	public String depositar(Transaccion transaccion) {
+		System.out.println(transaccion.getMonto());
+		System.out.println(transaccion.getOperacion());
 		gtransaccionon.transaccion(transaccion);
 		return "OK";
+	}
+	
+	@GET
+	@Path("/saldo/")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public double saldo(@QueryParam("ID") long idCliente) {
+		double saldo = gtransaccionon.saldoActual(idCliente);
+		return saldo;
 	}
 	
 	/**
@@ -132,12 +143,17 @@ public class TransaccionServiceREST {
 		gtransaccionon.transaccion(transaccion);
 		return true;
 	}
+	
 	@GET
 	@Path("/get_transferencias")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public List<Transferencia> getTransferencias(){
+	public List<Transferencia> getTransferencias(@QueryParam(value = "idCliente") long idCliente){
 		List<Transferencia> listado = new ArrayList<Transferencia>();
+		listado = gtransaccionon.listarTransferencia(idCliente);
+		for (Transferencia transferencia : listado) {
+			System.out.println(transferencia.getTransaccion().getId());
+		}
 		return listado;
 	}
 	/**
@@ -150,8 +166,9 @@ public class TransaccionServiceREST {
 	@Produces("application/json")
 	@Consumes("application/json")
 	public boolean transferir(Transferencia transferencia) {
-		gtransaccionon.transferir(transferencia);
+		System.out.println(transferencia.getMonto()+transferencia.getInterbancario().toString()+transferencia.getTransaccion().toString());
+		boolean estado = false;
+		estado = gtransaccionon.transferir(transferencia);
 		return true;
 	}
-
 }

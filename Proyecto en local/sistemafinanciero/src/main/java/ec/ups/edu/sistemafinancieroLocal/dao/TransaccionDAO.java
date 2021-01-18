@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.management.Query;
 import javax.persistence.EntityManager;
 
 import ec.ups.edu.sistemafinancieroLocal.modelo.Transaccion;
@@ -94,27 +95,21 @@ public class TransaccionDAO {
 	 */
 	public Transaccion searchSalFinal(long id) {
 		Transaccion transaccion = new Transaccion();
-		String sql = "SELECT t FROM Transacciones t"
-				+ " WHERE tra_fk_cliente=:cliente and tra_fecha = (SELECT MAX(tra_fecha) FROM Transacciones t)";
-		transaccion = em.createQuery(sql,Transaccion.class)
+		List<Transaccion> list = new ArrayList<Transaccion>();
+		String sql = "SELECT t FROM Transaccion t"
+				+ " WHERE tra_fk_cliente=:cliente ORDER BY tra_fecha";
+		
+		list = em.createQuery(sql,Transaccion.class)
 				.setParameter("cliente", id)
-				.getSingleResult();
-		return transaccion;
-	}
-	/**
-	 * 
-	 * @param idCliente Id del cliente para filtrar de acuerdo a esto.
-	 * @return List con las transferencias del cliente.
-	 * @throws SQLException
-	 */
-	public List<Transferencia> listTransferencia(long idCliente) throws SQLException{
-		List<Transferencia> transferencias = new ArrayList<Transferencia>();
-		String sql = "SELECT t FROM Transferencia t, Transaccion r WHERE tra_id=taf_fk_transaccion "
-				+ "AND tra_fk_cliente=:cliente"
-				+ " ";
-		transferencias = em.createNativeQuery(sql, Transferencia.class)
-				.setParameter("cliente", idCliente)
 				.getResultList();
-		return transferencias;
+		for (Transaccion transaccion2 : list) {
+			System.out.print("FECHA: "+transaccion2.getFecha());
+			System.out.print("Monto "+transaccion2.getMonto());
+			System.out.print("Saldo anterior: "+transaccion2.getSaldoAnterior());
+			System.out.print("Saldo actual: "+transaccion2.getSladoActual());
+			System.out.println();
+			transaccion = transaccion2;
+		}
+		return transaccion;
 	}
 }

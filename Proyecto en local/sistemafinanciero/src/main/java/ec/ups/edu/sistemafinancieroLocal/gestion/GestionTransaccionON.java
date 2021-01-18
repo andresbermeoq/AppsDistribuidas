@@ -69,7 +69,7 @@ public class GestionTransaccionON {
 	public List<Transferencia> listarTransferencia(long clienteId){
 		List<Transferencia> list = new ArrayList<Transferencia>();
 		try {
-			list = transaccionDAO.listTransferencia(clienteId);
+			list = transferenciaDAO.listTransferencia(clienteId);
 		} catch (Exception e) {
 			new Exception("Se ha generado un error al recupera las transacciones: Error: \n"+e.getLocalizedMessage());
 		}finally {
@@ -88,24 +88,62 @@ public class GestionTransaccionON {
 	 */
 	public boolean transaccion(Transaccion transaccion) {
 		boolean estado = false;
+		double sActual = 0;
+		double nuevoSaldo = 0;
 		try {
-			if (transaccion.getOperacion()!="TRANSFERENCIA") {
+			//Consulta de saldo disponible
+			sActual = saldoActual(transaccion.getCliente().getIdClienteLong());
+			if (transaccion.getOperacion().equals("RETIRO")) {
+				//Calculo de nuevo saldo.
+				nuevoSaldo = sActual-transaccion.getMonto();
+				//Asigna nuevo saldo anterior.
+				transaccion.setSaldoAnterior(sActual);
+				//Asigna nuevo saldo actual.
+				transaccion.setSladoActual(nuevoSaldo);
+				//Inserta nueva transaccion. 
 				estado = transaccionDAO.insert(transaccion);
+			}if (transaccion.getOperacion().equals("DEPOSITO")) {
+				System.out.println("entro");
+				//Realiza suma de saldo anterior mas el deposito.
+				nuevoSaldo = sActual+transaccion.getMonto();
+				//Asigna el saldo anterior.
+				transaccion.setSaldoAnterior(sActual);
+				//Asigna el nuevo saldo actual.
+				transaccion.setSladoActual(nuevoSaldo);
+				estado = transaccionDAO.insert(transaccion);
+			}if (transaccion.getOperacion().equals("TRANSFERENCIA")) {
+				nuevoSaldo = sActual-transaccion.getMonto();
+				transaccion.setSaldoAnterior(sActual);
+				transaccion.setSladoActual(nuevoSaldo);
+				estado = transaccionDAO.insert(transaccion);
+				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			new Exception("Se ha generado un error al guardar la operacion "+transaccion.getOperacion()
+			+" \n "+e.getLocalizedMessage());
+		}finally {
+			return estado;
 		}
-		return estado;
 	}
 	/**
 	 * 
-	 * @param transferencia Datos para registrar la transferencia.
+	 * @param transferencia Datos para registrar la transferencia, 
+	 * comprueba si la cuenta tiene un saldo mayor o igual al monto a transferir,
+	 * registra el descuento 
+	 * y realiza la transferencias. 
 	 * @return true, si se guarda correctamente.
 	 */
 	@SuppressWarnings("finally")
 	public boolean transferir(Transferencia transferencia) {
 		boolean estado = false;
 		try {
+			double saldo = saldoActual(transferencia.getTransaccion().getCliente().getIdClienteLong());
+			boolean estTransaccion = false;
+			boolean estTranferencia = false;
+			if (saldo >=transferencia.getTransaccion().getMonto()) {
+				estTransaccion = transaccion(transferencia.getTransaccion());
+				estTranferencia = transferenciaDAO.insert(transferencia);
+			}
 			estado = transferenciaDAO.insert(transferencia);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -35,3 +35,22 @@ Para guardar una transaccion;
     "sladoActual":550.0
 }
 ********************************************
+Json para depositos, retiros.
+{
+    "agencia":"MALL DEL RIO",
+    "cajero":{
+    "id":1
+},
+    "cliente":{
+    "cuenta":"123",
+    "idClienteLong":1,
+    "tipoCuenta":"1"
+},
+    "fecha":"2021-01-18T05:17:10Z[UTC]",
+    "identificacion":"01060405258",
+    "monto":100.0,
+    "nombre":"Juan Lopez",
+    "observacion":"na",
+    "operacion":"DEPOSITO"
+}
+********************************************
