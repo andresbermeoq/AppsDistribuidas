@@ -40,7 +40,7 @@ public class ClienteBean {
 			System.out.println(session.getUsernameString());
 			System.out.println("redireccionando");
 		       FacesContext.getCurrentInstance().getExternalContext()
-		            .redirect("/solicitudPoliza.xhtml");
+		            .redirect("/sistemafinanciero/faces/solicitudPoliza.xhtml");
 		   } catch (IOException ex) {
 		       ex.printStackTrace();
 		   }
