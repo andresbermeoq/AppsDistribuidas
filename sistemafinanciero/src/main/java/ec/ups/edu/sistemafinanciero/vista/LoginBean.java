@@ -26,6 +26,8 @@ public class LoginBean implements Serializable {
 	
 	private String usernameString;
 	private String passwordString;
+	@Inject 
+	private LoginBean session;
 	
 	public String loginUser() {
 		
@@ -85,5 +87,14 @@ public class LoginBean implements Serializable {
 	public void setUser(Usuario user) {
 		this.user = user;
 	}
+
+	public LoginBean getSession() {
+		return session;
+	}
+
+	public void setSession(LoginBean session) {
+		this.session = session;
+	}
+	
 
 }
