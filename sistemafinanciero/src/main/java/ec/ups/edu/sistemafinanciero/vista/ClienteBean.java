@@ -106,5 +106,11 @@ public class ClienteBean {
 		
 		return null;
 	}
+	public LoginBean getSession() {
+		return session;
+	}
+	public void setSession(LoginBean session) {
+		this.session = session;
+	}
 	
 }

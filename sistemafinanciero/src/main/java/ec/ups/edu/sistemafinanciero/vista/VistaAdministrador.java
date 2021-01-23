@@ -23,10 +23,30 @@ public class VistaAdministrador {
 	 */
 	@Inject
 	private LoginBean session;
+	private Usuario usuario;
 	
+	@PostConstruct
+	public void init() {
+		usuario = new Usuario();
+	}
 	public void saludar() {
 		/*response.setContentType("text/html;charset=UTF-8");
 		String user = request.getParameter("user");*/
 		System.out.println(session.getUser().getNombreUsuarioString());
 	}
+
+	public LoginBean getSession() {
+		return session;
+	}
+
+	public void setSession(LoginBean session) {
+		this.session = session;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 }

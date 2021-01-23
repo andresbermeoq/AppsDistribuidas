@@ -30,6 +30,7 @@ public class UsuarioBean {
 	@PostConstruct
 	public void init() {
 		factual = new Date();
+		usuario = new Usuario();
 	}
 
 	public Usuario getUsuario() {
@@ -44,8 +45,7 @@ public class UsuarioBean {
 	}
 	
 	public String obtenerPasswordUsuario() {
-		//return gestionUsuarioON.generarPassword();
-		return "Angel2019";
+		return gestionUsuarioON.generarPassword();
 	}
 	
 	public String doGuardar() {
@@ -77,4 +77,11 @@ public class UsuarioBean {
 		this.factual = factual;
 	}
 
+	public GestionUsuarioON getGestionUsuarioON() {
+		return gestionUsuarioON;
+	}
+
+	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
+		this.gestionUsuarioON = gestionUsuarioON;
+	}
 }

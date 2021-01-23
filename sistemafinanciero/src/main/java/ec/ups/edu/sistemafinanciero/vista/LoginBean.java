@@ -16,6 +16,10 @@ import ec.ups.edu.sistemafinanciero.util.MessagesUtil;
 @SessionScoped
 public class LoginBean implements Serializable {
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private GestionUsuarioON gestionUsuarioON;
 	private Usuario user;
@@ -23,10 +27,6 @@ public class LoginBean implements Serializable {
 	private String usernameString;
 	private String passwordString;
 	
-	@PostConstruct
-	public void init() {
-		user = new Usuario();
-	}
 	public String loginUser() {
 		
 		Usuario userUsuario = new Usuario();
@@ -35,17 +35,19 @@ public class LoginBean implements Serializable {
 			userUsuario = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
 			//System.out.println("Usuario Bean: "+userUsuario.toString());
 			if (userUsuario.getTipoString().equals("Administrador")) {
-				user = userUsuario;
 				page= "registroPersona";
-			}else if(userUsuario.getTipoString().equals("Cajero")) {
-				user = userUsuario;
-				page= "UsuarioView";
-			}else if (userUsuario.getTipoString().equals("Cliente")) {
-				user = userUsuario;
+			}
+			if(userUsuario.getTipoString().equals("Cajero")) {
+				page= "CajeroView";
+			}
+			if (userUsuario.getTipoString().equals("Cliente")) {
 				page= "ClienteView";
 			}
 		} catch (GeneralException e) {
 			MessagesUtil.agregarMensajeError("El Correo o la contraseña es incorrecto");
+		}finally {
+			user = userUsuario;
+			System.out.println("usuario mantenido "+user.toString());
 		}
 		return page;
 	}
@@ -53,7 +55,7 @@ public class LoginBean implements Serializable {
 	public String logoutUser() {
 		user = new Usuario();
 		//SessionUtil.getSession().invalidate();
-		return "pretty:index";
+		return "login.xhtml";
 	}
 	
 
@@ -82,14 +84,6 @@ public class LoginBean implements Serializable {
 
 	public void setUser(Usuario user) {
 		this.user = user;
-	}
-
-	public GestionUsuarioON getGestionUsuarioON() {
-		return gestionUsuarioON;
-	}
-
-	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
-		this.gestionUsuarioON = gestionUsuarioON;
 	}
 
 }

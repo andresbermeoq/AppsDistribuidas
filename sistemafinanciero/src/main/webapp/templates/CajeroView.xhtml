@@ -2,16 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
       
        
 <!-- Bootstrap -->
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
-<h:head></h:head> 
+<h:head>
+	<title>Registro de Usuarios Administrativos</title>
+</h:head> 
 <body> 
-	<h1>Registro de Personas</h1>
+	<h1>Registro de Usuarios</h1>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
@@ -38,29 +41,5 @@
 		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
 	  </span>
 	</nav>
-	
-	<h:form>
-	<h:outputLabel value="Usuario #{clienteBean.usuario.nombreUsuarioString}" />
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Cedula" />
-			<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
-			<h:outputLabel value="Nombres" />
-			<h:inputText value="#{usuarioBean.usuario.nombre}" />
-			<h:outputLabel value="Apellidos" />
-			<h:inputText value="#{usuarioBean.usuario.apellido}" />
-			<h:outputLabel value="Email" />
-			<h:inputText value="#{usuarioBean.usuario.email}" />
-			<h:outputLabel value="Tipo de Usuario" />
-			<h:inputText value="#{usuarioBean.usuario.tipoString}" />
-			<h:outputLabel value="Password" />
-			<h:inputText value="#{usuarioBean.usuario.passwordString}" />
-			<h:outputLabel value="Nombre de Usuario" />
-			<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
-			<h:outputLabel value="Fecha de Registro" />
-			<h:inputText value="#{usuarioBean.usuario.fechaRegistroDate}" />
-			<h:outputLabel value="" />
-			<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
-		</h:panelGrid>
-	</h:form>
 </body> 
 </html>
