@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+      
+<!-- Bootstrap -->
+<h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
+
+
+<h:head>
+	<title>Cajero</title>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head> 
+<body> 
+	<h1>Registro de Cuentas</h1>
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="#">Banco Nacional</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      	<li class="nav-item active">
+		        		<a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="reistroPersona.xhtml">Creacion de Cuentas</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Depositos</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Retiros</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Transferencias</a>
+		      	</li>
+		    </ul>
+	  </div>
+	  <span class="navbar-text">
+		  	<h:outputLink class="btn btn-outline-primary" value="#{loginBean.logoutUser()}">Salir</h:outputLink>
+	  </span>
+	</nav>
+	
+	
+	<div class="container">
+		<h1>Creacion de Cuentas</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="No. Cuenta" />
+					<h:inputText value="#{clienteBean.cliente.cuenta}" />
+				<h:outputLabel value="Tipo Cuenta" />
+					<h:selectOneMenu value="#{clienteBean.cliente.tipoCuenta}" class="btn btn-outline-secondary dropdown-toggle">
+						<f:selectItem id="tipoDefault" itemLabel="-----" itemValue="#{null}" itemDisable="true"
+										noSelectionOption="true" />
+						<f:selectItem id="tipoAhorros" itemLabel="Ahorros" itemValue="#{null}" itemDisable="true"
+										noSelectionOption="true"/>
+						<f:selectItem id="tipoCorriente" itemLabel="Corriente" itemValue="#{null}" itemDisable="true"
+										noSelectionOption="true"/>
+					</h:selectOneMenu>
+				<h:outputLabel value="Fecha de Registro" />
+					<p:calendar value="#{clienteBean.cliente.fechaRegistroDate}" showOn="button"/>
+				<h:outputLabel value="Usuario Establecido" />
+					<h:selectOneMenu value="#{clienteBean.cliente.usuario}" class="btn btn-outline-secondary dropdown-toggle">
+						<f:selectItem id="usuario" itemLabel="-----" itemValue="#{null}" itemDisable="true"
+										noSelectionOption="true"/>
+						<f:selectItems value="#{clienteBean.listaUsuarios}" var="usuario" itemLabel="#{usuario.nombre}"
+										itemValue="#{usuario.idUsuarioLong}"/>
+					</h:selectOneMenu>
+			</h:panelGrid>
+			<h:commandButton class="btn btn-primary btn-lg" action="#{clienteBean.doGuardarCliente()}" value="Guardar Cliente" />
+		</h:form>
+	</div>
+		
+
+</body> 
+</html>

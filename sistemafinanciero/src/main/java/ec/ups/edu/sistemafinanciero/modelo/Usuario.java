@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,10 +23,15 @@ import javax.persistence.TemporalType;
 
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "USUARIO", schema = "public")
 @NamedQueries(
 		@NamedQuery(name = "Usuario.todoslosUsuarios", query = "SELECT u from Usuario u ORDER BY u.idUsuarioLong")
 )
+=======
+@SessionScoped
+@Table(name = "Usuario", schema = "public")
+>>>>>>> 347b95f24ad240bf6718ec7503b6f76ef9ff1383
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;

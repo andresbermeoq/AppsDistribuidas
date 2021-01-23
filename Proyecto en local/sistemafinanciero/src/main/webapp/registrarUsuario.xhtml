@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+<h:panelGrid columns="2">
+	<h:outputLabel value="Nombre" />
+	<h:inputText value="#{usuarioBean.usuario.nombre}" />
+	
+	<h:outputLabel value="Apellido" />
+	<h:inputText value="#{usuarioBean.usuario.apellido}" />
+	
+	<h:outputLabel value="Cedula" />
+	<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
+	
+	<h:outputLabel value="Email" />
+	<h:inputText value="#{usuarioBean.usuario.email}" />
+	
+	<h:outputLabel value="Tipo" />
+	<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}">
+							<f:selectItem itemValue="0" itemLabel="Seleccionar"/>
+							<f:selectItem itemValue="1" itemLabel="Administrador"/>
+							<f:selectItem itemValue="2" itemLabel="Cajero"/>
+							<f:selectItem itemValue="3" itemLabel="Cliente"/>
+							<f:selectItem itemValue="4" itemLabel="Inversiones"/>
+	</h:selectOneMenu>
+	
+	<h:outputLabel value="Usuario" />
+	<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
+	
+	<h:outputLabel value="Password" />
+	<h:inputSecret value="#{usuarioBean.usuario.passwordString}" />
+	<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar" />
+</h:panelGrid>
+</h:form>
+
+</body> 
+</html>

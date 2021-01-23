@@ -41,8 +41,32 @@
 		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
 	  </span>
 	</nav>
-	
-	
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="#{vistaAdministrador.session.usernameString}" />
+			<h:outputLabel>nn</h:outputLabel>
+			<h:outputLabel value="Cedula" />
+			<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
+			<h:outputLabel value="Nombres" />
+			<h:inputText value="#{usuarioBean.usuario.nombre}" />
+			<h:outputLabel value="Apellidos" />
+			<h:inputText value="#{usuarioBean.usuario.apellido}" />
+			<h:outputLabel value="Email" />
+			<h:inputText value="#{usuarioBean.usuario.email}" />
+			<h:outputLabel value="Tipo de Usuario" />
+			<h:inputText value="#{usuarioBean.usuario.tipoString}" />
+			<h:outputLabel value="Password" />
+			<h:inputText value="#{usuarioBean.usuario.passwordString}" />
+			<h:outputLabel value="Nombre de Usuario" />
+			<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
+			<h:outputLabel value="Fecha de Registro" />
+			<h:outputText value="#{usuarioBean.factual}">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
+			</h:outputText>
+			<h:outputLabel value="" />
+			<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
+		</h:panelGrid>
+	</h:form>
 	<div class="container">
 		<h2>Usuarios Administrativos</h2>
 		<h:form id="registro">
@@ -67,8 +91,10 @@
 							<f:selectItem id="tipoAsistente" itemLabel="Asistente de Captaciones" itemValue="Asistente de Captaciones" itemDisable="true"
 										noSelectionOption="true"/>
 						</h:selectOneMenu>
-					<h:outputLabel value="Fecha de Registro" />
-						<p:calendar value="#{usuarioBean.usuario.fechaRegistroDate}" showOn="button"/>
+						<h:outputLabel value="Fecha de registro" />
+					<h:outputLabel value="#{usuarioBean.factual}">
+						<f:convertDateTime pattern="yyyy/MM/dd" />
+					</h:outputLabel>
 						<br />
 					<h:outputLabel value="Usuario Cuenta" /> <br />
 						<h:outputLabel value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" /><br />
@@ -78,7 +104,5 @@
 			<h:commandButton class="btn btn-primary btn-lg" action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
 		</h:form>
 	</div>
-	
-	
 </body> 
 </html>
