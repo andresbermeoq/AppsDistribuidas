@@ -38,5 +38,12 @@ public class ClienteDAO {
 		}
 	}
 	
+	public int obtenerClienteCedula(String cedulaCliente) {
+		
+		return entityManager.createQuery("SELECT * FROM USUARIO usu WHERE usu.usuario_cedula = :cedula")
+				.setParameter("cedula", cedulaCliente)
+				.getFirstResult();
+	}
+	
 	
 }

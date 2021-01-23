@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -21,6 +23,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "USUARIO", schema = "public")
+@NamedQueries(
+		@NamedQuery(name = "Usuario.todoslosUsuarios", query = "SELECT u from Usuario u ORDER BY u.idUsuarioLong")
+)
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +35,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_usuario_seq")
 	@Column(name = "id_usuario", updatable = false, unique = true, nullable = false)
 	private Long idUsuarioLong;
-	@Column(name = "usuario_cedula")
+	@Column(name = "usuario_cedula", length = 10)
 	private String cedulaString;
 	@Column(name = "usuario_nombre")
 	private String nombre;

@@ -88,7 +88,6 @@ public class ClienteBean {
 		cliente.setCuenta(this.obtenerNumeroCuenta());
 		cliente.setUsuario(usuario);
 		System.out.println("Cliente: "+cliente.toString());
-		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
 		gestionUsuarioON.saveUsuario(usuario);
 		gestionUsuarioON.saveCliente(cliente);
 		

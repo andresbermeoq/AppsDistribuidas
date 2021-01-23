@@ -49,7 +49,6 @@ public class UsuarioBean {
 		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
 		usuario.setPasswordString(this.obtenerPasswordUsuario());
 		System.out.println("USUARIO" + usuario.toString());
-		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
 		gestionUsuarioON.saveUsuario(usuario);
 		return null;
 	}
