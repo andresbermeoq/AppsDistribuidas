@@ -1,6 +1,7 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -28,12 +29,15 @@ public class ClienteBean {
 	
 	private Cliente cliente;
 	private Usuario usuario;
-	
+	private Date fecha;
 	private List<Usuario> listaUsuarios;
 	
 	@PostConstruct
 	public void init() {
-		cargarListas();	
+		cargarListas();
+		cliente = new Cliente();
+		usuario = new Usuario();
+		fecha = new Date();
 	}
 	public void solicitarPoliza() {
 		try {
@@ -99,11 +103,11 @@ public class ClienteBean {
 		
 		cliente.setCuenta(this.obtenerNumeroCuenta());
 		cliente.setUsuario(usuario);
-		System.out.println("Cliente: "+cliente.toString());
+		cliente.setFechaRegistroDate(fecha);
 		gestionUsuarioON.saveUsuario(usuario);
 		gestionUsuarioON.saveCliente(cliente);
 		
-		return null;
+		return "Guardado correctamente";
 	}
 	public LoginBean getSession() {
 		return session;

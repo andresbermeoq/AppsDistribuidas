@@ -48,20 +48,15 @@ public class UsuarioBean {
 		return gestionUsuarioON.generarPassword();
 	}
 	
+	
 	public String doGuardar() {
 		usuario.setFechaRegistroDate(factual);
 		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
 		usuario.setPasswordString(this.obtenerPasswordUsuario());
-<<<<<<< HEAD
-		System.out.println("USUARIO" + usuario.toString());
-=======
 		//System.out.println("USUARIO" + usuario.toString());
 		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
 		gestionUsuarioON.saveUsuario(usuario);
-		System.out.println(usuario);
-
 		usuarioON.saveUsuario(usuario);		
->>>>>>> 347b95f24ad240bf6718ec7503b6f76ef9ff1383
 		gestionUsuarioON.saveUsuario(usuario);
 		return null;
 	}

@@ -11,16 +11,4 @@ public class ClienteServicesSOAP {
 	
 	@Inject
 	private GestionTransaccionON gestionTransaccionON;
-	
-	@WebMethod
-	public String deposito(double cantidad) {
-		gestionTransaccionON.registrarDeposito(null, cantidad);
-		return null;
-	}
-
-	@WebMethod
-	public String retiro(double cantidad) {
-		gestionTransaccionON.registrarDeposito(null, cantidad);
-		return null;
-	}
 }

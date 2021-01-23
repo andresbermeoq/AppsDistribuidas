@@ -78,7 +78,7 @@ public class UsuarioDAO {
 	}
 	public List<Usuario> obtenerTodosUsuarios() throws GeneralException {
 		try {
-			return entityManager.createQuery("from USUARIO").getResultList();
+			return entityManager.createQuery("from Usuario").getResultList();
 		} catch (Exception e) {
 			throw new GeneralException("ERROR DAO USUARIO: "+e.getMessage());
 		}
@@ -86,7 +86,7 @@ public class UsuarioDAO {
 	
 	public Usuario obtenerUsuario(String nombre) throws GeneralException {
 		try {
-			String sql= "from USUARIO usu WHERE nombreUsuarioString = :nombre ";
+			String sql= "select u from Usuario u WHERE usuario_nombre_cuenta = :nombre ";
 			
 			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)

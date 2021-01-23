@@ -11,10 +11,10 @@
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
 <h:head>
-	<title>Registro de Usuarios Administrativos</title>
+	<title>Registro de clientes</title>
 </h:head> 
 <body> 
-	<h1>Registro de Usuarios</h1>
+	<h1>Registro de clientes</h1>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
@@ -30,7 +30,7 @@
 		        		<a class="nav-link" href="#">Features</a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="registroCliente.xhtml">Registrar clientes</a>
+		        		<a class="nav-link" href="#">Pricing</a>
 		      	</li>
 		      	<li class="nav-item justify-content-end">
 		        		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -44,40 +44,35 @@
 	  </span>
 	</nav>
 	<div class="container">
-		<h2>Registro de usuarios administrativos</h2>
+		<h2>Registro de clientes</h2>
 		<h:form id="registro">
 			<div class="form-group">
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Cedula" />
-						<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
+						<h:inputText value="#{clienteBean.usuario.cedulaString}" />
 					<h:outputLabel value="Nombres" />
-						<h:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" />
+						<h:inputText id="nombre" value="#{clienteBean.usuario.nombre}" />
 					<h:outputLabel value="Apellidos" />
-						<h:inputText id="apellido" value="#{usuarioBean.usuario.apellido}" />
+						<h:inputText id="apellido" value="#{clienteBean.usuario.apellido}" />
 					<h:outputLabel value="Email" />
-						<h:inputText value="#{usuarioBean.usuario.email}" />
-					<h:outputLabel value="Tipo de Usuario" />
-						<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}" class="btn btn-outline-secondary dropdown-toggle">
+						<h:inputText value="#{clienteBean.usuario.email}" />
+					<h:outputLabel value="Tipo de cuenta" />
+						<h:selectOneMenu value="#{clienteBean.cliente.tipoCuenta}" class="btn btn-outline-secondary dropdown-toggle">
 							<f:selectItem id="tipoDefault" itemLabel="-----" itemValue="#{null}" itemDisable="true"
 										noSelectionOption="true" />
-							<f:selectItem id="tipoAdmin" itemLabel="Administrador" itemValue="Administrador" itemDisable="true"
+							<f:selectItem id="tipoAdmin" itemLabel="Ahorros" itemValue="Ahorros" itemDisable="true"
 										noSelectionOption="true"/>
-							<f:selectItem id="tipoCajero" itemLabel="Cajero" itemValue="Cajero" itemDisable="true"
-										noSelectionOption="true"/>
-							<f:selectItem id="tipoAsistente" itemLabel="Asistente de Captaciones" itemValue="Asistente de Captaciones" itemDisable="true"
+							<f:selectItem id="tipoCajero" itemLabel="Corriente" itemValue="Corriente" itemDisable="true"
 										noSelectionOption="true"/>
 						</h:selectOneMenu>
-						<h:outputLabel value="Fecha de registro" />
+						<h:outputLabel value="Fecha actual" />
 					<h:outputLabel value="#{usuarioBean.factual}">
 						<f:convertDateTime pattern="yyyy/MM/dd" />
 					</h:outputLabel>
 						<br />
-					<h:outputLabel value="Usuario Cuenta" /> <br />
-						<h:outputLabel value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" /><br />
-						<h:outputLabel rendered="false" value="#{usuarioBean.usuario.passwordString}" action="#{usuarioBean.obtenerPassword()}"  />
 				</h:panelGrid>
 			</div>
-			<h:commandButton class="btn btn-primary btn-lg" action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
+			<h:commandButton class="btn btn-primary btn-lg" action="#{clienteBean.doGuardarCliente()}" value="Guardar cliente" />
 		</h:form>
 	</div>
 </body> 
