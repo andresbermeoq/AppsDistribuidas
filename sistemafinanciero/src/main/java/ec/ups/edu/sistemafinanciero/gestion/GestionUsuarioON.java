@@ -56,6 +56,16 @@ public class GestionUsuarioON {
 		}
 		return true;
 	}
+	public Usuario buscarUsuarioTipo(String usuario, String tipo) {
+		Usuario user = new Usuario();
+		try {
+			user = usuarioDAO.readUserType(usuario, tipo);
+		} catch (Exception e) {
+			new Exception("Error al consultar el usuario. "+e.getLocalizedMessage());
+		}finally {
+			return user;
+		}
+	}
 
 	public Usuario validarUsuarioAdmin(String usuario, String password) throws GeneralException {
 		Usuario usuarioAdmin = usuarioDAO.obtenerUsuario(usuario);

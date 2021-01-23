@@ -215,16 +215,7 @@
 		    <groupId>org.webjars</groupId>
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.5.2</version>
-		</dependency>
-<!-- <<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan-->
-		
+		</dependency>		
 		<!-- Servidor de Correo-->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
@@ -238,16 +229,12 @@
 		    <artifactId>primefaces</artifactId>
 		    <version>8.0</version>
 		</dependency>
-<!--<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		
-		
-        
->>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
->>>>>>> AngelJadan
-=======
->>>>>>> AngelJadan-->
+		<!-- https://mvnrepository.com/artifact/javax.xml/webservices-api -->
+		<dependency>
+		    <groupId>javax.xml</groupId>
+		    <artifactId>webservices-api</artifactId>
+		    <version>2.1-b16</version>
+		</dependency>
     </dependencies>
 	
     <build>

@@ -5,8 +5,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import ec.ups.edu.sistemafinancieroLocal.gestion.GestionClienteON;
-import ec.ups.edu.sistemafinancieroLocal.modelo.Cliente;
+import ec.ups.edu.sistemafinanciero.gestion.GestionClienteON;
+import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 
 @WebService
 public class TransaccionServiceSOAP {

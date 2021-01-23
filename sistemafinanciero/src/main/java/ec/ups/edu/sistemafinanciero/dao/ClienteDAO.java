@@ -37,6 +37,27 @@ public class ClienteDAO {
 			throw new GeneralException("ERROR DAO ACCESO: "+e.getMessage());
 		}
 	}
+	/**
+	 * Realiza una busqueda en base al id y al numero de cuenta del cliente, sea esta de ahorros o corriente.
+	 * @param idUserfk id del Cliente
+	 * @param cta Numero de cuenta del cliente
+	 * @return Retorna los datos del cliente.
+	 */
+	public Cliente buscar(long idUserfk, String cta) {
+		Cliente cliente = new Cliente();
+		try {
+			String sql = "SELECT c FROM Cliente c"
+					+ " WHERE cliente_usuario_fk=:id and cliente_cuenta=:cta";
+			
+			cliente = (Cliente) entityManager.createQuery(sql, Cliente.class)
+					.setParameter("id",idUserfk).setParameter("cta", Integer.parseInt(cta)).getSingleResult();
+						
+		} catch (Exception e) {
+			new Exception("Se ha generado un error al cunsultar el cliente. "+e.getLocalizedMessage());
+		}finally {
+			return cliente;
+		}		
+	}
 	
 	
 }

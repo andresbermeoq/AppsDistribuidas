@@ -41,6 +41,8 @@ public class PolizaBeans extends HttpServlet {
 	private GestionInteresON ginteres;
 	@Inject
 	private GestionUsuarioON guser;
+	@Inject
+	private SesionBean session;
 	
 	private Usuario user;
 	private Poliza poliza;
@@ -59,6 +61,7 @@ public class PolizaBeans extends HttpServlet {
 		acta = new AsesorCta();
 		
 		thisDate = new Date();
+		System.out.println(session.getUser().toString());
 	}
 	public void calInteres() {
 		try {

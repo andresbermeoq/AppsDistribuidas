@@ -43,15 +43,20 @@ public class Interbancario implements Serializable {
 	
 	@Column(name = "iba_dni", nullable = false, length = 100)
 	private String dniTitular;
+	/**
+	 * Atributo para identificar si es de una cuenta interna o externa
+	 */
+	@Column(name = "iba_localizacion")
+	private String localizacion;
 	
+	/*
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "iba_fk_trasnferencia")
 	private List<Transferencia> transferencia;
-	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "iba_fk_cliente")
-	private Cliente cliente;
-
+	*/
+	public Interbancario() {
+		// TODO Auto-generated constructor stub
+	}
 	public Long getId() {
 		return id;
 	}
@@ -104,20 +109,27 @@ public class Interbancario implements Serializable {
 		return SerialVersionUID;
 	}
 
+	/*
 	public List<Transferencia> getTransferencia() {
 		return transferencia;
 	}
 
 	public void setTransferencia(List<Transferencia> transferencia) {
 		this.transferencia = transferencia;
+	}*/
+
+	public String getLocalizacion() {
+		return localizacion;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	@Override
+	public String toString() {
+		return "Interbancario [id=" + id + ", banco=" + banco + ", cuenta=" + cuenta + ", tipoCta=" + tipoCta
+				+ ", nombreTitular=" + nombreTitular + ", dniTitular=" + dniTitular + ", localizacion=" + localizacion
+				+ "]";
 	}
-	
 }

@@ -2,17 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+      
 <!-- Bootstrap -->
 <h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
 
 <h:head>
-	<title>Usuario</title>
+	<title>Cajero</title>
+	<script name="jquery/jquery.js" library="primefaces"></script>
 </h:head> 
 <body> 
+	<h1>Registro de Cuentas</h1>
+	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,23 +25,59 @@
 	  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      	<li class="nav-item active">
-		        		<a class="nav-link" href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
+		        		<a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Creacion de Usuarios</a>
+		        		<a class="nav-link" href="registroPersona.xhtml">Creacion de Cuentas</a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Polizas</a>
+		        		<a class="nav-link" href="#">Depositos</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Retiros</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Transferencias</a>
 		      	</li>
 		    </ul>
 	  </div>
-	  
 	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="#{loginBean.logoutUser()}">Iniciar</h:outputLink>
+		  	<h:outputLink class="btn btn-outline-primary" value="#{loginBean.logoutUser()}">Salir</h:outputLink>
 	  </span>
 	</nav>
 	
-	<h1>Bienvenido Usuario</h1>
-
+	<div class="container">
+		<h1>Creacion de Cuentas</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Cedula" />
+					<h:inputText value="#{clienteBean.usuario.cedulaString}" />
+				<h:outputLabel value="Nombres" />
+					<h:inputText id="nombre" value="#{clienteBean.usuario.nombre}" />
+				<h:outputLabel value="Apellidos" />
+					<h:inputText id="apellido" value="#{clienteBean.usuario.apellido}" />
+				<h:outputLabel value="Email" />
+					<h:inputText value="#{clienteBean.usuario.email}" />
+				<h:outputLabel value="Fecha de Registro" />
+						<p:calendar id="fecha" value="#{clienteBean.usuario.fechaRegistroDate}" showOn="button"/>
+				<h:outputLabel value="Usuario Cuenta" />
+				<h:outputLabel value="#{clienteBean.usuario.nombreUsuarioString}" action="#{clienteBean.obtenerNombreCliente(nombre, apellido)}" /><br />
+				<h:outputLabel rendered="false" value="#{clienteBean.usuario.passwordString}" action="#{clienteBean.obtenerPasswordCliente()}" /> <br />
+				<h:outputLabel value="Numero de Cuenta" /> <br />
+				<h:outputLabel value="#{clienteBean.cliente.cuenta}" /> <br />
+				<h:outputLabel value="Tipo Cuenta" />
+					<h:selectOneMenu value="#{clienteBean.cliente.tipoCuenta}" class="btn btn-outline-secondary dropdown-toggle">
+						<f:selectItem id="tipoDefault" itemLabel="-----" itemValue="#{null}" itemDisable="true"
+										noSelectionOption="true" />
+						<f:selectItem id="tipoAhorros" itemLabel="Ahorros" itemValue="Ahorros" itemDisable="true"
+										noSelectionOption="true"/>
+						<f:selectItem id="tipoCorriente" itemLabel="Corriente" itemValue="Corriente" itemDisable="true"
+										noSelectionOption="true"/>
+					</h:selectOneMenu>
+					<br />
+			</h:panelGrid>
+			<h:commandButton class="btn btn-primary btn-lg" action="#{clienteBean.doGuardarCliente()}" value="Guardar Cliente" />
+		</h:form>
+	</div>
 </body> 
 </html>

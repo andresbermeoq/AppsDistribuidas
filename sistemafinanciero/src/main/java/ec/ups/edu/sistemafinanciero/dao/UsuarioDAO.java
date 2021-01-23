@@ -2,6 +2,7 @@ package ec.ups.edu.sistemafinanciero.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.NoSuchEntityException;
@@ -24,6 +25,38 @@ public class UsuarioDAO {
 	public void guardarUsuario(Usuario usuario) throws SQLException {
 		entityManager.persist(usuario);
 	}
+	/**
+	 * 
+	 * @param dni Identificacion, en Ecuador cedula.
+	 * @return Usuario encontrado
+	 */
+	public Usuario read(String cedula) {
+		
+		Usuario user = new Usuario();
+		List<Usuario> users = new ArrayList<Usuario>();
+		try {
+			
+			String sql = "SELECT u FROM Usuario u "
+					+ " WHERE usuario_cedula=:ced";
+			users=entityManager.createQuery(sql, Usuario.class)
+					.setParameter("ced", cedula).getResultList();
+			for (Usuario usuario : users) {
+				System.out.println(usuario.toString());
+				if (usuario.getTipoString().equals("CLIENTE")) {
+					user = usuario;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return user;
+		}
+	}
+	/**
+	 * 
+	 * @param usuario Nombre de usuario de acceso
+	 * @return Usuario encontrado o null, si no encuentra
+	 */
 	public Usuario readUsuario(String usuario) {
 		Usuario user = new Usuario();
 		try {
@@ -60,5 +93,17 @@ public class UsuarioDAO {
 		} catch (Exception e) {
 			throw new GeneralException("ERROR DAO: "+e.getMessage());
 		}
+	}
+	public Usuario readUserType(String usuario, String tipo) {
+		Usuario user = new Usuario();
+		List<Usuario> users = new ArrayList<Usuario>();
+		String sql= "SELECT u FROM Usuario u WHERE usuario_nombre_cuenta=:usuario and usuario_tipo=:tipo";
+		users=entityManager.createQuery(sql, Usuario.class)
+				.setParameter("usuario", usuario)
+				.setParameter("tipo", tipo).getResultList();
+		for (Usuario usua : users) {
+			user = usua;
+		}
+		return user;
 	}
 }

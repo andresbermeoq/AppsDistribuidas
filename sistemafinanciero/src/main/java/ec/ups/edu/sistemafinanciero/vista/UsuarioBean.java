@@ -24,12 +24,12 @@ public class UsuarioBean {
 	public UsuarioBean() {
 		// TODO Auto-generated constructor stub
 	}
-
+	@Inject
 	private GestionUsuarioON gestionUsuarioON;
 
 	@PostConstruct
 	public void init() {
-		usuario = new Usuario();
+		factual = new Date();
 	}
 
 	public Usuario getUsuario() {
@@ -44,14 +44,16 @@ public class UsuarioBean {
 	}
 	
 	public String obtenerPasswordUsuario() {
-		return gestionUsuarioON.generarPassword();
+		//return gestionUsuarioON.generarPassword();
+		return "Angel2019";
 	}
 	
 	public String doGuardar() {
+		usuario.setFechaRegistroDate(factual);
 		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
 		usuario.setPasswordString(this.obtenerPasswordUsuario());
-		System.out.println("USUARIO" + usuario.toString());
-		gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
+		//System.out.println("USUARIO" + usuario.toString());
+		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
 		gestionUsuarioON.saveUsuario(usuario);
 		System.out.println(usuario);
 

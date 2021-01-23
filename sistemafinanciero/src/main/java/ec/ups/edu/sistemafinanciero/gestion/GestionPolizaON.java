@@ -3,15 +3,27 @@ package ec.ups.edu.sistemafinanciero.gestion;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.antlr.v4.parse.ResyncToEndOfRuleBlock;
 
 import ec.ups.edu.sistemafinanciero.dao.PolizaDAO;
 import ec.ups.edu.sistemafinanciero.modelo.Poliza;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
+import ec.ups.edu.sistemafinanciero.gestion.GestionClienteON;
+import ec.ups.edu.sistemafinanciero.gestion.GestionTransaccionON;
+import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 
 public class GestionPolizaON {
 	
+	@Inject
 	private PolizaDAO pdao;
+	@Inject
+	private GestionTransaccionON gtransaccionOn;
+	@Inject
+	private GestionClienteON gclienteOn;
+	@Inject
+	private GestionUsuarioON gusuarioOn;
 	
 	public GestionPolizaON() {
 		
@@ -25,16 +37,27 @@ public class GestionPolizaON {
 			throw new Exception("Se ha generado un error al guardar la poliza.");
 		}
 	}
-	public boolean validarPoliza(Poliza poliza, Long idTransaccion, Long idCliente ) {
-		
-		return true;
+	public boolean validarPoliza(Poliza poliza, Long idCliente ) {
+		boolean estado = false;
+		double saldo = gtransaccionOn.saldoActual(idCliente);
+		if (saldo>=poliza.getCapital()) {
+			return estado;
+		}
+		return estado;
 	}
-	public float consultaSaldoCta() {
-		float n = (float) 0.00;
-		return n;
-	}
-	public String calculaValorPoliza(String poliza) {
-		return "";
+	public Poliza calculaValorPoliza(double capital, double interes, int plazo) {
+		Poliza poliza = new Poliza();
+		try {
+			double iGanado = (interes * capital)/100;
+			double total = iGanado + capital;
+			poliza.setCapital(capital);
+			poliza.setPlazo(plazo);
+			poliza.setTotal(total);
+			poliza.setVinteres(iGanado);
+		} catch (ArithmeticException e) {
+			new ArithmeticException("Error al calcular valores "+e.getLocalizedMessage());
+		}
+		return poliza;
 	}
 	public boolean updatePoliza(Poliza poliza) throws Exception {
 		try {
@@ -48,8 +71,14 @@ public class GestionPolizaON {
 	public String searchPoliza() {
 		return "";
 	}
-	public List<Object> listPoliza(){
-		List<Object> lista = new ArrayList<Object>();
+	/**
+	 * 
+	 * @param estado APROBADO, cuando la poliza ya ha sido aprovada, PENDIENTE, y RECHAZADA.
+	 * @return List<Poliza> las polizas con el estado de Cliente o 
+	 */
+	public List<Poliza> listPoliza(String estado){
+		List<Poliza> lista = new ArrayList<Poliza>();
+		lista = pdao.listPoliza(estado);
 		return lista;
 	}
 	public boolean deletePoliza(int id) throws Exception {

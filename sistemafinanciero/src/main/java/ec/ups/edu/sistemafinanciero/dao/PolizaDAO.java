@@ -1,6 +1,8 @@
 package ec.ups.edu.sistemafinanciero.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -28,5 +30,13 @@ public class PolizaDAO {
 	public boolean delete(int id) throws SQLException {
 		em.remove(id);
 		return true;		
+	}
+	public List<Poliza> listPoliza(String estado){
+		String sql = "SELECT FROM Polizas WHERE pol_estado =:est";
+		List<Poliza> lista = new ArrayList<Poliza>();
+		lista = em.createNativeQuery(sql, Poliza.class)
+				.setParameter("est", estado)
+				.getResultList();
+		return lista;
 	}
 }

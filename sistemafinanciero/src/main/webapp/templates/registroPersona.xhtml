@@ -58,7 +58,9 @@
 			<h:outputLabel value="Nombre de Usuario" />
 			<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
 			<h:outputLabel value="Fecha de Registro" />
-			<h:inputText value="#{usuarioBean.usuario.fechaRegistroDate}" />
+			<h:outputText value="#{usuarioBean.factual}">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
+			</h:outputText>
 			<h:outputLabel value="" />
 			<h:commandButton action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
 		</h:panelGrid>
@@ -87,8 +89,10 @@
 							<f:selectItem id="tipoAsistente" itemLabel="Asistente de Captaciones" itemValue="Asistente de Captaciones" itemDisable="true"
 										noSelectionOption="true"/>
 						</h:selectOneMenu>
-					<h:outputLabel value="Fecha de Registro" />
-						<p:calendar value="#{usuarioBean.usuario.fechaRegistroDate}" showOn="button"/>
+						<h:outputLabel value="Fecha de registro" />
+					<h:outputLabel value="#{usuarioBean.factual}">
+						<f:convertDateTime pattern="yyyy/MM/dd" />
+					</h:outputLabel>
 						<br />
 					<h:outputLabel value="Usuario Cuenta" /> <br />
 						<h:outputLabel value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" /><br />

@@ -14,7 +14,10 @@ import javax.persistence.Table;
 @Table(name = "Interes", schema = "public")
 public class Interes implements Serializable{
 	
-	private static final long SerialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@SequenceGenerator(name = "int_id_seq", sequenceName = "int_id_seq", allocationSize = 1)

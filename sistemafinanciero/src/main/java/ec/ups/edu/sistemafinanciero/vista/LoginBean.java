@@ -3,53 +3,56 @@ package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.util.MessagesUtil;
-import ec.ups.edu.sistemafinanciero.util.SessionUtil;
 
 @Named
 @SessionScoped
 public class LoginBean implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-
-	@Inject
-	HttpServletRequest request;
-
+		
 	@Inject
 	private GestionUsuarioON gestionUsuarioON;
+	private Usuario user;
 	
 	private String usernameString;
 	private String passwordString;
 	
+	@PostConstruct
+	public void init() {
+		user = new Usuario();
+	}
 	public String loginUser() {
 		
-		Usuario userUsuario;
-		
+		Usuario userUsuario = new Usuario();
+		String page="";
 		try {
 			userUsuario = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
-			System.out.println("Usuario Bean: "+userUsuario.toString());
+			//System.out.println("Usuario Bean: "+userUsuario.toString());
 			if (userUsuario.getTipoString().equals("Administrador")) {
-				return "registroPersona";
+				user = userUsuario;
+				page= "registroPersona";
 			}else if(userUsuario.getTipoString().equals("Cajero")) {
-				return "ClienteView";
+				user = userUsuario;
+				page= "UsuarioView";
 			}else if (userUsuario.getTipoString().equals("Cliente")) {
-				return "UsuarioView";
+				user = userUsuario;
+				page= "ClienteView";
 			}
 		} catch (GeneralException e) {
-			MessagesUtil.agregarMensajeError("El Correo y Password es incorrecto");
+			MessagesUtil.agregarMensajeError("El Correo o la contraseña es incorrecto");
 		}
-		return null;
+		return page;
 	}
 	
 	public String logoutUser() {
-		SessionUtil.getSession().invalidate();
+		user = new Usuario();
+		//SessionUtil.getSession().invalidate();
 		return "pretty:index";
 	}
 	
@@ -71,6 +74,22 @@ public class LoginBean implements Serializable {
 
 	public void setPasswordString(String passwordString) {
 		this.passwordString = passwordString;
+	}
+	
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
+
+	public GestionUsuarioON getGestionUsuarioON() {
+		return gestionUsuarioON;
+	}
+
+	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
+		this.gestionUsuarioON = gestionUsuarioON;
 	}
 
 }

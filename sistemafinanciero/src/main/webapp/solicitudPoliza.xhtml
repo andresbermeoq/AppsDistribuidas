@@ -14,12 +14,13 @@
 </h:head>
 <body>
 	<h:form>
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="3">
 			<h:outputLabel value="Usuario:" />
-			<h:outputLabel value="#{polizaBeans.user.nombreUsuarioString}" />
+			<h:outputLabel value="#{loginBean.user.nombre} " /><h:outputLabel value="#{loginBean.user.apellido}" />
 		</h:panelGrid>
 	</h:form>
-	<h:form>
+	<h:form id="formsolicitud">
+	<h:messages id="sms" showDetail="true" autoUpdate="true" closable="true" globalOnly="true"/>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Capital" class="col-sm-2 col-form-label" />
 			<h:inputText type="text" value="#{polizaBeans.poliza.capital}"
@@ -68,6 +69,7 @@
 			<h:commandButton action="#{polizaBeans.solPoliza()}"
 				value="Solicitar" class="btn btn-success" />
 			<h:commandButton action="#" class="btn btn-danger" value="Cancelar" />
+			<h:commandButton action="#{polizaBeans.verUser()}" class="btn btn-danger" value="sald" />
 		</h:panelGrid>
 	</h:form>
 </body>

@@ -1,3 +1,4 @@
+
 package ec.ups.edu.sistemafinanciero.gestion;
 
 import java.sql.SQLException;
@@ -6,6 +7,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.hibernate.exception.ConstraintViolationException;
 
 import ec.ups.edu.sistemafinanciero.dao.InteresDAO;
 import ec.ups.edu.sistemafinanciero.modelo.Interes;
@@ -65,7 +68,8 @@ public class GestionInteresON {
 		try {
 			interes = idao.readRange(day, tipo);
 		} catch (Exception e) {
-			e.printStackTrace();
+			new SQLException("No existen dato	s registradoss");
+			interes = null;
 		}finally {
 			return interes;
 		}

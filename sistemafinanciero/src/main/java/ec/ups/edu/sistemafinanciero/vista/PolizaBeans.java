@@ -1,23 +1,14 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.Format;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
@@ -32,8 +23,7 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Named
 @RequestScoped
-@WebServlet("/SolicitudPoliza")
-public class PolizaBeans extends HttpServlet {
+public class PolizaBeans {
 	
 	@Inject
 	private GestionPolizaON gpoliza;
@@ -41,7 +31,9 @@ public class PolizaBeans extends HttpServlet {
 	private GestionInteresON ginteres;
 	@Inject
 	private GestionUsuarioON guser;
-	
+	@Inject
+	private LoginBean session;
+		
 	private Usuario user;
 	private Poliza poliza;
 	private Interes interes;
@@ -57,43 +49,40 @@ public class PolizaBeans extends HttpServlet {
 		poliza = new Poliza();
 		interes = new Interes();
 		acta = new AsesorCta();
-		
 		thisDate = new Date();
+	}
+	public void verUser() {
+		System.out.println(session.getUser().getNombreUsuarioString());
 	}
 	public void calInteres() {
 		try {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Calendar calendar = Calendar.getInstance();
 			interes = ginteres.searchToDay(plazo, "2");
-			poliza.setInteres(interes);
-			poliza.setPlazo(plazo);
-			
-			double porcentaje = interes.getPorcentaje();
-			try {
-				double iGanado = (porcentaje * poliza.getCapital())/100;
-				double total = iGanado + poliza.getCapital();
-				poliza.setVinteres(iGanado);
-				calendar.add(Calendar.DAY_OF_YEAR, poliza.getPlazo());
-				poliza.setFvencimiento(calendar.getTime());
-				poliza.setTotal(total);
+			if (interes!=null) {
+				poliza.setInteres(interes);
+				poliza.setPlazo(plazo);
 				
-			} catch (ArithmeticException e) {
-				e.printStackTrace();
+				double porcentaje = interes.getPorcentaje();
+				
+				try {
+					double iGanado = (porcentaje * poliza.getCapital())/100;
+					double total = iGanado + poliza.getCapital();
+					poliza.setVinteres(iGanado);
+					calendar.add(Calendar.DAY_OF_YEAR, poliza.getPlazo());
+					poliza.setFvencimiento(calendar.getTime());
+					poliza.setTotal(total);
+					
+				} catch (ArithmeticException e) {
+					e.printStackTrace();
+				}
+			}else {
+				FacesMessage javaTextMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						 "No se ha encontrado datos registrados", null);
+						 FacesContext.getCurrentInstance().addMessage("formsolicitud:sms", javaTextMsg);
 			}
-			
-			/*double vinteres = Double.parseDouble(formatter.format((poliza.getCapital() * porcentaje)));
-			double total = Double.parseDouble((formatter.format(vinteres + poliza.getCapital())));
-			setValInteres(vinteres);
-			setValTotal(total);
-			
-			poliza.setVinteres(vinteres);
-			poliza.setTotal(total);
-			poliza.setInteres(interes);
-			poliza.setFsolicita(thisDate);
-			*/
-			
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 	}
 	public boolean solPoliza() {		
@@ -182,14 +171,6 @@ public class PolizaBeans extends HttpServlet {
 
 	public void setGuser(GestionUsuarioON guser) {
 		this.guser = guser;
-	}
-
-	public Usuario getUser() {
-		return user;
-	}
-
-	public void setUser(Usuario user) {
-		this.user = user;
 	}
 	public AsesorCta getActa() {
 		return acta;
