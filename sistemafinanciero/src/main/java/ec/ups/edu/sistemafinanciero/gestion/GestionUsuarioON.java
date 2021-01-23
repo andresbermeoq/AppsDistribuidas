@@ -14,8 +14,8 @@ import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Acceso;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
-import ec.ups.edu.sistemafinanciero.utils.MailUtil;
-import ec.ups.edu.sistemafinanciero.utils.RandomUtil;
+import ec.ups.edu.sistemafinanciero.util.MailUtil;
+import ec.ups.edu.sistemafinanciero.util.RandomUtil;
 
 @Stateless
 public class GestionUsuarioON {
@@ -25,7 +25,7 @@ public class GestionUsuarioON {
 	
 	@Inject
 	private ClienteDAO clienteDAO;
-	
+		
 	
 	
 	public boolean saveUsuario(Usuario isUsuario) {
@@ -56,6 +56,16 @@ public class GestionUsuarioON {
 		}
 		return true;
 	}
+	public Usuario buscarUsuarioTipo(String usuario, String tipo) {
+		Usuario user = new Usuario();
+		try {
+			user = usuarioDAO.readUserType(usuario, tipo);
+		} catch (Exception e) {
+			new Exception("Error al consultar el usuario. "+e.getLocalizedMessage());
+		}finally {
+			return user;
+		}
+	}
 
 	public Usuario validarUsuarioAdmin(String usuario, String password) throws GeneralException {
 		Usuario usuarioAdmin = usuarioDAO.obtenerUsuario(usuario);
@@ -66,6 +76,11 @@ public class GestionUsuarioON {
 		}else {
 			throw new GeneralException(201, "Password Incorrecto");
 		}
+	}
+	public Usuario buscarUsuario(String usuario) {
+		Usuario user = new Usuario();
+		user = usuarioDAO.readUsuario(usuario);
+		return user;
 	}
 	
 	public void enviarCorreoInicial(Usuario usuarioCliente, String password) {
@@ -85,7 +100,6 @@ public class GestionUsuarioON {
 			}
 		});
 	}
-	
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j">
+	
+<h:head>
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+		crossorigin="anonymous" />
+</h:head>
+<body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Usuario:" />
+			<h:outputLabel value="#{loginBean.user.nombre} " /><h:outputLabel value="#{loginBean.user.apellido}" />
+		</h:panelGrid>
+	</h:form>
+	<h:form id="formsolicitud">
+	<h:messages id="sms" showDetail="true" autoUpdate="true" closable="true" globalOnly="true"/>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Capital" class="col-sm-2 col-form-label" />
+			<h:inputText type="text" value="#{polizaBeans.poliza.capital}"
+				class="form-control mb-2 mr-sm-2" />
+
+			<h:outputLabel value="Tiempo (dias)" class="col-sm-2 col-form-label" />
+
+			<h:inputText type="text" value="#{polizaBeans.plazo}"
+				class="form-control mb-2 mr-sm-2" placeholder="Numero de dias (*)" />
+
+
+			<h:outputLabel value="Interes" class="col-sm-2 col-form-label" />
+
+			<h:outputLabel id="interes" value="#{polizaBeans.interes.porcentaje}"
+				class="form-control mb-2 mr-sm-2" />
+
+			<h:outputLabel value="Interes ganado" class="col-sm-2 col-form-label" />
+
+			<h:outputLabel id="intganado" value="#{polizaBeans.poliza.vinteres}"
+				class="form-control mb-2 mr-sm-2" />
+
+			<h:outputLabel value="Fecha solitud" class="col-sm-2 col-form-label" />
+
+			<h:outputLabel id="date" value="#{polizaBeans.thisDate}"
+				class="form-control mb-2 mr-sm-2">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
+			</h:outputLabel>
+
+
+			<h:outputLabel value="Fecha de vencimiento"
+				class="col-sm-2 col-form-label" />
+
+			<h:outputLabel id="dateFin"
+				value="#{polizaBeans.poliza.fvencimiento}"
+				class="form-control mb-2 mr-sm-2">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
+			</h:outputLabel>
+
+			<h:outputLabel value="Total" class="col-sm-2 col-form-label" />
+
+			<h:outputLabel id="total" value="#{polizaBeans.poliza.total}"
+				class="form-control mb-2 mr-sm-2" />
+
+			<h:commandButton action="#{polizaBeans.calInteres()}"
+				class="btn btn-primary mb-2" value="Generar" />
+			<h:commandButton action="#{polizaBeans.solPoliza()}"
+				value="Solicitar" class="btn btn-success" />
+			<h:commandButton action="#" class="btn btn-danger" value="Cancelar" />
+			<h:commandButton action="#{polizaBeans.verUser()}" class="btn btn-danger" value="sald" />
+		</h:panelGrid>
+	</h:form>
+</body>
+</html>

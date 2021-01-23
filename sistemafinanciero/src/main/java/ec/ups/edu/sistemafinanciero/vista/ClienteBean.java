@@ -1,9 +1,11 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,7 +13,7 @@ import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
-import ec.ups.edu.sistemafinanciero.utils.RandomUtil;
+import ec.ups.edu.sistemafinanciero.util.RandomUtil;
 
 @Named
 @RequestScoped
@@ -21,6 +23,9 @@ public class ClienteBean {
 	@Inject
 	private GestionUsuarioON gestionUsuarioON;
 	
+	@Inject
+	private LoginBean session;
+	
 	private Cliente cliente;
 	private Usuario usuario;
 	
@@ -28,10 +33,17 @@ public class ClienteBean {
 	
 	@PostConstruct
 	public void init() {
-		cliente = new Cliente();
-		usuario = new Usuario();
-		cargarListas();
-		
+		cargarListas();	
+	}
+	public void solicitarPoliza() {
+		try {
+			System.out.println(session.getUsernameString());
+			System.out.println("redireccionando");
+		       FacesContext.getCurrentInstance().getExternalContext()
+		            .redirect("/solicitudPoliza.xhtml");
+		   } catch (IOException ex) {
+		       ex.printStackTrace();
+		   }
 	}
 	
 	public void cargarListas() {
@@ -93,6 +105,12 @@ public class ClienteBean {
 		gestionUsuarioON.saveCliente(cliente);
 		
 		return null;
+	}
+	public LoginBean getSession() {
+		return session;
+	}
+	public void setSession(LoginBean session) {
+		this.session = session;
 	}
 	
 }

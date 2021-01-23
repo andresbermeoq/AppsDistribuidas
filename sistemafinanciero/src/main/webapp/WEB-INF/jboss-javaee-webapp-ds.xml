@@ -26,12 +26,30 @@
     <datasource jndi-name="java:jboss/datasources/sistemaDS"
         pool-name="sistemaDS" enabled="true"
         use-java-context="true" use-ccm="true">
+<!-- <<<<<<< HEAD -->
+        <!-- <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
+=======
+        <connection-url>jdbc:postgresql://database-1.cz1w1mys8xtn.us-east-1.rds.amazonaws.com:5432/apps_dis</connection-url>
+>>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a
+=======
         <connection-url>jdbc:postgresql://localhost:5432/apps_dis</connection-url>
+<<<<<<< HEAD
+>>>>>>> 9759a4cd3e8fb5f66e177c848c2e968f30f87f80
+=======
+>>>>>>> ff4d3d5c77f21bce6150bc934261c3c979c0b352
+>>>>>>> AngelJadan
         <driver>postgresql-driver</driver>
         <security>
             <user-name>andres</user-name>
             <password>Cuenca1234.</password>
-        </security>
+        </security>-->
+        
+        <connection-url>jdbc:postgresql://localhost:5432/sistemaFinancieroPrincipal</connection-url>
+        <driver>postgresql-driver</driver>
+        <security>
+            <user-name>postgres</user-name>
+            <password>Angel2019</password>
+        </security>        
     </datasource>
 </datasources>
  
