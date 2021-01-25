@@ -1,6 +1,5 @@
 package ec.ups.edu.sistemafinanciero.dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +14,7 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
 public class UsuarioDAO {
-
-	@Inject
-	private Connection connection;
-
+	
 	@Inject
 	private EntityManager entityManager;
 
@@ -27,9 +23,20 @@ public class UsuarioDAO {
 		entityManager.flush();
 	}
 	
-	public List<Usuario> obtenerUsuarios() {
-		return entityManager.createNamedQuery("Usuario.todoslosUsuarios").getResultList();
+	public List<Usuario> obtenerTodosUsuariosList() throws GeneralException {
+		try {
+			return entityManager.createNamedQuery("Usuario.todoslosUsuarios", Usuario.class).getResultList();
+		} catch (Exception e) {
+			throw new GeneralException("ERROR DAO USUARIO: "+e.getMessage());
+		}
+		
 	}
+	
+	public List<Usuario> obtenerUsuariosPorCedula(String cedula) {
+		String sql = "from Usuario usu, Cliente cli WHERE usu.cedulaString = :cedula AND usu.idUsuarioLong = cli.idClienteLong";
+		return entityManager.createQuery(sql, Usuario.class).setParameter("cedula", cedula).getResultList();
+	}
+	
 	/**
 	 * 
 	 * @param dni Identificacion, en Ecuador cedula.
@@ -76,6 +83,7 @@ public class UsuarioDAO {
 			return user;
 		}
 	}
+<<<<<<< HEAD
 	public List<Usuario> obtenerTodosUsuarios() throws GeneralException {
 		try {
 			return entityManager.createQuery("from Usuario").getResultList();
@@ -87,18 +95,24 @@ public class UsuarioDAO {
 	public Usuario obtenerUsuario(String nombre) throws GeneralException {
 		try {
 			String sql= "select u from Usuario u WHERE usuario_nombre_cuenta = :nombre ";
+=======
+	
+	public Usuario obtenerUsuario(String nombre) throws GeneralException {
+		try {
+			String sql= "from Usuario usu WHERE nombreUsuarioString = :nombre ";
+>>>>>>> main
 			
 			return entityManager.createQuery(sql, Usuario.class)
 						.setParameter("nombre", nombre)
-						.getSingleResult();	
-	
-			
+						.getSingleResult();			
 		} catch (NoSuchEntityException ex) {
 			throw new GeneralException(101, "Usuario No Encontrado");
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new GeneralException("ERROR DAO: "+e.getMessage());
 		}
 	}
+	
 	public Usuario readUserType(String usuario, String tipo) {
 		Usuario user = new Usuario();
 		List<Usuario> users = new ArrayList<Usuario>();

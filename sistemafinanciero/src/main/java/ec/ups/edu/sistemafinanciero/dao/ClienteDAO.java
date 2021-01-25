@@ -15,15 +15,13 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Stateless
 public class ClienteDAO {
-
-	@Inject
-	private Connection connection;
 	
 	@Inject
 	private EntityManager entityManager;
 	
 	public void guardarCliente(Cliente cliente) throws SQLException {
 		entityManager.persist(cliente);
+		entityManager.flush();
 	}
 	
 	
@@ -37,6 +35,7 @@ public class ClienteDAO {
 			throw new GeneralException("ERROR DAO ACCESO: "+e.getMessage());
 		}
 	}
+	
 	/**
 	 * Realiza una busqueda en base al id y al numero de cuenta del cliente, sea esta de ahorros o corriente.
 	 * @param idUserfk id del Cliente

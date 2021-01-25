@@ -41,6 +41,7 @@
 		  	</h:form>
 	  </span>
 	</nav>
+<<<<<<< HEAD
 	<div class="container">
 		<h2>Registro de usuarios administrativos</h2>
 		<h:form id="registro">
@@ -56,6 +57,47 @@
 						<h:inputText value="#{usuarioBean.usuario.email}" />
 					<h:outputLabel value="Tipo de Usuario" />
 						<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}" class="btn btn-outline-secondary dropdown-toggle">
+=======
+	<h:form>
+	</h:form>
+	
+	<br />
+	<div class="container">
+		<h2>Usuarios Administrativos</h2>
+		<h:form id="registro-Usuarios" onSubmit="">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputCedula">Cedula</label>
+					<h:inputText type="text" class="form-control" id="Cedula" value="#{usuarioBean.usuario.cedulaString}" required="true" validatorMessage="La Cedula debe contener 10 Caracteres">
+						<f:validateLength minimum="10" maximum="10" />
+					</h:inputText>
+					<p:message for="Cedula" display="text"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCedula">Email</label>
+					<h:inputText type="email" id="Email-Usuario" class="form-control" value="#{usuarioBean.usuario.email}" required="true" validatorMessage="Debe Ingresar un Email Valido">
+						<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
+					<p:message for="Email-Usuario" display="text"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputNombre">Nombres</label>
+					<h:inputText type="text" class="form-control" id="nombre" value="#{usuarioBean.usuario.nombre}" required="true" validatorMessage="Es necesario Ingresar un Nombre">
+						<f:validateLength minimum="5"/>
+					</h:inputText>
+					<p:message for="nombre" display="text"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputApellido">Apellidos</label>
+					<h:inputText type="text" class="form-control" id="apellido" value="#{usuarioBean.usuario.apellido}" required="true" validatorMessage="Es necesario Ingresar un Nombre" >
+						<f:validateLength minimum="5"/>
+					</h:inputText>
+					<p:message for="apellido" display="text"/>
+				</div>
+				<div class="form-group col-md-12">
+					<label for="inputTipoUsuario">Tipo de Usuario</label>
+					<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}" class="form-control">
+>>>>>>> main
 							<f:selectItem id="tipoDefault" itemLabel="-----" itemValue="#{null}" itemDisable="true"
 										noSelectionOption="true" />
 							<f:selectItem id="tipoAdmin" itemLabel="Administrador" itemValue="Administrador" itemDisable="true"
@@ -64,19 +106,24 @@
 										noSelectionOption="true"/>
 							<f:selectItem id="tipoAsistente" itemLabel="Asistente de Captaciones" itemValue="Asistente de Captaciones" itemDisable="true"
 										noSelectionOption="true"/>
-						</h:selectOneMenu>
-						<h:outputLabel value="Fecha de registro" />
-					<h:outputLabel value="#{usuarioBean.factual}">
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputFecha">Fecha de Registro</label>
+					<h:outputLabel class="form-control" value="#{usuarioBean.factual}" >
 						<f:convertDateTime pattern="yyyy/MM/dd" />
 					</h:outputLabel>
-						<br />
-					<h:outputLabel value="Usuario Cuenta" /> <br />
-						<h:outputLabel value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" /><br />
-						<h:outputLabel rendered="false" value="#{usuarioBean.usuario.passwordString}" action="#{usuarioBean.obtenerPassword()}"  />
-				</h:panelGrid>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputUsuarioCuenta">Nombre de Cuenta</label>
+					<h:outputLabel  class="form-control" value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" />
+				</div>
+				<div class="form-group col-md-12">
+					<h:commandButton class="btn btn-outline-primary btn-lg btn-block" action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
+				</div>
 			</div>
-			<h:commandButton class="btn btn-primary btn-lg" action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
 		</h:form>
 	</div>
+	
 </body> 
 </html>

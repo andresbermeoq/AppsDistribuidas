@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "CLIENTE", schema = "public")
+@Table(name = "Cliente", schema = "public")
 public class Cliente implements Serializable {
 	
 	/**
@@ -25,13 +25,7 @@ public class Cliente implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-/*<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> bd3397e6baa78f2c8fc2e67463b70f5ca08fa57a
-*/
-	
+	@Id	
 	@SequenceGenerator(name = "id_cliente_seq", sequenceName = "id_cliente_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_cliente_seq")
 	@Column(name = "id_cliente", updatable = false, unique = true, nullable = false)
@@ -85,10 +79,7 @@ public class Cliente implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-/*<<<<<<< HEAD
-=======
-*/
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}

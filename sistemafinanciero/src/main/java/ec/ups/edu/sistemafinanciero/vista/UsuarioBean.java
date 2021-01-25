@@ -1,9 +1,6 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -23,17 +20,16 @@ public class UsuarioBean {
 	private Usuario usuario;
 	private Cajero cajero;
 	private Date factual;
-	public UsuarioBean() {
-		// TODO Auto-generated constructor stub
-	}
-	@Inject
-	private GestionUsuarioON gestionUsuarioON;
-
+	
 	@PostConstruct
 	public void init() {
 		factual = new Date();
 		usuario = new Usuario();
 		cajero = new Cajero();
+	}
+	
+	public UsuarioBean() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Usuario getUsuario() {
@@ -48,9 +44,10 @@ public class UsuarioBean {
 	}
 	
 	public String obtenerPasswordUsuario() {
-		return gestionUsuarioON.generarPassword();
+		return usuarioON.generarPassword();
 	}
 	
+<<<<<<< HEAD
 	
 	public String doGuardar() {
 		usuario.setFechaRegistroDate(factual);
@@ -66,6 +63,8 @@ public class UsuarioBean {
 		}
 		return null;
 	}
+=======
+>>>>>>> main
 	public GestionUsuarioON getUsuarioON() {
 		return usuarioON;
 	}
@@ -81,11 +80,18 @@ public class UsuarioBean {
 	public void setFactual(Date factual) {
 		this.factual = factual;
 	}
-
-	public GestionUsuarioON getGestionUsuarioON() {
-		return gestionUsuarioON;
+	
+	public String doGuardar() {
+		usuario.setFechaRegistroDate(factual);
+		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
+		usuario.setPasswordString(this.obtenerPasswordUsuario());
+		System.out.println(usuario.toString());
+		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
+		usuarioON.saveUsuario(usuario);		
+		return null;
 	}
 
+<<<<<<< HEAD
 	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
 		this.gestionUsuarioON = gestionUsuarioON;
 	}
@@ -98,4 +104,7 @@ public class UsuarioBean {
 		this.cajero = cajero;
 	}
 	
+=======
+
+>>>>>>> main
 }

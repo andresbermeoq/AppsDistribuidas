@@ -25,7 +25,11 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries(
 		@NamedQuery(name = "Usuario.todoslosUsuarios", query = "SELECT u from Usuario u ORDER BY u.idUsuarioLong")
+<<<<<<< HEAD
 )
+=======
+	)
+>>>>>>> main
 @Table(name = "Usuario", schema = "public")
 public class Usuario implements Serializable {
 
