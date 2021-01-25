@@ -15,6 +15,7 @@ import ec.ups.edu.sistemafinanciero.modelo.Acceso;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.util.MailUtil;
+import ec.ups.edu.sistemafinanciero.util.MessagesUtil;
 import ec.ups.edu.sistemafinanciero.util.RandomUtil;
 
 @Stateless
@@ -31,11 +32,24 @@ public class GestionUsuarioON {
 	public boolean saveUsuario(Usuario isUsuario) {
 		
 		try {
+			System.out.println("Usuario Guardado");
 			usuarioDAO.guardarUsuario(isUsuario);
 		} catch (SQLException e) {
 			System.out.println("Error Gestion Usuario:" + e.getMessage());
+			MessagesUtil.agregarMensajeError(e.getMessage());
 		}
 		
+		return true;
+	}
+	
+	public boolean saveCliente(Cliente isCliente) {
+		try {
+			System.out.println("Cliente Guardado");
+			clienteDAO.guardarCliente(isCliente);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error Gestion Usuario: "+e.getMessage());
+		}
 		return true;
 	}
 	
@@ -44,18 +58,6 @@ public class GestionUsuarioON {
 		return passwordString;
 	}
 	
-	public boolean saveCliente(Cliente isCliente) {
-		try {
-			System.out.println("Cliente Guardado");
-			clienteDAO.guardarCliente(isCliente);
-			String numeroCuenta = RandomUtil.generarNumeroCuenta();
-			System.out.println(numeroCuenta);
-			enviarCorreoInicial(isCliente.getUsuario(), numeroCuenta);
-		} catch (Exception e) {
-			System.out.println("Error Gestion Usuario: "+e.getMessage());
-		}
-		return true;
-	}
 	public Usuario buscarUsuarioTipo(String usuario, String tipo) {
 		Usuario user = new Usuario();
 		try {
@@ -77,10 +79,17 @@ public class GestionUsuarioON {
 			throw new GeneralException(201, "Password Incorrecto");
 		}
 	}
+	
 	public Usuario buscarUsuario(String usuario) {
 		Usuario user = new Usuario();
 		user = usuarioDAO.readUsuario(usuario);
 		return user;
+	}
+	
+	public List<Usuario> buscarUsuariosCedula(String cedula) {
+		List<Usuario> userUsuario = usuarioDAO.obtenerUsuariosPorCedula(cedula);
+		System.out.println("Gestion Usuario: " + userUsuario.toString());
+		return userUsuario;
 	}
 	
 	public void enviarCorreoInicial(Usuario usuarioCliente, String password) {
@@ -100,6 +109,7 @@ public class GestionUsuarioON {
 			}
 		});
 	}
+	
 	public void enviarCorreo(Usuario usuario, String dispositivo, String ubicacion, boolean correcto) {
 		
 		String asuntoMensaje = "Intento de Acceso a la Banca Virtual";
@@ -132,6 +142,6 @@ public class GestionUsuarioON {
 	}
 	
 	public List<Usuario> obtenerUsuarios() throws GeneralException {
-		return usuarioDAO.obtenerTodosUsuarios();
+		return usuarioDAO.obtenerTodosUsuariosList();
 	}
 }

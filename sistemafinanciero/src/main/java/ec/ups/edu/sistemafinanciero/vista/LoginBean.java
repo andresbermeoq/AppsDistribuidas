@@ -35,7 +35,7 @@ public class LoginBean implements Serializable {
 		String page="";
 		try {
 			userUsuario = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
-			//System.out.println("Usuario Bean: "+userUsuario.toString());
+			System.out.println("Usuario Bean: "+userUsuario.toString());
 			if (userUsuario.getTipoString().equals("Administrador")) {
 				page= "registroPersona";
 			}

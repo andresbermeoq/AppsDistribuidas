@@ -30,6 +30,7 @@ public class GestionClienteON {
 	public boolean update(Cliente cliente) {
 		return true;
 	}
+	
 	public Cliente buscarCliente(String cedul, String cuenta) {
 		Cliente newCliente = new Cliente();
 		Usuario user = new Usuario();

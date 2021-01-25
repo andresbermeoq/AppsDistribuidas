@@ -16,20 +16,14 @@ import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 @Path("/cliente")
 public class ClienteServicesRest {
 
-	
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
 	@GET
 	@Produces(value = MediaType.APPLICATION_JSON)
 	public List<Usuario> obtenerUsuarios() {
-		List<Usuario> usuarios = usuarioDAO.obtenerUsuarios();
-		System.out.println("Usuarios " + usuarios);
-		return usuarios;
+		
+		return null;
 	}
 	
-	
-	
-	
-
 }

@@ -9,6 +9,8 @@ target
 #OS X stuff
 .DS_Store
 
+# Archivo Datasource
+./sistemafinanciero/src/main/webapp/WEB-INF/jboss-javaee-webapp-ds.xml
 
 /.metadata/
 
