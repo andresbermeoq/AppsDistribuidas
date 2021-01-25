@@ -1,6 +1,8 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,11 +11,16 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.stringtemplate.v4.compiler.CodeGenerator.region_return;
+
+import com.ibm.icu.text.RelativeDateTimeFormatter.RelativeDateTimeUnit;
+
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.util.RandomUtil;
+import net.bytebuddy.asm.Advice.This;
 
 @Named
 @RequestScoped
@@ -28,13 +35,23 @@ public class ClienteBean {
 	
 	private Cliente cliente;
 	private Usuario usuario;
+	private Usuario usuarioSeleccionado;
 	
 	private List<Usuario> listaUsuarios;
 	
+	private String cedulaCliente;
+	private Date factual;
+	
 	@PostConstruct
 	public void init() {
-		cargarListas();	
+		//cargarListas();	
+		factual = new Date();
+		usuario = new Usuario();
+		cliente = new Cliente();
+		usuarioSeleccionado = new Usuario();
+		listaUsuarios = new ArrayList<Usuario>();
 	}
+	
 	public void solicitarPoliza() {
 		try {
 			System.out.println(session.getUsernameString());
@@ -58,30 +75,45 @@ public class ClienteBean {
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
-
 	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 	public String obtenerNombreCliente(String nombre, String apellido) {
 		return "cli"+nombre+apellido;
+	}	
+	public Date getFactual() {
+		return factual;
 	}
+	public void setFactual(Date factual) {
+		this.factual = factual;
+	}
+	public LoginBean getSession() {
+		return session;
+	}
+	public void setSession(LoginBean session) {
+		this.session = session;
+	}
+	public String getCedulaCliente() {
+		return cedulaCliente;
+	}
+
+	public void setCedulaCliente(String cedulaCliente) {
+		this.cedulaCliente = cedulaCliente;
+	}
+	
+	
 	
 	public String obtenerPasswordCliente() {
 		return RandomUtil.generarPassword();
@@ -91,25 +123,38 @@ public class ClienteBean {
 		return RandomUtil.generarNumeroCuenta();
 	}
 	
+	public void buscarUsuarioCedula() throws GeneralException {
+		listaUsuarios = gestionUsuarioON.buscarUsuariosCedula(cedulaCliente);
+		System.out.println(listaUsuarios.size());
+		System.out.println("Bean: "+ listaUsuarios);
+	}
+	
 	public String doGuardarCliente() {
-		usuario.setNombreUsuarioString(this.obtenerNombreCliente(usuario.getNombre(), usuario.getApellido()));
 		usuario.setPasswordString(this.obtenerPasswordCliente());
+		usuario.setFechaRegistroDate(factual);
 		usuario.setTipoString("Cliente");
-		System.out.println("Usuario: " + usuario.toString());
-		
+		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getCedulaString());
 		cliente.setCuenta(this.obtenerNumeroCuenta());
+		cliente.setFechaRegistroDate(factual);
 		cliente.setUsuario(usuario);
-		System.out.println("Cliente: "+cliente.toString());
 		gestionUsuarioON.saveUsuario(usuario);
 		gestionUsuarioON.saveCliente(cliente);
-		
 		return null;
 	}
-	public LoginBean getSession() {
-		return session;
+	
+	public void Seleccionado(Usuario usuarioSelect) {
+		System.out.println("Usuario Seleccionado: " + usuarioSelect.toString());
 	}
-	public void setSession(LoginBean session) {
-		this.session = session;
+
+	public Usuario getUsuarioSeleccionado() {
+		return usuarioSeleccionado;
 	}
+
+	public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+		this.usuarioSeleccionado = usuarioSeleccionado;
+	}
+
+	
+
 	
 }

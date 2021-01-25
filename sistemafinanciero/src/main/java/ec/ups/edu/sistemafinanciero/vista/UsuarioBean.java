@@ -1,9 +1,6 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,16 +18,15 @@ public class UsuarioBean {
 
 	private Usuario usuario;
 	private Date factual;
-	public UsuarioBean() {
-		// TODO Auto-generated constructor stub
-	}
-	@Inject
-	private GestionUsuarioON gestionUsuarioON;
-
+	
 	@PostConstruct
 	public void init() {
 		factual = new Date();
 		usuario = new Usuario();
+	}
+	
+	public UsuarioBean() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Usuario getUsuario() {
@@ -45,26 +41,9 @@ public class UsuarioBean {
 	}
 	
 	public String obtenerPasswordUsuario() {
-		return gestionUsuarioON.generarPassword();
+		return usuarioON.generarPassword();
 	}
 	
-	public String doGuardar() {
-		usuario.setFechaRegistroDate(factual);
-		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
-		usuario.setPasswordString(this.obtenerPasswordUsuario());
-<<<<<<< HEAD
-		System.out.println("USUARIO" + usuario.toString());
-=======
-		//System.out.println("USUARIO" + usuario.toString());
-		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
-		gestionUsuarioON.saveUsuario(usuario);
-		System.out.println(usuario);
-
-		usuarioON.saveUsuario(usuario);		
->>>>>>> 347b95f24ad240bf6718ec7503b6f76ef9ff1383
-		gestionUsuarioON.saveUsuario(usuario);
-		return null;
-	}
 	public GestionUsuarioON getUsuarioON() {
 		return usuarioON;
 	}
@@ -80,12 +59,16 @@ public class UsuarioBean {
 	public void setFactual(Date factual) {
 		this.factual = factual;
 	}
-
-	public GestionUsuarioON getGestionUsuarioON() {
-		return gestionUsuarioON;
+	
+	public String doGuardar() {
+		usuario.setFechaRegistroDate(factual);
+		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
+		usuario.setPasswordString(this.obtenerPasswordUsuario());
+		System.out.println(usuario.toString());
+		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
+		usuarioON.saveUsuario(usuario);		
+		return null;
 	}
 
-	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
-		this.gestionUsuarioON = gestionUsuarioON;
-	}
+
 }
