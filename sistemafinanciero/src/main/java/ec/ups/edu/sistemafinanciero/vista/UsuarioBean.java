@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
+import ec.ups.edu.sistemafinanciero.modelo.Cajero;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Named
@@ -20,6 +21,7 @@ public class UsuarioBean {
 	private GestionUsuarioON usuarioON;
 
 	private Usuario usuario;
+	private Cajero cajero;
 	private Date factual;
 	public UsuarioBean() {
 		// TODO Auto-generated constructor stub
@@ -31,6 +33,7 @@ public class UsuarioBean {
 	public void init() {
 		factual = new Date();
 		usuario = new Usuario();
+		cajero = new Cajero();
 	}
 
 	public Usuario getUsuario() {
@@ -58,6 +61,9 @@ public class UsuarioBean {
 		gestionUsuarioON.saveUsuario(usuario);
 		usuarioON.saveUsuario(usuario);		
 		gestionUsuarioON.saveUsuario(usuario);
+		if (usuario.getTipoString().equals("Cajero")) {
+			
+		}
 		return null;
 	}
 	public GestionUsuarioON getUsuarioON() {
@@ -83,4 +89,13 @@ public class UsuarioBean {
 	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
 		this.gestionUsuarioON = gestionUsuarioON;
 	}
+
+	public Cajero getCajero() {
+		return cajero;
+	}
+
+	public void setCajero(Cajero cajero) {
+		this.cajero = cajero;
+	}
+	
 }

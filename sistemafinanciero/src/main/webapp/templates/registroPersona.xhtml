@@ -29,9 +29,7 @@
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="#">Features</a>
 		      	</li>
-		      	<li class="nav-item">
-		        		<a class="nav-link" href="registroCliente.xhtml">Registrar clientes</a>
-		      	</li>
+		      	
 		      	<li class="nav-item justify-content-end">
 		        		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 		      	</li>
@@ -49,7 +47,7 @@
 			<div class="form-group">
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Cedula" />
-						<h:inputText value="#{usuarioBean.usuario.cedulaString}" />
+						<h:inputText value="#{usuarioBean.usuario.cedulaString}" maxlength="10"/>
 					<h:outputLabel value="Nombres" />
 						<h:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" />
 					<h:outputLabel value="Apellidos" />

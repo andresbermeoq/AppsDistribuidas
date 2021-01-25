@@ -50,7 +50,7 @@ public class ClienteDAO {
 					+ " WHERE cliente_usuario_fk=:id and cliente_cuenta=:cta";
 			
 			cliente = (Cliente) entityManager.createQuery(sql, Cliente.class)
-					.setParameter("id",idUserfk).setParameter("cta", Integer.parseInt(cta)).getSingleResult();
+					.setParameter("id",idUserfk).setParameter("cta", cta).getSingleResult();
 						
 		} catch (Exception e) {
 			new Exception("Se ha generado un error al cunsultar el cliente. "+e.getLocalizedMessage());
@@ -58,7 +58,6 @@ public class ClienteDAO {
 			return cliente;
 		}		
 	}
-	
 	public int obtenerClienteCedula(String cedulaCliente) {
 		
 		return entityManager.createQuery("SELECT * FROM USUARIO usu WHERE usu.usuario_cedula = :cedula")

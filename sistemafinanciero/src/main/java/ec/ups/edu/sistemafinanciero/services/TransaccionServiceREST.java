@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 import ec.ups.edu.sistemafinanciero.gestion.GestionClienteON;
 import ec.ups.edu.sistemafinanciero.gestion.GestionTransaccionON;
@@ -40,7 +41,8 @@ public class TransaccionServiceREST {
 	}
 	
 	@GET
-	@Produces("application/json")
+	@Produces(value = MediaType.APPLICATION_JSON)
+	@Consumes("application/json")
 	@Path("/cliente")
 	public Cliente buscarCliente(@QueryParam("id") String idCliente, @QueryParam("cta") String cuenta) {
 		Cliente cliente=new Cliente();

@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 @NamedQueries(
 		@NamedQuery(name = "Usuario.todoslosUsuarios", query = "SELECT u from Usuario u ORDER BY u.idUsuarioLong")
 )
-@Table(name = "USUARIO", schema = "public")
+@Table(name = "Usuario", schema = "public")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -58,10 +58,6 @@ public class Usuario implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_acceso_fk")
 	private Set<Acceso> accesos;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "usuario_cliente_fk")
-	private Set<Cliente> clientes;
 	
 	
 	public Long getIdUsuarioLong() {
@@ -126,12 +122,6 @@ public class Usuario implements Serializable {
 	}
 	public void setAccesos(Set<Acceso> accesos) {
 		this.accesos = accesos;
-	}
-	public Set<Cliente> getClientes() {
-		return clientes;
-	}
-	public void setClientes(Set<Cliente> clientes) {
-		this.clientes = clientes;
 	}
 	
 	@Override
