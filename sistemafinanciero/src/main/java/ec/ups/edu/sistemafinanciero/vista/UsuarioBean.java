@@ -46,25 +46,6 @@ public class UsuarioBean {
 	public String obtenerPasswordUsuario() {
 		return usuarioON.generarPassword();
 	}
-	
-<<<<<<< HEAD
-	
-	public String doGuardar() {
-		usuario.setFechaRegistroDate(factual);
-		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
-		usuario.setPasswordString(this.obtenerPasswordUsuario());
-		//System.out.println("USUARIO" + usuario.toString());
-		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
-		gestionUsuarioON.saveUsuario(usuario);
-		usuarioON.saveUsuario(usuario);		
-		gestionUsuarioON.saveUsuario(usuario);
-		if (usuario.getTipoString().equals("Cajero")) {
-			
-		}
-		return null;
-	}
-=======
->>>>>>> main
 	public GestionUsuarioON getUsuarioON() {
 		return usuarioON;
 	}
@@ -91,11 +72,6 @@ public class UsuarioBean {
 		return null;
 	}
 
-<<<<<<< HEAD
-	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
-		this.gestionUsuarioON = gestionUsuarioON;
-	}
-
 	public Cajero getCajero() {
 		return cajero;
 	}
@@ -103,8 +79,4 @@ public class UsuarioBean {
 	public void setCajero(Cajero cajero) {
 		this.cajero = cajero;
 	}
-	
-=======
-
->>>>>>> main
 }

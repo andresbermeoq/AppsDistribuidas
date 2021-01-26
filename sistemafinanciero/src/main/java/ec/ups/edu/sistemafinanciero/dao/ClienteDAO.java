@@ -7,6 +7,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+
+import org.hibernate.NonUniqueResultException;
 
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Acceso;
@@ -42,20 +45,23 @@ public class ClienteDAO {
 	 * @param cta Numero de cuenta del cliente
 	 * @return Retorna los datos del cliente.
 	 */
-	public Cliente buscar(long idUserfk, String cta) {
+	public Cliente buscar(long idUserfk, String cta) throws Exception {
 		Cliente cliente = new Cliente();
-		try {
-			String sql = "SELECT c FROM Cliente c"
-					+ " WHERE cliente_usuario_fk=:id and cliente_cuenta=:cta";
-			
-			cliente = (Cliente) entityManager.createQuery(sql, Cliente.class)
-					.setParameter("id",idUserfk).setParameter("cta", cta).getSingleResult();
-						
-		} catch (Exception e) {
-			new Exception("Se ha generado un error al cunsultar el cliente. "+e.getLocalizedMessage());
-		}finally {
-			return cliente;
-		}		
+		System.out.println("buscar cliente dao");
+		System.out.println("id user"+idUserfk+" cta "+ cta);
+			try {
+				String sql = "SELECT c FROM Cliente c"
+						+ " WHERE cliente_usuario_fk=:id and cliente_cuenta=:cta";
+				
+				cliente = (Cliente) entityManager.createQuery(sql, Cliente.class)
+						.setParameter("id",idUserfk).setParameter("cta", cta).getSingleResult();
+			}catch (NoResultException nre) {
+				nre.printStackTrace();
+			}catch (NonUniqueResultException nure) {
+				 nure.printStackTrace();
+			}finally {
+				return cliente;	
+			}
 	}
 	public int obtenerClienteCedula(String cedulaCliente) {
 		

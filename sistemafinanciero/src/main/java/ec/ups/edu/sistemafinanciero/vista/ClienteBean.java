@@ -1,10 +1,8 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.IOException;
-<<<<<<< HEAD
-=======
+
 import java.util.ArrayList;
->>>>>>> main
 import java.util.Date;
 import java.util.List;
 
@@ -38,12 +36,8 @@ public class ClienteBean {
 	
 	private Cliente cliente;
 	private Usuario usuario;
-<<<<<<< HEAD
 	private Date fecha;
-=======
 	private Usuario usuarioSeleccionado;
-	
->>>>>>> main
 	private List<Usuario> listaUsuarios;
 	
 	private String cedulaCliente;
@@ -51,19 +45,16 @@ public class ClienteBean {
 	
 	@PostConstruct
 	public void init() {
-<<<<<<< HEAD
 		cargarListas();
 		cliente = new Cliente();
 		usuario = new Usuario();
 		fecha = new Date();
-=======
 		//cargarListas();	
 		factual = new Date();
 		usuario = new Usuario();
 		cliente = new Cliente();
 		usuarioSeleccionado = new Usuario();
 		listaUsuarios = new ArrayList<Usuario>();
->>>>>>> main
 	}
 	
 	public void solicitarPoliza() {
@@ -151,17 +142,13 @@ public class ClienteBean {
 		cliente.setCuenta(this.obtenerNumeroCuenta());
 		cliente.setFechaRegistroDate(factual);
 		cliente.setUsuario(usuario);
-<<<<<<< HEAD
 		cliente.setFechaRegistroDate(fecha);
 		gestionUsuarioON.saveUsuario(usuario);
 		gestionUsuarioON.saveCliente(cliente);
 		
-		return "Guardado correctamente";
-=======
 		gestionUsuarioON.saveUsuario(usuario);
 		gestionUsuarioON.saveCliente(cliente);
-		return null;
->>>>>>> main
+		return "Guardado correctamente";
 	}
 	
 	public void Seleccionado(Usuario usuarioSelect) {

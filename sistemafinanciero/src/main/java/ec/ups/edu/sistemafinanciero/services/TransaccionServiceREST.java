@@ -41,8 +41,8 @@ public class TransaccionServiceREST {
 	}
 	
 	@GET
-	@Produces(value = MediaType.APPLICATION_JSON)
 	@Consumes("application/json")
+	@Produces("application/json")
 	@Path("/cliente")
 	public Cliente buscarCliente(@QueryParam("id") String idCliente, @QueryParam("cta") String cuenta) {
 		Cliente cliente=new Cliente();

@@ -22,12 +22,11 @@ public class LoginBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private GestionUsuarioON gestionUsuarioON;
-	private Usuario user;
-	
-	private String usernameString;
-	private String passwordString;
 	@Inject 
 	private LoginBean session;
+	private Usuario user;
+	private String usernameString;
+	private String passwordString;
 	
 	public String loginUser() {
 		
@@ -35,15 +34,11 @@ public class LoginBean implements Serializable {
 		String page="";
 		try {
 			userUsuario = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
-<<<<<<< HEAD
-=======
-			System.out.println("Usuario Bean: "+userUsuario.toString());
->>>>>>> main
 			if (userUsuario.getTipoString().equals("Administrador")) {
 				page= "registroPersona";
 			}
 			if(userUsuario.getTipoString().equals("Cajero")) {
-				page= "CajeroView";
+				page= "Cajero/CajeroView";
 			}
 			if (userUsuario.getTipoString().equals("Cliente")) {
 				page= "ClienteView";
@@ -59,11 +54,9 @@ public class LoginBean implements Serializable {
 	
 	public String logoutUser() {
 		user = new Usuario();
-		//SessionUtil.getSession().invalidate();
 		return "login.xhtml";
 	}
 	
-
 	public String getUsernameString() {
 		return usernameString;
 	}

@@ -83,7 +83,7 @@ public class GestionTransaccionON {
 	}
 	/**
 	 * 
-	 * @param transaccion Tipo de deposito, retiros.
+	 * @param transaccion Tipo de DEPOSITO, RETIRO O TRANSFER.
 	 * @param cliente Datos del cliente desde donde se realiza la transaccion
 	 * o datos del beneficiario.
 	 * @return estado true, si se realiza correctamente toda la transaccion.
