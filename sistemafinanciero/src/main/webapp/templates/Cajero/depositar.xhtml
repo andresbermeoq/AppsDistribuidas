@@ -18,7 +18,7 @@
 	<h4>Bien venido</h4>
 	<h:form>
 		<h:outputLabel
-			value="#{loginBean.user.nombre} #{loginBean.user.apellido}" />
+			value="#{loginBean.user.nombre} #{loginBean.user.apellido}" style="background-color:#ADFBF3" />
 	</h:form>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
@@ -51,16 +51,16 @@
 			<h:panelGrid columns="3">
 				<h:outputLabel value="Cédula cliente" />
 				<h:inputText value="#{cajeroBean.cedula}" maxlength="10"
-					id="cedulaClientebus" />
+					id="cedulaClientebus" class="form-control" />
 				<h:message for="cedulaClientebus" class="alert alert-danger" />
 
 				<h:outputLabel value="Número de cuenta" />
 				<h:inputText value="#{cajeroBean.cuenta}" maxlength="20"
-					id="ctaClientebus" />
+					id="ctaClientebus" class="form-control" />
 
 				<h:message for="ctaClientebus" class="alert alert-danger" />
 				<h:commandButton action="#{cajeroBean.buscarCliente()}"
-					value="Buscar" />
+					value="Buscar" class="btn btn-primary" />
 			</h:panelGrid>
 			<div>
 				<h:panelGrid columns="2">
@@ -70,20 +70,21 @@
 				</h:panelGrid>
 				<h:panelGrid columns="3">
 					<h:outputLabel value="Nombre del depositante" />
-					<h:inputText value="#{cajeroBean.transaccion.nombre}" id="nomDepo" />
+					<h:inputText value="#{cajeroBean.transaccion.nombre}" id="nomDepo" class="form-control" />
 					<h:message for="nomDepo" />
 					<h:outputLabel value="Cedula del depositante" />
 					<h:inputText value="#{cajeroBean.transaccion.identificacion}"
-						id="cedDepo" />
+						id="cedDepo"  class="form-control" />
 					<h:message for="cedDepo" />
 					<h:outputLabel value="Mónto " />
-					<h:inputText value="#{cajeroBean.transaccion.monto}" id="txtmonto" />
+					<h:inputText value="#{cajeroBean.transaccion.monto}" id="txtmonto" class="form-control" />
 					<h:message for="txtmonto" />
 
 					<h:outputLabel value="Observaciones" />
 					<h:inputTextarea value="#{cajeroBean.transaccion.observacion}" />
+					<br/>
 					<h:commandButton action="#{cajeroBean.depositar()}"
-						value="Depositar" />
+						value="Depositar" class="btn btn-info" />
 					<h:message for="formdepo" class="alert alert-danger" />
 				</h:panelGrid>
 			</div>

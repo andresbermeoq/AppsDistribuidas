@@ -63,6 +63,14 @@ public class ClienteDAO {
 				return cliente;	
 			}
 	}
+	public Cliente buscarClienteId(long idUsuario) throws Exception {
+		String sql = "SELECT c "
+				+ "FROM Cliente c "
+				+ "WHERE cliente_usuario_fk=:usuario";
+		Cliente cliente = new Cliente();
+		cliente = (Cliente) entityManager.createQuery(sql, Cliente.class).setParameter("usuario", idUsuario).getSingleResult();
+		return cliente;
+	}
 	public int obtenerClienteCedula(String cedulaCliente) {
 		
 		return entityManager.createQuery("SELECT * FROM USUARIO usu WHERE usu.usuario_cedula = :cedula")

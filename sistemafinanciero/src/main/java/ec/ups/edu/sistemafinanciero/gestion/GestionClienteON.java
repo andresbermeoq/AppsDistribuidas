@@ -35,17 +35,33 @@ public class GestionClienteON {
 	public boolean update(Cliente cliente) {
 		return true;
 	}
-	
-	public Cliente buscarCliente(String cedul, String cuenta) {
+	public Cliente buscar(String cedula) {
 		Cliente newCliente = new Cliente();
 		Usuario user = new Usuario();
 		System.out.println("busqueda gestion");
 		try {
+			user = usuariodao.read(cedula);
+			if (user.getIdUsuarioLong()!=null) {
+				newCliente = clientedao.buscarClienteId(user.getIdUsuarioLong());
+			}
+		}
+		catch (SQLException ex) {
+			new Exception("Cliente no encontrado"+ex.getLocalizedMessage());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			new Exception("Se ha generado un error al buscar el cliente"+e.getLocalizedMessage());
+		}finally {
+			return newCliente;
+		}
+	}
+	public Cliente buscarCliente(String cedul, String cuenta) {
+		Cliente newCliente = new Cliente();
+		Usuario user = new Usuario();
+		try {
 			user = usuariodao.read(cedul);
-			System.out.println("user read encontrado "+user.toString());
 			if (user!=null) {
 				newCliente = clientedao.buscar(user.getIdUsuarioLong(),cuenta);
-				System.out.println("buscarCliente return"+ newCliente.toString());
 			}
 		}
 		catch (SQLException ex) {

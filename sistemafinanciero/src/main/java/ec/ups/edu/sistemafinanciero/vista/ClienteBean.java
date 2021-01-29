@@ -17,8 +17,11 @@ import org.stringtemplate.v4.compiler.CodeGenerator.region_return;
 import com.ibm.icu.text.RelativeDateTimeFormatter.RelativeDateTimeUnit;
 
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
+import ec.ups.edu.sistemafinanciero.gestion.GestionClienteON;
+import ec.ups.edu.sistemafinanciero.gestion.GestionTransaccionON;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
+import ec.ups.edu.sistemafinanciero.modelo.Transaccion;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.util.RandomUtil;
 import net.bytebuddy.asm.Advice.This;
@@ -30,7 +33,10 @@ public class ClienteBean {
 	
 	@Inject
 	private GestionUsuarioON gestionUsuarioON;
-	
+	@Inject
+	private GestionTransaccionON gestionTransaccionON;	
+	@Inject
+	private GestionClienteON gestionClienteON;
 	@Inject
 	private LoginBean session;
 	
@@ -39,9 +45,11 @@ public class ClienteBean {
 	private Date fecha;
 	private Usuario usuarioSeleccionado;
 	private List<Usuario> listaUsuarios;
+	private Transaccion transaccion;
 	
 	private String cedulaCliente;
 	private Date factual;
+	private List<Transaccion> estadocta;
 	
 	@PostConstruct
 	public void init() {
@@ -55,8 +63,10 @@ public class ClienteBean {
 		cliente = new Cliente();
 		usuarioSeleccionado = new Usuario();
 		listaUsuarios = new ArrayList<Usuario>();
+		estadocta = new ArrayList<Transaccion>();
+		transaccion = new Transaccion();
+		estadoCuenta();
 	}
-	
 	public void solicitarPoliza() {
 		try {
 			System.out.println(session.getUsernameString());
@@ -67,7 +77,21 @@ public class ClienteBean {
 		       ex.printStackTrace();
 		   }
 	}
-	
+
+	public void estadoCuenta() {
+		Cliente cliente = new Cliente();
+		try {
+			System.out.println("user login"+session.getUser().getCedulaString());
+			cliente = gestionClienteON.buscar(session.getUser().getCedulaString());
+			estadocta = gestionTransaccionON.listarAllTransacciones(cliente.getIdClienteLong());
+			for (Transaccion transaccion : estadocta) {
+				System.out.println(transaccion.toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 	public void cargarListas() {
 		try {
 			setListaUsuarios(gestionUsuarioON.obtenerUsuarios());
@@ -117,9 +141,7 @@ public class ClienteBean {
 	public void setCedulaCliente(String cedulaCliente) {
 		this.cedulaCliente = cedulaCliente;
 	}
-	
-	
-	
+		
 	public String obtenerPasswordCliente() {
 		return RandomUtil.generarPassword();
 	}
@@ -162,8 +184,41 @@ public class ClienteBean {
 	public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
 		this.usuarioSeleccionado = usuarioSeleccionado;
 	}
-
-	
-
+	public GestionUsuarioON getGestionUsuarioON() {
+		return gestionUsuarioON;
+	}
+	public void setGestionUsuarioON(GestionUsuarioON gestionUsuarioON) {
+		this.gestionUsuarioON = gestionUsuarioON;
+	}
+	public GestionTransaccionON getGestionTransaccionON() {
+		return gestionTransaccionON;
+	}
+	public void setGestionTransaccionON(GestionTransaccionON gestionTransaccionON) {
+		this.gestionTransaccionON = gestionTransaccionON;
+	}
+	public GestionClienteON getGestionClienteON() {
+		return gestionClienteON;
+	}
+	public void setGestionClienteON(GestionClienteON gestionClienteON) {
+		this.gestionClienteON = gestionClienteON;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public List<Transaccion> getEstadocta() {
+		return estadocta;
+	}
+	public void setEstadocta(List<Transaccion> estadocta) {
+		this.estadocta = estadocta;
+	}
+	public Transaccion getTransaccion() {
+		return transaccion;
+	}
+	public void setTransaccion(Transaccion transaccion) {
+		this.transaccion = transaccion;
+	}
 	
 }

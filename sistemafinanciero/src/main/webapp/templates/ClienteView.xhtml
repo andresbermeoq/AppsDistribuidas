@@ -44,6 +44,49 @@
 	</nav>
 	
 	<div>
+	<h:form>
+		
+		<div id="Layer1" style="width:1000px; height:500px; overflow: scroll;">
+			<h:dataTable value="#{clienteBean.estadocta}" var="transaccion" class="table table-striped">
+				<h:column>
+					<f:facet name="header" scope="col">
+					ID
+					</f:facet>
+					<h:outputLabel value="#{transaccion.id}" scope="row"/>
+				</h:column>
+				<h:column>
+				<f:facet name="header" scope="col">
+				Fecha
+				</f:facet>
+				<h:outputLabel value="#{transaccion.fecha}" scope="row" />
+				</h:column>
+				<h:column>
+				<f:facet name="header" scope="col">
+				Fecha
+				</f:facet>
+				<h:outputLabel value="#{transaccion.fecha}" scope="row" />
+				</h:column>
+				<h:column>
+				<f:facet name="header" scope="col">
+				Valor
+				</f:facet>
+				<h:outputLabel value="#{transaccion.monto}" scope="row" />
+				</h:column>
+				<h:column>
+				<f:facet name="header" scope="col">
+				Saldo anterior
+				</f:facet>
+				<h:outputLabel value="#{transaccion.saldoAnterior}" scope="row" />
+				</h:column>
+				<h:column>
+				<f:facet name="header" scope="col">
+				Saldo actual
+				</f:facet>
+				<h:outputLabel value="#{transaccion.sladoActual}" scope="row"/>
+				</h:column>
+			</h:dataTable>
+		</div>
+	</h:form>
 	</div>
 </body> 
 </html>

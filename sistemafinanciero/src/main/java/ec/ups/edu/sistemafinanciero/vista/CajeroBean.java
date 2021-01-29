@@ -100,7 +100,9 @@ public class CajeroBean implements Serializable {
 					new FacesMessage("El numero de cedula o cuenta no pertenece a ningun cliente registrado."));
 		}
 	}
-
+	/**
+	 * Metodo para realizar depositos en cuentas de los clientes.
+	 */
 	public void depositar() {
 		try {
 			if (cedula.length()>0&&cuenta.length()>0) {
@@ -147,6 +149,8 @@ public class CajeroBean implements Serializable {
 		
 	}
 
+	public void retirar() {
+	}
 	public Transaccion getTransaccion() {
 		return transaccion;
 	}

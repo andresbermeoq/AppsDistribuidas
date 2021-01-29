@@ -82,7 +82,7 @@ public class GestionTransaccionON {
 		return true;
 	}
 	/**
-	 * 
+	 * El metodo, calcula automaticamente el saldo anterior y el nuevo saldo.
 	 * @param transaccion Tipo de DEPOSITO, RETIRO O TRANSFER.
 	 * @param cliente Datos del cliente desde donde se realiza la transaccion
 	 * o datos del beneficiario.
@@ -129,7 +129,7 @@ public class GestionTransaccionON {
 		}
 	}
 	/**
-	 * 
+	 * El metodo sirve para transferir a otra cuenta sea esta interna o externa.
 	 * @param transferencia Datos para registrar la transferencia, 
 	 * comprueba si la cuenta tiene un saldo mayor o igual al monto a transferir,
 	 * registra el descuento 
@@ -155,7 +155,7 @@ public class GestionTransaccionON {
 		}
 	}
 	/**
-	 * 
+	 * El metodo registra una cuenta externa o interna para las transferencias.
 	 * @param intebancario Datos de interbancarios, para cuentas de otros bancos e internos.
 	 * @return true, si se guarda correctamente. False o throw, si no se logra guardar.
 	 */
@@ -170,7 +170,7 @@ public class GestionTransaccionON {
 		}
 	}
 	/**
-	 * 
+	 * Lista todas la cuentas y a que banco corresponden cada uno.
 	 * @return Listado de todas la cuentas internas o externas registradas.
 	 */
 	@SuppressWarnings("finally")
@@ -185,7 +185,7 @@ public class GestionTransaccionON {
 		}
 	}
 	/**
-	 * 
+	 * El metodo busca el saldo disponible.
 	 * @param clienteId identificador del cliente a buscar el saldo disponible.
 	 * @return Ultimo saldo disponible en la cuenta.
 	 */
