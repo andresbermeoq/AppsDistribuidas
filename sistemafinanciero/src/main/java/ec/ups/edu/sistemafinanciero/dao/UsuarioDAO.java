@@ -43,21 +43,15 @@ public class UsuarioDAO {
 	 * @return Usuario encontrado
 	 */
 	public Usuario read(String cedula) {
-		
+		System.out.println("read usuario dao");
 		Usuario user = new Usuario();
 		List<Usuario> users = new ArrayList<Usuario>();
 		try {
 			
 			String sql = "SELECT u FROM Usuario u "
 					+ " WHERE usuario_cedula=:ced";
-			users=entityManager.createQuery(sql, Usuario.class)
-					.setParameter("ced", cedula).getResultList();
-			for (Usuario usuario : users) {
-				System.out.println(usuario.toString());
-				if (usuario.getTipoString().equals("CLIENTE")) {
-					user = usuario;
-				}
-			}
+			user=(Usuario) entityManager.createQuery(sql, Usuario.class)
+					.setParameter("ced", cedula).getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -81,6 +75,13 @@ public class UsuarioDAO {
 			System.out.println("Error en la consulta del usuario");
 		} finally {
 			return user;
+		}
+	}
+	public List<Usuario> obtenerTodosUsuarios() throws GeneralException {
+		try {
+			return entityManager.createQuery("from Usuario").getResultList();
+		} catch (Exception e) {
+			throw new GeneralException("ERROR DAO USUARIO: "+e.getMessage());
 		}
 	}
 	

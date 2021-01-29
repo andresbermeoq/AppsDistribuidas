@@ -1,111 +1,153 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-      
-       
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
 <!-- Bootstrap -->
-<h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputStylesheet library="webjars"
+	name="bootstrap/4.5.2/css/bootstrap.css" />
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
 <h:head>
 	<title>Registro de Usuarios Administrativos</title>
-</h:head> 
-<body> 
+</h:head>
+<body>
 	<h1>Registro de Usuarios</h1>
-	
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <a class="navbar-brand" href="#">Banco Nacional</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	    	<span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNav">
-		    <ul class="navbar-nav">
-		      	<li class="nav-item active">
-		        		<a class="nav-link" href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
-		      	</li>
-		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Features</a>
-		      	</li>
-		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Pricing</a>
-		      	</li>
-		      	<li class="nav-item justify-content-end">
-		        		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-		      	</li>
-		    </ul>
-	  </div>
-	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
-	  </span>
-	</nav>
-	<h:form>
-	</h:form>
-	
-	<br />
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
+		class="navbar-brand" href="#">Banco Nacional</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarNav" aria-controls="navbarNav"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active"><a class="nav-link"
+				href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+
+			<li class="nav-item justify-content-end"><a
+				class="nav-link disabled" href="#" tabindex="-1"
+				aria-disabled="true">Disabled</a></li>
+		</ul>
+	</div>
+	<span class="navbar-text"> <h:form>
+			<h:commandLink action="#{loginBean.logoutUser()}"
+				value="Cerrar session" />
+		</h:form>
+	</span> </nav>
 	<div class="container">
-		<h2>Usuarios Administrativos</h2>
-		<h:form id="registro-Usuarios" onSubmit="">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputCedula">Cedula</label>
-					<h:inputText type="text" class="form-control" id="Cedula" value="#{usuarioBean.usuario.cedulaString}" required="true" validatorMessage="La Cedula debe contener 10 Caracteres">
-						<f:validateLength minimum="10" maximum="10" />
-					</h:inputText>
-					<p:message for="Cedula" display="text"/>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputCedula">Email</label>
-					<h:inputText type="email" id="Email-Usuario" class="form-control" value="#{usuarioBean.usuario.email}" required="true" validatorMessage="Debe Ingresar un Email Valido">
-						<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-					</h:inputText>
-					<p:message for="Email-Usuario" display="text"/>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputNombre">Nombres</label>
-					<h:inputText type="text" class="form-control" id="nombre" value="#{usuarioBean.usuario.nombre}" required="true" validatorMessage="Es necesario Ingresar un Nombre">
-						<f:validateLength minimum="5"/>
-					</h:inputText>
-					<p:message for="nombre" display="text"/>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputApellido">Apellidos</label>
-					<h:inputText type="text" class="form-control" id="apellido" value="#{usuarioBean.usuario.apellido}" required="true" validatorMessage="Es necesario Ingresar un Nombre" >
-						<f:validateLength minimum="5"/>
-					</h:inputText>
-					<p:message for="apellido" display="text"/>
-				</div>
-				<div class="form-group col-md-12">
-					<label for="inputTipoUsuario">Tipo de Usuario</label>
-					<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}" class="form-control">
-							<f:selectItem id="tipoDefault" itemLabel="-----" itemValue="#{null}" itemDisable="true"
-										noSelectionOption="true" />
-							<f:selectItem id="tipoAdmin" itemLabel="Administrador" itemValue="Administrador" itemDisable="true"
-										noSelectionOption="true"/>
-							<f:selectItem id="tipoCajero" itemLabel="Cajero" itemValue="Cajero" itemDisable="true"
-										noSelectionOption="true"/>
-							<f:selectItem id="tipoAsistente" itemLabel="Asistente de Captaciones" itemValue="Asistente de Captaciones" itemDisable="true"
-										noSelectionOption="true"/>
+		<h2>Registro de usuarios administrativos</h2>
+		<h:form id="registro">
+			<div class="form-group">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Cedula" />
+					<h:inputText value="#{usuarioBean.usuario.cedulaString}"
+						maxlength="10" />
+					<h:outputLabel value="Nombres" />
+					<h:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" />
+					<h:outputLabel value="Apellidos" />
+					<h:inputText id="apellido" value="#{usuarioBean.usuario.apellido}" />
+					<h:outputLabel value="Email" />
+					<h:inputText value="#{usuarioBean.usuario.email}" />
+					<h:outputLabel value="Tipo de Usuario" />
+					<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}"
+						class="btn btn-outline-secondary dropdown-toggle">
+						<h:form>
+						</h:form>
+
+						<br />
+						<div class="container">
+							<h2>Usuarios Administrativos</h2>
+							<h:form id="registro-Usuarios" onSubmit="">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="inputCedula">Cedula</label>
+										<h:inputText type="text" class="form-control" id="Cedula"
+											value="#{usuarioBean.usuario.cedulaString}" required="true"
+											validatorMessage="La Cedula debe contener 10 Caracteres">
+											<f:validateLength minimum="10" maximum="10" />
+										</h:inputText>
+										<p:message for="Cedula" display="text" />
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputCedula">Email</label>
+										<h:inputText type="email" id="Email-Usuario"
+											class="form-control" value="#{usuarioBean.usuario.email}"
+											required="true"
+											validatorMessage="Debe Ingresar un Email Valido">
+											<f:validateRegex
+												pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+										</h:inputText>
+										<p:message for="Email-Usuario" display="text" />
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputNombre">Nombres</label>
+										<h:inputText type="text" class="form-control" id="nombre"
+											value="#{usuarioBean.usuario.nombre}" required="true"
+											validatorMessage="Es necesario Ingresar un Nombre">
+											<f:validateLength minimum="5" />
+										</h:inputText>
+										<p:message for="nombre" display="text" />
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputApellido">Apellidos</label>
+										<h:inputText type="text" class="form-control" id="apellido"
+											value="#{usuarioBean.usuario.apellido}" required="true"
+											validatorMessage="Es necesario Ingresar un Nombre">
+											<f:validateLength minimum="5" />
+										</h:inputText>
+										<p:message for="apellido" display="text" />
+									</div>
+									<div class="form-group col-md-12">
+										<label for="inputTipoUsuario">Tipo de Usuario</label>
+										<h:selectOneMenu value="#{usuarioBean.usuario.tipoString}"
+											class="form-control">
+											<f:selectItem id="tipoDefault" itemLabel="-----"
+												itemValue="#{null}" itemDisable="true"
+												noSelectionOption="true" />
+											<f:selectItem id="tipoAdmin" itemLabel="Administrador"
+												itemValue="Administrador" itemDisable="true"
+												noSelectionOption="true" />
+											<f:selectItem id="tipoCajero" itemLabel="Cajero"
+												itemValue="Cajero" itemDisable="true"
+												noSelectionOption="true" />
+											<f:selectItem id="tipoAsistente"
+												itemLabel="Asistente de Captaciones"
+												itemValue="Asistente de Captaciones" itemDisable="true"
+												noSelectionOption="true" />
+										</h:selectOneMenu>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputFecha">Fecha de Registro</label>
+										<h:outputLabel class="form-control"
+											value="#{usuarioBean.factual}">
+											<f:convertDateTime pattern="yyyy/MM/dd" />
+										</h:outputLabel>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputUsuarioCuenta">Nombre de Cuenta</label>
+										<h:outputLabel class="form-control"
+											value="#{usuarioBean.usuario.nombreUsuarioString}"
+											action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" />
+									</div>
+									<div class="form-group col-md-12">
+										<h:commandButton
+											class="btn btn-outline-primary btn-lg btn-block"
+											action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
+									</div>
+								</div>
+							</h:form>
+						</div>
 					</h:selectOneMenu>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputFecha">Fecha de Registro</label>
-					<h:outputLabel class="form-control" value="#{usuarioBean.factual}" >
-						<f:convertDateTime pattern="yyyy/MM/dd" />
-					</h:outputLabel>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputUsuarioCuenta">Nombre de Cuenta</label>
-					<h:outputLabel  class="form-control" value="#{usuarioBean.usuario.nombreUsuarioString}" action="#{usuarioBean.obtenerNombreUsuario(nombre, apellido)}" />
-				</div>
-				<div class="form-group col-md-12">
-					<h:commandButton class="btn btn-outline-primary btn-lg btn-block" action="#{usuarioBean.doGuardar()}" value="Guardar Usuario" />
-				</div>
+				</h:panelGrid>
 			</div>
 		</h:form>
 	</div>
-	
-</body> 
+</body>
 </html>

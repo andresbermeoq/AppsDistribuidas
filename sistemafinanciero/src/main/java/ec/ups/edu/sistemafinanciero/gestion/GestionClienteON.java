@@ -1,7 +1,12 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
+import java.sql.SQLException;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NoResultException;
+
+import org.hibernate.NonUniqueResultException;
 
 import ec.ups.edu.sistemafinanciero.dao.ClienteDAO;
 import ec.ups.edu.sistemafinanciero.dao.UsuarioDAO;
@@ -34,13 +39,20 @@ public class GestionClienteON {
 	public Cliente buscarCliente(String cedul, String cuenta) {
 		Cliente newCliente = new Cliente();
 		Usuario user = new Usuario();
+		System.out.println("busqueda gestion");
 		try {
 			user = usuariodao.read(cedul);
+			System.out.println("user read encontrado "+user.toString());
 			if (user!=null) {
 				newCliente = clientedao.buscar(user.getIdUsuarioLong(),cuenta);
+				System.out.println("buscarCliente return"+ newCliente.toString());
 			}
-			
-		} catch (Exception e) {
+		}
+		catch (SQLException ex) {
+			new Exception("Cliente no encontrado"+ex.getLocalizedMessage());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 			new Exception("Se ha generado un error al buscar el cliente"+e.getLocalizedMessage());
 		}finally {
 			return newCliente;

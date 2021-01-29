@@ -34,20 +34,28 @@
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="#">Pricing</a>
 		      	</li>
-		      	<li class="nav-item justify-content-end">
-		        		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="Cajero/depositar.xhtml">Depositar</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Retirar</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#">Transferir</a>
 		      	</li>
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
+		  	<h:form>
+		  		<h:commandLink action="#{loginBean.logoutUser()}" value="Cerrar session" />
+		  	</h:form>
 	  </span>
 	</nav>
 	
 	<br />
 	<div class="container justify-content-center align-items-center">
 		<h2>Busqueda de Cuentas</h2>
-		<h:form class="form-inline" id="form">
+		<h:form class="form-inline" id="formDatBusqueda">
 			<div class="form-group mb-2 mx-sm-3">
 				<label for="cedula">Cedula Usuario</label>
 				<h:inputText id="cedula" class="form-control mx-sm-3" value="#{clienteBean.cedulaCliente}" o:placeholder="Cedula">

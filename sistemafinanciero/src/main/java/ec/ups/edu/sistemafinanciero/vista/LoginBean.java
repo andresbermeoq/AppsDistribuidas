@@ -22,8 +22,9 @@ public class LoginBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private GestionUsuarioON gestionUsuarioON;
+	@Inject 
+	private LoginBean session;
 	private Usuario user;
-	
 	private String usernameString;
 	private String passwordString;
 	
@@ -33,12 +34,11 @@ public class LoginBean implements Serializable {
 		String page="";
 		try {
 			userUsuario = gestionUsuarioON.validarUsuarioAdmin(usernameString, passwordString);
-			System.out.println("Usuario Bean: "+userUsuario.toString());
 			if (userUsuario.getTipoString().equals("Administrador")) {
 				page= "registroPersona";
 			}
 			if(userUsuario.getTipoString().equals("Cajero")) {
-				page= "CajeroView";
+				page= "Cajero/CajeroView";
 			}
 			if (userUsuario.getTipoString().equals("Cliente")) {
 				page= "ClienteView";
@@ -46,19 +46,17 @@ public class LoginBean implements Serializable {
 		} catch (GeneralException e) {
 			MessagesUtil.agregarMensajeError("El Correo o la contraseña es incorrecto");
 		}finally {
+			System.out.println(user);
 			user = userUsuario;
-			System.out.println("usuario mantenido "+user.toString());
 		}
 		return page;
 	}
 	
 	public String logoutUser() {
 		user = new Usuario();
-		//SessionUtil.getSession().invalidate();
 		return "login.xhtml";
 	}
 	
-
 	public String getUsernameString() {
 		return usernameString;
 	}
@@ -85,5 +83,14 @@ public class LoginBean implements Serializable {
 	public void setUser(Usuario user) {
 		this.user = user;
 	}
+
+	public LoginBean getSession() {
+		return session;
+	}
+
+	public void setSession(LoginBean session) {
+		this.session = session;
+	}
+	
 
 }

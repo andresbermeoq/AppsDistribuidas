@@ -1,6 +1,7 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +36,8 @@ public class ClienteBean {
 	
 	private Cliente cliente;
 	private Usuario usuario;
+	private Date fecha;
 	private Usuario usuarioSeleccionado;
-	
 	private List<Usuario> listaUsuarios;
 	
 	private String cedulaCliente;
@@ -44,6 +45,10 @@ public class ClienteBean {
 	
 	@PostConstruct
 	public void init() {
+		cargarListas();
+		cliente = new Cliente();
+		usuario = new Usuario();
+		fecha = new Date();
 		//cargarListas();	
 		factual = new Date();
 		usuario = new Usuario();
@@ -57,7 +62,7 @@ public class ClienteBean {
 			System.out.println(session.getUsernameString());
 			System.out.println("redireccionando");
 		       FacesContext.getCurrentInstance().getExternalContext()
-		            .redirect("/solicitudPoliza.xhtml");
+		            .redirect("/sistemafinanciero/faces/solicitudPoliza.xhtml");
 		   } catch (IOException ex) {
 		       ex.printStackTrace();
 		   }
@@ -137,9 +142,13 @@ public class ClienteBean {
 		cliente.setCuenta(this.obtenerNumeroCuenta());
 		cliente.setFechaRegistroDate(factual);
 		cliente.setUsuario(usuario);
+		cliente.setFechaRegistroDate(fecha);
 		gestionUsuarioON.saveUsuario(usuario);
 		gestionUsuarioON.saveCliente(cliente);
-		return null;
+		
+		gestionUsuarioON.saveUsuario(usuario);
+		gestionUsuarioON.saveCliente(cliente);
+		return "Guardado correctamente";
 	}
 	
 	public void Seleccionado(Usuario usuarioSelect) {

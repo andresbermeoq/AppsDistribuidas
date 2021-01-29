@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
+import ec.ups.edu.sistemafinanciero.modelo.Cajero;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
 @Named
@@ -17,12 +18,14 @@ public class UsuarioBean {
 	private GestionUsuarioON usuarioON;
 
 	private Usuario usuario;
+	private Cajero cajero;
 	private Date factual;
 	
 	@PostConstruct
 	public void init() {
 		factual = new Date();
 		usuario = new Usuario();
+		cajero = new Cajero();
 	}
 	
 	public UsuarioBean() {
@@ -43,7 +46,6 @@ public class UsuarioBean {
 	public String obtenerPasswordUsuario() {
 		return usuarioON.generarPassword();
 	}
-	
 	public GestionUsuarioON getUsuarioON() {
 		return usuarioON;
 	}
@@ -70,5 +72,11 @@ public class UsuarioBean {
 		return null;
 	}
 
+	public Cajero getCajero() {
+		return cajero;
+	}
 
+	public void setCajero(Cajero cajero) {
+		this.cajero = cajero;
+	}
 }

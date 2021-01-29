@@ -26,12 +26,18 @@
     <datasource jndi-name="java:jboss/datasources/sistemaDS"
         pool-name="sistemaDS" enabled="true"
         use-java-context="true" use-ccm="true">
-        <connection-url>jdbc:postgresql://localhost:5432/apps_dis</connection-url>
+        <!-- <connection-url>jdbc:postgresql://localhost:5432/apps_dis</connection-url>
         <driver>postgresql-driver</driver>
         <security>
             <user-name>andres</user-name>
             <password>Cuenca1234.</password>
-        </security>        
+        </security>-->
+        <connection-url>jdbc:postgresql://localhost:5432/sistemaFinancieroPrincipal</connection-url>
+        <driver>postgresql-driver</driver>
+        <security>
+            <user-name>root</user-name>
+            <password>Angel2019</password>
+        </security>                
     </datasource>
 </datasources>
  

@@ -55,7 +55,7 @@ public class Usuario implements Serializable {
 	private Date fechaRegistroDate;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_acceso_fk")
 	private Set<Acceso> accesos;
 	
