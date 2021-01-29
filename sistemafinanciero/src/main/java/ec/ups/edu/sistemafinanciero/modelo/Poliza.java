@@ -3,8 +3,10 @@ package ec.ups.edu.sistemafinanciero.modelo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +35,7 @@ public class Poliza implements Serializable{
 	@Column(name = "pol_plazo", nullable = false)
 	private int plazo;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pol_fk_int_id")
 	private Interes interes;
 	
@@ -67,7 +69,7 @@ public class Poliza implements Serializable{
 	@Column(name = "pol_plantilla", length = 250)
 	private String planilla;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pol_asesor")
 	private AsesorCta asesorCta;
 	

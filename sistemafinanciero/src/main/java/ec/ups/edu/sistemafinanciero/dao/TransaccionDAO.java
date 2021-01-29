@@ -23,7 +23,8 @@ public class TransaccionDAO {
 	 * @throws SQLException
 	 */
 	public boolean insert(Transaccion transaccion) throws SQLException {
-		String sql = "INSERT INTO Transacciones ("
+		System.out.println("Transaccion dao "+transaccion.toString());
+		/*String sql = "INSERT INTO Transacciones ("
 				+ "tra_id, tra_agencia, tra_fecha, tra_identificacion, tra_monto, tra_name, tra_observacion,"
 				+ " tra_operacion, tra_santerior, tra_sactual, tra_fk_cajero, tra_fk_cliente)"
 				+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";		
@@ -40,7 +41,9 @@ public class TransaccionDAO {
 		.setParameter(10, transaccion.getSladoActual())
 		.setParameter(11, transaccion.getCajero().getId())
 		.setParameter(12, transaccion.getCliente().getIdClienteLong())
-		.executeUpdate();
+		.executeUpdate();*/
+		em.persist(transaccion);
+		em.flush();
 		return true;
 	}
 	/**

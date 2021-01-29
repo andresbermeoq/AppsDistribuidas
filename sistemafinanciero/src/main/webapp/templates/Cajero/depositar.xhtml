@@ -33,16 +33,14 @@
 			<li class="nav-item active"><a class="nav-link"
 				href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="../ClienteView.xhtml">Regresar</a>
-			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="../ClienteView.xhtml">Regresar</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">Retirar</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">Transferir</a>
 			</li>
 		</ul>
 	</div>
-	<span class="navbar-text"> 
-		<h:form>
+	<span class="navbar-text"> <h:form>
 			<h:commandLink action="#{loginBean.logoutUser()}"
 				value="Cerrar sesión" />
 		</h:form>
@@ -71,6 +69,13 @@
 						value="#{cajeroBean.cliente.usuario.nombre}  #{cajeroBean.cliente.usuario.apellido}" />
 				</h:panelGrid>
 				<h:panelGrid columns="3">
+					<h:outputLabel value="Nombre del depositante" />
+					<h:inputText value="#{cajeroBean.transaccion.nombre}" id="nomDepo" />
+					<h:message for="nomDepo" />
+					<h:outputLabel value="Cedula del depositante" />
+					<h:inputText value="#{cajeroBean.transaccion.identificacion}"
+						id="cedDepo" />
+					<h:message for="cedDepo" />
 					<h:outputLabel value="Mónto " />
 					<h:inputText value="#{cajeroBean.transaccion.monto}" id="txtmonto" />
 					<h:message for="txtmonto" />
@@ -81,7 +86,7 @@
 						value="Depositar" />
 					<h:message for="formdepo" class="alert alert-danger" />
 				</h:panelGrid>
-				</div>
+			</div>
 		</h:form>
 	</div>
 </body>

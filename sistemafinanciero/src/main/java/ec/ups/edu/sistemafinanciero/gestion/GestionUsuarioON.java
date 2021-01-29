@@ -8,10 +8,12 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 
+import ec.ups.edu.sistemafinanciero.dao.CajeroDAO;
 import ec.ups.edu.sistemafinanciero.dao.ClienteDAO;
 import ec.ups.edu.sistemafinanciero.dao.UsuarioDAO;
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Acceso;
+import ec.ups.edu.sistemafinanciero.modelo.Cajero;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.util.MailUtil;
@@ -26,7 +28,8 @@ public class GestionUsuarioON {
 	
 	@Inject
 	private ClienteDAO clienteDAO;
-		
+	@Inject
+	private CajeroDAO cajeroDAO;
 	
 	
 	public boolean saveUsuario(Usuario isUsuario) {
@@ -68,7 +71,11 @@ public class GestionUsuarioON {
 			return user;
 		}
 	}
-
+	public Cajero buscarCajero(long usuarioId) throws Exception {
+		Cajero cajero = new Cajero();
+		 cajero = cajeroDAO.buscar(usuarioId);
+		 return cajero;
+	}
 	public Usuario validarUsuarioAdmin(String usuario, String password) throws GeneralException {
 		Usuario usuarioAdmin = usuarioDAO.obtenerUsuario(usuario);
 		System.out.println("Usuario Admin: " + usuarioAdmin.toString());

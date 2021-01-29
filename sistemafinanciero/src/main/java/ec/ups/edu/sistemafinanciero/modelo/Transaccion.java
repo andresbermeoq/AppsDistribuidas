@@ -3,8 +3,10 @@ package ec.ups.edu.sistemafinanciero.modelo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +21,11 @@ import javax.persistence.TemporalType;
 @Table(name = "Transacciones", schema = "public")
 public class Transaccion implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static final long SerialVersionUID = 1L;
 	
 	@Id
@@ -33,7 +40,7 @@ public class Transaccion implements Serializable{
 	@Column(name = "tra_operacion", nullable = false, length = 10)
 	private String operacion;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "tra_fk_cajero")
 	private Cajero cajero;
 	
@@ -49,7 +56,7 @@ public class Transaccion implements Serializable{
 	@Column(name = "tra_name", length = 100)
 	private String nombre;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "tra_fk_cliente")
 	private Cliente cliente;
 	
@@ -170,6 +177,14 @@ public class Transaccion implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	@Override
+	public String toString() {
+		return "Transaccion [id=" + id + ", operacion=" + operacion + ", cajero=" + cajero + ", identificacion="
+				+ identificacion + ", nombre=" + nombre + ", cliente=" + cliente + ", fecha=" + fecha + ", monto="
+				+ monto + ", agencia=" + agencia + ", observacion=" + observacion + ", saldoAnterior=" + saldoAnterior
+				+ ", sladoActual=" + sladoActual + "]";
 	}
 	
 }

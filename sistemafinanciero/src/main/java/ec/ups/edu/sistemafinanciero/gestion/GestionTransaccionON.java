@@ -93,6 +93,7 @@ public class GestionTransaccionON {
 		double sActual = 0;
 		double nuevoSaldo = 0;
 		try {
+			System.out.println("tranasccion gestion"+transaccion.toString());
 			//Consulta de saldo disponible
 			sActual = saldoActual(transaccion.getCliente().getIdClienteLong());
 			if (transaccion.getOperacion().equals("RETIRO")) {
