@@ -43,7 +43,6 @@ public class UsuarioDAO {
 	 * @return Usuario encontrado
 	 */
 	public Usuario read(String cedula) {
-		System.out.println("read usuario dao");
 		Usuario user = new Usuario();
 		List<Usuario> users = new ArrayList<Usuario>();
 		try {

@@ -38,7 +38,6 @@ public class GestionClienteON {
 	public Cliente buscar(String cedula) {
 		Cliente newCliente = new Cliente();
 		Usuario user = new Usuario();
-		System.out.println("busqueda gestion");
 		try {
 			user = usuariodao.read(cedula);
 			if (user.getIdUsuarioLong()!=null) {

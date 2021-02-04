@@ -11,10 +11,10 @@
 <h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
 <h:head>
-	<title>Inicio cliente</title>
+	<title>Estado de cuenta</title>
 </h:head> 
 <body> 
-	<h3>Usuarioi</h3> <h:outputLabel value="#{loginBean.user.nombre} #{loginBean.user.apellido}" />
+	<h3>Usuario</h3> <h:outputLabel value="#{loginBean.user.nombre} #{loginBean.user.apellido}" />
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="#">Banco Nacional</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +34,6 @@
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="../simulapoliza.xhtml">Simular poliza</a>
 		      	</li>
-		      	<li class="nav-item">
-		        		<a class="nav-link" href="Cliente/estctarangofecha.xhtml">Consultar estado de cuenta</a>
-		      	</li>
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
@@ -48,6 +45,7 @@
 	
 	<div>
 	<h:form>
+		
 		<h6>Estado de cuenta</h6>
 		<div id="Layer1" style="width:1000px; height:300px; overflow: scroll;">
 			<h:dataTable value="#{clienteBean.estadocta}" var="transaccion" class="table table-striped">
@@ -86,43 +84,6 @@
 				Saldo actual
 				</f:facet>
 				<h:outputLabel value="#{transaccion.sladoActual}" scope="row"/>
-				</h:column>
-			</h:dataTable>
-		</div>
-	</h:form>
-	<h:form>
-		<h6>Listado de polizas de polizas</h6>
-		<div id="Layer1" style="width:900px; height:200px; overflow: scroll;">
-			<h:dataTable value="#{clienteBean.listPoliza}" var="poliza" class="table table-striped">
-				<h:column>
-					<f:facet name="header" scope="col">
-					ID
-					</f:facet>
-					<h:outputLabel value="#{poliza.id}" scope="row"/>
-				</h:column>
-				<h:column>
-				<f:facet name="header" scope="col">
-				Plazo
-				</f:facet>
-				<h:outputLabel value="#{poliza.plazo}" scope="row" />
-				</h:column>
-				<h:column>
-				<f:facet name="header" scope="col">
-				Capital
-				</f:facet>
-				<h:outputLabel value="#{poliza.capital}" scope="row" />
-				</h:column>
-				<h:column>
-				<f:facet name="header" scope="col">
-				Interés
-				</f:facet>
-				<h:outputLabel value="#{poliza.vinteres}" scope="row" />
-				</h:column>
-				<h:column>
-				<f:facet name="header" scope="col">
-				Fecha de vencimiento
-				</f:facet>
-				<h:outputLabel value="#{poliza.fvencimiento}" scope="row" />
 				</h:column>
 			</h:dataTable>
 		</div>

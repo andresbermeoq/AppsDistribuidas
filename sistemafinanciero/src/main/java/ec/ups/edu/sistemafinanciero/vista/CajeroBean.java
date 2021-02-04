@@ -19,7 +19,7 @@ import ec.ups.edu.sistemafinanciero.modelo.Transaccion;
 
 @Named
 @RequestScoped
-public class CajeroBean implements Serializable {
+public class CajeroBean {
 
 	@Inject
 	private GestionTransaccionON gtransaccion;

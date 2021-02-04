@@ -3,6 +3,7 @@ package ec.ups.edu.sistemafinanciero.dao;
 import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -84,7 +85,8 @@ public class TransaccionDAO {
 	 */
 	public List<Transaccion> list(String operacion, long clienteId){
 		List<Transaccion> transacciones = new ArrayList<Transaccion>(); 
-		String sql = "SELECT t FROM Transaccion t WHERE tra_operacion like:oper and tra_fk_cliente=:clientId";
+		String sql = "SELECT t FROM Transaccion t WHERE tra_operacion like:oper and tra_fk_cliente=:clientId"
+				+ " ORDER BY tra_fecha DESC";
 		transacciones = em.createQuery(sql,Transaccion.class)
 				.setParameter("oper", operacion)
 				.setParameter("clientId", clienteId).getResultList();
@@ -108,5 +110,23 @@ public class TransaccionDAO {
 			transaccion = transaccion2;
 		}
 		return transaccion;
+	}
+	/**
+	 * 
+	 * @param fechaInicial Rango inicial de fecha.
+	 * @param fechaFinal Rango final de fecha.
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Transaccion> ragoFecha(Date fechaInicial, Date fechaFinal)throws SQLException{
+		Transaccion transaccion = new Transaccion();
+		List<Transaccion> list = new ArrayList<Transaccion>();
+		String sql = "SELECT t FROM Transaccion t "
+				+ "WHERE tra_fecha BETWEEN :finicial AND :ffin";
+		list=em.createQuery(sql,Transaccion.class)
+				.setParameter("finicial", fechaInicial)
+				.setParameter("ffin", fechaFinal)
+				.getResultList();
+		return list;		
 	}
 }

@@ -8,11 +8,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 
+import ec.ups.edu.sistemafinanciero.dao.AsesorCtaDAO;
 import ec.ups.edu.sistemafinanciero.dao.CajeroDAO;
 import ec.ups.edu.sistemafinanciero.dao.ClienteDAO;
 import ec.ups.edu.sistemafinanciero.dao.UsuarioDAO;
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.modelo.Acceso;
+import ec.ups.edu.sistemafinanciero.modelo.AsesorCta;
 import ec.ups.edu.sistemafinanciero.modelo.Cajero;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
@@ -30,15 +32,23 @@ public class GestionUsuarioON {
 	private ClienteDAO clienteDAO;
 	@Inject
 	private CajeroDAO cajeroDAO;
-	
+	@Inject
+	private AsesorCtaDAO asesorCtaDAO;
 	
 	public boolean saveUsuario(Usuario isUsuario) {
 		
 		try {
-			System.out.println("Usuario Guardado");
 			usuarioDAO.guardarUsuario(isUsuario);
+			if (isUsuario.getTipoString()=="Asistente de Captaciones") {
+				AsesorCta asesorcta = new AsesorCta();
+				asesorcta.setUsuario(isUsuario);
+				asesorCtaDAO.insert(asesorcta);
+			}if (isUsuario.getTipoString()=="Cajero") {
+				Cajero cajero = new Cajero();
+				cajero.setUsuario(isUsuario);
+				cajeroDAO.insert(cajero);
+			}
 		} catch (SQLException e) {
-			System.out.println("Error Gestion Usuario:" + e.getMessage());
 			MessagesUtil.agregarMensajeError(e.getMessage());
 		}
 		
@@ -47,11 +57,9 @@ public class GestionUsuarioON {
 	
 	public boolean saveCliente(Cliente isCliente) {
 		try {
-			System.out.println("Cliente Guardado");
 			clienteDAO.guardarCliente(isCliente);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error Gestion Usuario: "+e.getMessage());
 		}
 		return true;
 	}
@@ -80,7 +88,6 @@ public class GestionUsuarioON {
 		Usuario usuarioAdmin = usuarioDAO.obtenerUsuario(usuario);
 		System.out.println("Usuario Admin: " + usuarioAdmin.toString());
 		if(usuarioAdmin.getPasswordString().equals(password)) {
-			System.out.println("Usuario ON2: "+usuarioAdmin.toString());
 			return usuarioAdmin;
 		}else {
 			throw new GeneralException(201, "Password Incorrecto");
@@ -95,7 +102,6 @@ public class GestionUsuarioON {
 	
 	public List<Usuario> buscarUsuariosCedula(String cedula) {
 		List<Usuario> userUsuario = usuarioDAO.obtenerUsuariosPorCedula(cedula);
-		System.out.println("Gestion Usuario: " + userUsuario.toString());
 		return userUsuario;
 	}
 	

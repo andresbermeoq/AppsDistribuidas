@@ -20,16 +20,13 @@ public class UsuarioBean {
 	private Usuario usuario;
 	private Cajero cajero;
 	private Date factual;
+	private String tipo;
 	
 	@PostConstruct
 	public void init() {
 		factual = new Date();
 		usuario = new Usuario();
 		cajero = new Cajero();
-	}
-	
-	public UsuarioBean() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Usuario getUsuario() {
@@ -62,14 +59,13 @@ public class UsuarioBean {
 		this.factual = factual;
 	}
 	
-	public String doGuardar() {
+	public void doGuardar() {
 		usuario.setFechaRegistroDate(factual);
+		usuario.setTipoString(tipo);
 		usuario.setNombreUsuarioString(this.obtenerNombreUsuario(usuario.getNombre(), usuario.getApellido()));
 		usuario.setPasswordString(this.obtenerPasswordUsuario());
-		System.out.println(usuario.toString());
 		//gestionUsuarioON.enviarCorreoInicial(usuario, usuario.getPasswordString());
-		usuarioON.saveUsuario(usuario);		
-		return null;
+		usuarioON.saveUsuario(usuario);
 	}
 
 	public Cajero getCajero() {
@@ -78,5 +74,13 @@ public class UsuarioBean {
 
 	public void setCajero(Cajero cajero) {
 		this.cajero = cajero;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }

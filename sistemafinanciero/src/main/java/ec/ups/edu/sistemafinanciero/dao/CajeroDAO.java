@@ -1,5 +1,7 @@
 package ec.ups.edu.sistemafinanciero.dao;
 
+import java.sql.SQLException;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -14,6 +16,10 @@ public class CajeroDAO {
 	
 	public CajeroDAO() {
 		// TODO Auto-generated constructor stub
+	}
+	public boolean insert(Cajero cajero)throws SQLException {
+		em.persist(cajero);
+		return true;
 	}
 	public Cajero buscar(long usuarioid) {
 		System.out.println("user id cajdao "+usuarioid);

@@ -31,10 +31,31 @@ public class PolizaDAO {
 		em.remove(id);
 		return true;		
 	}
-	public List<Poliza> listPoliza(String estado){
-		String sql = "SELECT FROM Polizas WHERE pol_estado =:est";
+	/**
+	 * 
+	 * @param estado 1: GENERADO, 2:APROBADO, 3:RECHAZADO
+	 * @return
+	 */
+	public List<Poliza> listPoliza(int estado){
+		String sql = "SELECT p FROM Poliza WHERE pol_estado =:est";
 		List<Poliza> lista = new ArrayList<Poliza>();
-		lista = em.createNativeQuery(sql, Poliza.class)
+		lista = em.createQuery(sql, Poliza.class)
+				.setParameter("est", estado)
+				.getResultList();
+		return lista;
+	}
+	/**
+	 * 
+	 * @param clienteId
+	 * @param estado 1: GENERADO, 2:APROBADO, 3:RECHAZADO
+	 * @return
+	 */
+	public List<Poliza> listPolizaCliente(long clienteId, int estado){
+		System.out.println(clienteId);
+		String sql = "SELECT p FROM Poliza p WHERE pol_cliente_fk =:cliid and pol_estado=:est";
+		List<Poliza> lista = new ArrayList<Poliza>();
+		lista = em.createQuery(sql, Poliza.class)
+				.setParameter("cliid", clienteId)
 				.setParameter("est", estado)
 				.getResultList();
 		return lista;

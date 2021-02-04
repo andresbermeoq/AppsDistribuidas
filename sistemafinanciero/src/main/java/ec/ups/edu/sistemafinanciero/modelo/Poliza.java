@@ -35,7 +35,7 @@ public class Poliza implements Serializable{
 	@Column(name = "pol_plazo", nullable = false)
 	private int plazo;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "pol_fk_int_id")
 	private Interes interes;
 	
@@ -53,25 +53,29 @@ public class Poliza implements Serializable{
 	private Date fsolicita;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "pol_faprobado")
+	@Column(name = "pol_faprobado", nullable = true)
 	private Date faprobado;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "pol_fvencimiento")
+	@Column(name = "pol_fvencimiento", nullable = false)
 	private Date fvencimiento;
 	
-	@Column(name = "pol_observacion", length = 50)
+	@Column(name = "pol_observacion", length = 50, nullable = false)
 	private String observacion;
 	
-	@Column(name = "pol_cedula", length = 250)
+	@Column(name = "pol_cedula", length = 250, nullable = false)
 	private String cedula;
 	
-	@Column(name = "pol_plantilla", length = 250)
+	@Column(name = "pol_plantilla", length = 250, nullable = false)
 	private String planilla;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "pol_asesor")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "pol_asesor", nullable = true)
 	private AsesorCta asesorCta;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "pol_cliente_fk")
+	private Cliente cliente;
 	
 	public Poliza() {
 		// TODO Auto-generated constructor stub
@@ -180,8 +184,6 @@ public class Poliza implements Serializable{
 	public void setAsesorCta(AsesorCta asesorCta) {
 		this.asesorCta = asesorCta;
 	}
-
-//<<<<<<< HEAD
 	public double getVinteres() {
 		return vinteres;
 	}
@@ -190,14 +192,19 @@ public class Poliza implements Serializable{
 		this.vinteres = vinteres;
 	}
 
-//=======
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	@Override
-//>>>>>>> AngelJadan
 	public String toString() {
 		return "Poliza [id=" + id + ", capital=" + capital + ", plazo=" + plazo + ", interes=" + interes + ", vinteres="
 				+ vinteres + ", total=" + total + ", estado=" + estado + ", fsolicita=" + fsolicita + ", faprobado="
 				+ faprobado + ", fvencimiento=" + fvencimiento + ", observacion=" + observacion + ", cedula=" + cedula
-				+ ", planilla=" + planilla + ", asesorCta=" + asesorCta + "]";
-	}
-	
+				+ ", planilla=" + planilla + ", asesorCta=" + asesorCta + ", cliente=" + cliente + "]";
+	}	
 }

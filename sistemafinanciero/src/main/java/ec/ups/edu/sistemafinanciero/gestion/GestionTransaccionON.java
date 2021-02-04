@@ -1,6 +1,8 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,6 +60,16 @@ public class GestionTransaccionON {
 			transacciones = transaccionDAO.list("%", idCliente);
 		} catch (Exception e) {
 			new Exception("Error al consultar las transacciones. "+e.getLocalizedMessage());
+		}finally {
+			return transacciones;
+		}
+	}
+	public List<Transaccion> listarRangoFechaEstCta(Date fechaInicial, Date fechaFinal){
+		List<Transaccion> transacciones = new ArrayList<Transaccion>();
+		try {
+			transacciones = transaccionDAO.ragoFecha(fechaInicial,fechaFinal);
+		} catch (SQLException e) {
+			new SQLException("Se ha generado un error al consutar el estado de cuenta.");
 		}finally {
 			return transacciones;
 		}

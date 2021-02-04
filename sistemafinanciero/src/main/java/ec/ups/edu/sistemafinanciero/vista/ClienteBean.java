@@ -1,7 +1,7 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.IOException;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,9 +18,11 @@ import com.ibm.icu.text.RelativeDateTimeFormatter.RelativeDateTimeUnit;
 
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
 import ec.ups.edu.sistemafinanciero.gestion.GestionClienteON;
+import ec.ups.edu.sistemafinanciero.gestion.GestionPolizaON;
 import ec.ups.edu.sistemafinanciero.gestion.GestionTransaccionON;
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
 import ec.ups.edu.sistemafinanciero.modelo.Cliente;
+import ec.ups.edu.sistemafinanciero.modelo.Poliza;
 import ec.ups.edu.sistemafinanciero.modelo.Transaccion;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.util.RandomUtil;
@@ -28,7 +30,7 @@ import net.bytebuddy.asm.Advice.This;
 
 @Named
 @RequestScoped
-public class ClienteBean {
+public class ClienteBean implements Serializable {
 
 	
 	@Inject
@@ -37,6 +39,8 @@ public class ClienteBean {
 	private GestionTransaccionON gestionTransaccionON;	
 	@Inject
 	private GestionClienteON gestionClienteON;
+	@Inject
+	private GestionPolizaON gpoliza;
 	@Inject
 	private LoginBean session;
 	
@@ -50,14 +54,15 @@ public class ClienteBean {
 	private String cedulaCliente;
 	private Date factual;
 	private List<Transaccion> estadocta;
+	private List<Poliza>listPoliza;
 	
 	@PostConstruct
 	public void init() {
 		cargarListas();
+		listPoliza = new ArrayList<Poliza>();
 		cliente = new Cliente();
 		usuario = new Usuario();
 		fecha = new Date();
-		//cargarListas();	
 		factual = new Date();
 		usuario = new Usuario();
 		cliente = new Cliente();
@@ -66,27 +71,26 @@ public class ClienteBean {
 		estadocta = new ArrayList<Transaccion>();
 		transaccion = new Transaccion();
 		estadoCuenta();
+		listarPoliza();
 	}
-	public void solicitarPoliza() {
+	public void listarPoliza() {
+		
 		try {
-			System.out.println(session.getUsernameString());
-			System.out.println("redireccionando");
-		       FacesContext.getCurrentInstance().getExternalContext()
-		            .redirect("/sistemafinanciero/faces/solicitudPoliza.xhtml");
-		   } catch (IOException ex) {
-		       ex.printStackTrace();
-		   }
+			cliente=gestionClienteON.buscar(session.getUser().getCedulaString());
+			listPoliza=gpoliza.listPolizaCliente(cliente.getIdClienteLong(),2);
+			for (Poliza poliza : listPoliza) {
+				System.out.println(poliza.toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
-
 	public void estadoCuenta() {
 		Cliente cliente = new Cliente();
-		try {
-			System.out.println("user login"+session.getUser().getCedulaString());
+		try {			
 			cliente = gestionClienteON.buscar(session.getUser().getCedulaString());
 			estadocta = gestionTransaccionON.listarAllTransacciones(cliente.getIdClienteLong());
-			for (Transaccion transaccion : estadocta) {
-				System.out.println(transaccion.toString());
-			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -152,8 +156,6 @@ public class ClienteBean {
 	
 	public void buscarUsuarioCedula() throws GeneralException {
 		listaUsuarios = gestionUsuarioON.buscarUsuariosCedula(cedulaCliente);
-		System.out.println(listaUsuarios.size());
-		System.out.println("Bean: "+ listaUsuarios);
 	}
 	
 	public String doGuardarCliente() {
@@ -219,6 +221,18 @@ public class ClienteBean {
 	}
 	public void setTransaccion(Transaccion transaccion) {
 		this.transaccion = transaccion;
+	}
+	public GestionPolizaON getGpoliza() {
+		return gpoliza;
+	}
+	public void setGpoliza(GestionPolizaON gpoliza) {
+		this.gpoliza = gpoliza;
+	}
+	public List<Poliza> getListPoliza() {
+		return listPoliza;
+	}
+	public void setListPoliza(List<Poliza> listPoliza) {
+		this.listPoliza = listPoliza;
 	}
 	
 }

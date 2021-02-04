@@ -73,12 +73,23 @@ public class GestionPolizaON {
 	}
 	/**
 	 * 
-	 * @param estado APROBADO, cuando la poliza ya ha sido aprovada, PENDIENTE, y RECHAZADA.
+	 * @param estado 2:APROBADO, cuando la poliza ya ha sido aprovada, 1:GENERADO, y 3:RECHAZADO.
 	 * @return List<Poliza> las polizas con el estado de Cliente o 
 	 */
-	public List<Poliza> listPoliza(String estado){
+	public List<Poliza> listPoliza(int estado){
 		List<Poliza> lista = new ArrayList<Poliza>();
 		lista = pdao.listPoliza(estado);
+		return lista;
+	}
+	/**
+	 * Metodo para listar las polizas del cliente segun el estado.
+	 * @param clienteId
+	 * @param estado 1:GENERADO, 2:APROVADO, 3:RECHAZADO
+	 * @return
+	 */
+	public List<Poliza>listPolizaCliente(long clienteId, int estado){
+		List<Poliza> lista = new ArrayList<Poliza>();
+		lista = pdao.listPolizaCliente(clienteId,estado);
 		return lista;
 	}
 	public boolean deletePoliza(int id) throws Exception {

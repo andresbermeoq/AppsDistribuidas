@@ -68,7 +68,7 @@ public class GestionInteresON {
 		try {
 			interes = idao.readRange(day, tipo);
 		} catch (Exception e) {
-			new SQLException("No existen dato	s registradoss");
+			new SQLException("No existen dato	s registrados");
 			interes = null;
 		}finally {
 			return interes;
