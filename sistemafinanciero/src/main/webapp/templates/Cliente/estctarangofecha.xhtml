@@ -34,6 +34,9 @@
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="../simulapoliza.xhtml">Simular poliza</a>
 		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="../ClienteView.xhtml">Regresar</a>
+		      	</li>
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
@@ -45,7 +48,15 @@
 	
 	<div>
 	<h:form>
-		
+		<h:panelGrid columns="5">
+			<h:outputLabel value="Fecha inicial" />
+			<p:calendar pattern="dd/MM/yyyy" value="#{clienteBean.fechaInicial}"></p:calendar>
+			
+			<h:outputLabel value="Fecha final" />
+			<p:calendar pattern="dd/MM/yyyy" value="#{clienteBean.fechaFinal}"></p:calendar>
+			
+			<h:commandButton action="#" value="Consultar" />
+		</h:panelGrid>
 		<h6>Estado de cuenta</h6>
 		<div id="Layer1" style="width:1000px; height:300px; overflow: scroll;">
 			<h:dataTable value="#{clienteBean.estadocta}" var="transaccion" class="table table-striped">

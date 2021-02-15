@@ -22,7 +22,6 @@ public class CajeroDAO {
 		return true;
 	}
 	public Cajero buscar(long usuarioid) {
-		System.out.println("user id cajdao "+usuarioid);
 		Cajero cajero = new Cajero();
 		try {
 			String sql = "SELECT * FROM Cajero "

@@ -56,8 +56,12 @@ public class ClienteBean implements Serializable {
 	private List<Transaccion> estadocta;
 	private List<Poliza>listPoliza;
 	
+	private Date fechaInicial;
+	private Date fechaFinal;
+	
 	@PostConstruct
 	public void init() {
+		fechaInicial=new Date();
 		cargarListas();
 		listPoliza = new ArrayList<Poliza>();
 		cliente = new Cliente();
@@ -233,6 +237,18 @@ public class ClienteBean implements Serializable {
 	}
 	public void setListPoliza(List<Poliza> listPoliza) {
 		this.listPoliza = listPoliza;
+	}
+	public Date getFechaInicial() {
+		return fechaInicial;
+	}
+	public void setFechaInicial(Date fechaInicial) {
+		this.fechaInicial = fechaInicial;
+	}
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
 	}
 	
 }

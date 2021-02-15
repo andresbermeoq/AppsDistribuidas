@@ -37,7 +37,7 @@ public class PolizaDAO {
 	 * @return
 	 */
 	public List<Poliza> listPoliza(int estado){
-		String sql = "SELECT p FROM Poliza WHERE pol_estado =:est";
+		String sql = "SELECT p FROM Poliza p WHERE pol_estado =:est";
 		List<Poliza> lista = new ArrayList<Poliza>();
 		lista = em.createQuery(sql, Poliza.class)
 				.setParameter("est", estado)

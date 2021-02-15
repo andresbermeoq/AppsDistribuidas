@@ -1,6 +1,7 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,7 +9,10 @@ import javax.inject.Inject;
 import org.antlr.v4.parse.ResyncToEndOfRuleBlock;
 
 import ec.ups.edu.sistemafinanciero.dao.PolizaDAO;
+import ec.ups.edu.sistemafinanciero.modelo.AsesorCta;
+import ec.ups.edu.sistemafinanciero.modelo.Cajero;
 import ec.ups.edu.sistemafinanciero.modelo.Poliza;
+import ec.ups.edu.sistemafinanciero.modelo.Transaccion;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 import ec.ups.edu.sistemafinanciero.gestion.GestionClienteON;
 import ec.ups.edu.sistemafinanciero.gestion.GestionTransaccionON;
@@ -25,8 +29,10 @@ public class GestionPolizaON {
 	@Inject
 	private GestionUsuarioON gusuarioOn;
 	
+	private Date factual;
+	
 	public GestionPolizaON() {
-		
+		factual = new Date();
 	}
 	public boolean savePoliza(Poliza poliza) throws Exception {
 		try {
@@ -60,13 +66,16 @@ public class GestionPolizaON {
 		return poliza;
 	}
 	public boolean updatePoliza(Poliza poliza) throws Exception {
+		boolean estado = false;
 		try {
 			pdao.update(poliza);
+			estado = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("Error al actualizar la poliza");
+		}finally {
+			return estado;
 		}
-		return true;
 	}
 	public String searchPoliza() {
 		return "";
@@ -100,7 +109,120 @@ public class GestionPolizaON {
 		}
 		return true;
 	}
+	/**
+	 * 
+	 * @param poliza Poliza a actualizar aprobando
+	 * @param usuario Asistente de Captaciones.
+	 * @return true, si se ha actualizado correctamente.
+	 * @throws Exception
+	 */
 	public boolean aprobarPoliza(Poliza poliza, Usuario usuario) throws Exception {
-		return true;
+		boolean estado = false;
+		
+		AsesorCta asesorcta = new AsesorCta();
+		
+		
+		try {
+			Transaccion transaccion = new Transaccion();
+			Cajero cajero = new Cajero();
+						
+			double saldoDisponible = 0.00;
+			if (usuario.getTipoString().equals("Asistente de Captaciones")) {
+				try {
+					saldoDisponible = gtransaccionOn.saldoActual(poliza.getCliente().getIdClienteLong());
+					if (saldoDisponible>=poliza.getCapital()) {
+						cajero.setId(1L);
+						
+						transaccion.setAgencia("EN LINEA");
+						transaccion.setFecha(factual);
+						transaccion.setIdentificacion(poliza.getCliente().getUsuario().getCedulaString());
+						transaccion.setMonto(poliza.getCapital());
+						transaccion.setNombre(poliza.getCliente().getUsuario().getNombre()+" "+poliza.getCliente().getUsuario().getApellido());
+						transaccion.setOperacion("RETIRO");
+						transaccion.setObservacion("N/D Poliza");
+						transaccion.setCajero(cajero);
+						transaccion.setCliente(poliza.getCliente());
+						
+						try {
+							//Reaiza el retiro de la cuenta del cliente y valida que sea correcto
+							if (gtransaccionOn.transaccion(transaccion)==true) {
+								//Busca el id del asesor con el usuario recibido.
+								asesorcta = gusuarioOn.buscarAsesorCta(usuario);
+								//Verifica que el usuario no se nulo.
+								if (asesorcta!=null) {
+									
+									poliza.setAsesorCta(asesorcta);
+									poliza.setFaprobado(factual);
+									poliza.setEstado(2);
+									/*Actualiza la poliza cambiando el estado de 1:'GENERADO' a
+									 * 2:'APROBADO'
+									*/
+									if (updatePoliza(poliza)==true) {
+										estado = true;
+									}else {
+										estado = false;
+									}
+								}
+							}else {
+								estado = false;
+							}
+						} catch (Exception e) {
+							estado = false;
+							new Exception("No se pudo realizar el debito de la cuenta "+e.getLocalizedMessage());
+							e.printStackTrace();
+						}finally {
+							return estado;
+						}
+						
+					}else {
+						estado = false;
+					}
+				} catch (Exception e) {
+					estado=false;
+					new Exception("Saldo insuficiente "+e.getLocalizedMessage());
+				}finally {
+					return estado;
+				}
+			}else {
+				estado=false;
+			}
+		} catch (Exception e) {
+			new Exception("Error "+e.getLocalizedMessage());
+		}finally {
+			return estado;
+		}
 	}
+	/**
+	 * 
+	 * @param poliza Poliza solicitada.
+	 * @param usuario Usuario de asesor de cuenta.
+	 * @return
+	 */
+	public boolean rechazarPoliza(Poliza poliza, Usuario usuario) {
+		boolean estado = false;
+		AsesorCta asesorcta = new AsesorCta();
+		Date factual = new Date();
+		try {
+			asesorcta = gusuarioOn.buscarAsesorCta(usuario);
+			if (asesorcta!=null) {
+				poliza.setEstado(3);
+				poliza.setAsesorCta(asesorcta);
+				poliza.setFaprobado(factual);
+				poliza.setEstado(3);
+				updatePoliza(poliza);
+				estado = true;
+			}
+		} catch (Exception e) {
+			new Exception();
+		}finally {
+			return estado;
+		}
+	}
+	public Date getFactual() {
+		return factual;
+	}
+	public void setFactual(Date factual) {
+		this.factual = factual;
+	}
+	
 }

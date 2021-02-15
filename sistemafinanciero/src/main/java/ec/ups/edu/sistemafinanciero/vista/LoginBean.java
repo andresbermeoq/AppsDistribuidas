@@ -43,6 +43,9 @@ public class LoginBean implements Serializable {
 			if (userUsuario.getTipoString().equals("Cliente")) {
 				page= "ClienteView";
 			}
+			if (userUsuario.getTipoString().equals("Asistente de Captaciones")) {
+				page = "Captaciones/indexCaptaciones";
+			}
 		} catch (GeneralException e) {
 			MessagesUtil.agregarMensajeError("El Correo o la contraseña es incorrecto");
 		}finally {

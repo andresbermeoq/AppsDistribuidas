@@ -157,4 +157,18 @@ public class GestionUsuarioON {
 	public List<Usuario> obtenerUsuarios() throws GeneralException {
 		return usuarioDAO.obtenerTodosUsuariosList();
 	}
+	
+	
+	public AsesorCta buscarAsesorCta(Usuario usuario) {
+		AsesorCta asesorcta=new AsesorCta();
+		try {
+			asesorcta = asesorCtaDAO.search(usuario.getIdUsuarioLong());
+		} catch (Exception e) {
+			new Exception("Se ha generado un error al buscar el asesor. "+e.getLocalizedMessage());
+		}finally {
+			return asesorcta;
+		}
+	
+	}
+	
 }

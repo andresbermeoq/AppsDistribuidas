@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://xmlns.jcp.org/jsf/passthrough">
+      
+      
+       
+<!-- Bootstrap -->
+<h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
+
+<h:head>
+	<title>Inicio capacitaciones</title>
+</h:head> 
+<body>
+	<br />
+	<h4>Bien venido </h4><h:outputLabel value="#{loginBean.user.nombre} #{loginBean.user.apellido}" />
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="faces/index.xhtml">Banco Nacional</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#"></a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="../../registroInteres.xhtml">Tasas de interes</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="#"></a>
+		      	</li>
+		    </ul>
+	  </div>
+	  <span class="navbar-text">
+		  	<h:form>
+		  		<h:commandLink action="#{loginBean.logoutUser()}" value="Cerrar session" />
+		  	</h:form>
+	  </span>
+	</nav>
+	
+	<br />
+	<div class="container justify-content-center align-items-center">
+	</div>
+	<div class="container">
+		<div>
+			<h5>Polizas por aprobar</h5>
+			<h:form id="formpolizas">
+			<h:messages id="formpolizas"/>
+				<h:dataTable value="#{captacionesBean.listaaprobar}" var="poliza" class="table table-striped">
+					<h:column>
+						<f:facet name="header" scope="col">
+						ID
+						</f:facet>
+						<h:outputLabel value="#{poliza.id}" scope="row"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+						Cedula
+						</f:facet>
+						<h:outputLabel value="#{poliza.cliente.usuario.cedulaString}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+						Cliente
+						</f:facet>
+						<h:outputLabel value="#{poliza.cliente.usuario.nombre} #{poliza.cliente.usuario.apellido}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+						Capital
+						</f:facet>
+					<h:outputLabel value="#{poliza.capital}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+						Plazo
+						</f:facet>
+						<h:outputLabel value="#{poliza.plazo}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+							%
+						</f:facet>
+						<h:outputLabel value="#{poliza.interes.porcentaje}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+							Interes ganado
+						</f:facet>
+						<h:outputLabel value="#{poliza.vinteres}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+							Total a recibir
+						</f:facet>
+						<h:outputLabel value="#{poliza.total}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+							Fecha de vencimiento
+						</f:facet>
+						<h:outputLabel value="#{poliza.fvencimiento}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header" scope="col">
+							Acción
+						</f:facet>
+						<h:commandButton action="#{captacionesBean.aprobar(poliza)}" value="Aprobar"/>
+						<h:commandButton action="#{captacionesBean.rechazar(poliza)}" value="Rechazar"/>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</div>
+</body> 
+</html>
