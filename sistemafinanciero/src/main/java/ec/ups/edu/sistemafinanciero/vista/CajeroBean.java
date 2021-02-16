@@ -34,9 +34,11 @@ public class CajeroBean {
 	private Cliente cliente;
 	private String cedula;
 	private String cuenta;
+	private double saldo;
 	
 	@PostConstruct
 	public void init() {
+		saldo = 0.00;
 		cliente = new Cliente();;
 		transaccion = new Transaccion();
 	}
@@ -120,9 +122,6 @@ public class CajeroBean {
 					cliente = gclienteon.buscarCliente(cedula, cuenta);
 					transaccion.setCliente(cliente);
 					transaccion.setCajero(cajero);
-					System.out.println("cliente: "+this.cliente.toString());
-					System.out.println("Cajero datos: "+cajero.toString());
-					System.out.println("Transaccion datos: "+transaccion.getMonto()+transaccion.getAgencia());
 					estado = gtransaccion.transaccion(transaccion);
 					if (estado==true) {
 						FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
@@ -148,8 +147,60 @@ public class CajeroBean {
 		}
 		
 	}
-
+	public double saldo(long clienteId) {
+		try {
+			saldo = gtransaccion.saldoActual(clienteId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			return saldo;
+		}
+	}
+	public void buscarReitiro() {
+		buscarCliente();
+		saldo(cliente.getIdClienteLong());
+	}
 	public void retirar() {
+		try {
+			if (cedula.length()>0&&cuenta.length()>0) {
+				if (transaccion.getNombre().length()>0&&
+						transaccion.getIdentificacion().length()==10&&
+						transaccion.getMonto()>0) {
+					Date fechaActual = new Date();
+					boolean estado = true;
+					Cajero cajero = new Cajero();
+					cajero = gusuarioon.buscarCajero(session.getUser().getIdUsuarioLong());
+					
+					transaccion.setAgencia("EN LINEA");
+					transaccion.setOperacion("RETIRO");
+					transaccion.setFecha(fechaActual);
+					cliente = gclienteon.buscarCliente(cedula, cuenta);
+					transaccion.setCliente(cliente);
+					transaccion.setCajero(cajero);
+					estado = gtransaccion.transaccion(transaccion);
+					if (estado==true) {
+						FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
+								new FacesMessage("La transación se ha realizado exitosamente!. "));
+						cliente = new Cliente();
+						cedula="";
+						cuenta="";
+						transaccion = new Transaccion();
+					}
+				}else {
+					FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
+							new FacesMessage("Por favor ingrese el nombre del beneficiario, cedula del beneficiario, \n"
+									+ " y el monto que sea mayor a 0 "));
+				}
+			}else {
+				FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
+						new FacesMessage("Primero ingrese el numero de cedula y numero de cuenta del \n "
+								+ "cliente a retirar por favor."));
+			}
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
+					new FacesMessage("Se ha generado un error al realizar el retirio. "+e.getLocalizedMessage()));
+		}
+		
 	}
 	public Transaccion getTransaccion() {
 		return transaccion;
@@ -214,4 +265,13 @@ public class CajeroBean {
 	public void setSession(LoginBean session) {
 		this.session = session;
 	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	
 }
