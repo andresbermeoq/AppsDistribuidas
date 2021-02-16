@@ -2,6 +2,7 @@ package ec.ups.edu.sistemafinanciero.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -24,7 +25,6 @@ public class ClienteDAO {
 	
 	public void guardarCliente(Cliente cliente) throws SQLException {
 		entityManager.persist(cliente);
-		entityManager.flush();
 	}
 	
 	
@@ -78,5 +78,16 @@ public class ClienteDAO {
 				.getFirstResult();
 	}
 	
+	public List<Cliente> listCliente(long userid){
+		List<Cliente> users = new ArrayList<Cliente>();
+		try {
+			String sql = "SELECT c FROM Cliente  c WHERE cliente_usuario_fk<>:userid";
+			users = entityManager.createQuery(sql, Cliente.class).setParameter("userid", userid).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			return users;
+		}
+	}
 	
 }

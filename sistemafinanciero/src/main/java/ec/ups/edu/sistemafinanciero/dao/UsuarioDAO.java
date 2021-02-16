@@ -20,7 +20,6 @@ public class UsuarioDAO {
 
 	public void guardarUsuario(Usuario usuario) throws SQLException {
 		entityManager.persist(usuario);
-		entityManager.flush();
 	}
 	
 	public List<Usuario> obtenerTodosUsuariosList() throws GeneralException {

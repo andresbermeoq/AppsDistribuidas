@@ -37,6 +37,12 @@
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="Cliente/estctarangofecha.xhtml">Consultar estado de cuenta</a>
 		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="Cliente/transferExt.xhtml">Transferencias externas</a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="Cliente/transferInter.xhtml">Transferencias internas</a>
+		      	</li>
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
@@ -48,8 +54,8 @@
 	
 	<div>
 	<h:form>
-		<h6>Estado de cuenta</h6>
-		<div id="Layer1" style="width:1000px; height:300px; overflow: scroll;">
+		<h6>Movimientos</h6>
+		<div id="Layer1" style="width:1095px; height:300px; overflow: scroll;">
 			<h:dataTable value="#{clienteBean.estadocta}" var="transaccion" class="table table-striped">
 				<h:column>
 					<f:facet name="header" scope="col">
@@ -65,9 +71,14 @@
 				</h:column>
 				<h:column>
 				<f:facet name="header" scope="col">
-				Fecha
+				Operación
 				</f:facet>
-				<h:outputLabel value="#{transaccion.fecha}" scope="row" />
+				<h:outputLabel value="#{transaccion.operacion}" scope="row" />
+				</h:column>
+				<h:column>
+					<f:facet name="header" scope="col">
+					</f:facet>
+					<h:outputLabel value="#{transaccion.observacion}" scope="row" />
 				</h:column>
 				<h:column>
 				<f:facet name="header" scope="col">

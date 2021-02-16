@@ -1,6 +1,8 @@
 package ec.ups.edu.sistemafinanciero.gestion;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -71,6 +73,17 @@ public class GestionClienteON {
 			new Exception("Se ha generado un error al buscar el cliente"+e.getLocalizedMessage());
 		}finally {
 			return newCliente;
+		}
+	}
+	public List<Cliente> listarCliente(long userid){
+		List<Cliente> clientes =  new ArrayList<Cliente>();
+		try {
+			clientes = clientedao.listCliente(userid);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			return clientes;
 		}
 	}
 }

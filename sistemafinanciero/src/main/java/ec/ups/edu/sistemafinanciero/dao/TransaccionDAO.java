@@ -24,27 +24,7 @@ public class TransaccionDAO {
 	 * @throws SQLException
 	 */
 	public boolean insert(Transaccion transaccion) throws SQLException {
-		System.out.println("Transaccion dao "+transaccion.toString());
-		/*String sql = "INSERT INTO Transacciones ("
-				+ "tra_id, tra_agencia, tra_fecha, tra_identificacion, tra_monto, tra_name, tra_observacion,"
-				+ " tra_operacion, tra_santerior, tra_sactual, tra_fk_cajero, tra_fk_cliente)"
-				+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";		
-		em.createNativeQuery(sql)
-		.setParameter(1, transaccion.getId())
-		.setParameter(2, transaccion.getAgencia())
-		.setParameter(3, transaccion.getFecha())
-		.setParameter(4, transaccion.getIdentificacion())
-		.setParameter(5, transaccion.getMonto())
-		.setParameter(6, transaccion.getNombre())
-		.setParameter(7, transaccion.getObservacion())
-		.setParameter(8, transaccion.getOperacion())
-		.setParameter(9, transaccion.getSaldoAnterior())
-		.setParameter(10, transaccion.getSladoActual())
-		.setParameter(11, transaccion.getCajero().getId())
-		.setParameter(12, transaccion.getCliente().getIdClienteLong())
-		.executeUpdate();*/
 		em.persist(transaccion);
-		em.flush();
 		return true;
 	}
 	/**

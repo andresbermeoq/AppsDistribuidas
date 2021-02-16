@@ -17,16 +17,7 @@ public class TransferenciaDAO {
 	private EntityManager em;
 	
 	public boolean insert(Transferencia transferencia) throws SQLException {
-		
-		String sql = "INSERT INTO public.transferencias("
-				+ "	taf_id, taf_monto, taf_fk_interbancario, taf_fk_transaccion)"
-				+ "	VALUES (?, ?, ?, ?);";		
-		em.createNativeQuery(sql)
-		.setParameter(1, transferencia.getId())
-		.setParameter(2, transferencia.getMonto())
-		.setParameter(3, transferencia.getInterbancario().getId())
-		.setParameter(4, transferencia.getTransaccion().getId())
-		.executeUpdate();
+		em.persist(transferencia);
 		return true;
 	}
 	public boolean update(Transferencia transferencia) throws SQLException {

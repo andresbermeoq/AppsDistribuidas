@@ -22,23 +22,14 @@ public class IntebancarioDAO {
 	 * @throws Exception Si no se inserta y se genera un error.
 	 */
 	public boolean insert(Interbancario interbancario) throws Exception {
-		em.createNativeQuery("INSERT INTO Interbancarios (iba_id, iba_banco, iba_cuenta, iba_dni,"
-				+ " iba_titular, iba_tipocta, iba_localizacion) VALUES (?,?,?,?,?,?,?)")
-		.setParameter(1, interbancario.getId())
-		.setParameter(2, interbancario.getBanco())
-		.setParameter(3, interbancario.getCuenta())
-		.setParameter(4, interbancario.getDniTitular())
-		.setParameter(5, interbancario.getNombreTitular())
-		.setParameter(6, interbancario.getTipoCta())
-		.setParameter(7, interbancario.getLocalizacion())
-		.executeUpdate();
+		em.persist(interbancario);
 		return true;
 	}
 	public boolean update(Interbancario interbancario) throws SQLException {
 		em.merge(interbancario);
 		return true;
 	}
-	public Interbancario read(int id) throws SQLException{
+	public Interbancario read(long id) throws SQLException{
 		Interbancario interbancario = em.find(Interbancario.class, id);
 		return interbancario;
 	}
