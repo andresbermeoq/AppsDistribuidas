@@ -67,10 +67,10 @@ public class GestionTransaccionON {
 		}
 	}
 
-	public List<Transaccion> listarRangoFechaEstCta(Date fechaInicial, Date fechaFinal) {
+	public List<Transaccion> listarRangoFechaEstCta(long clienteId,Date fechaInicial, Date fechaFinal) {
 		List<Transaccion> transacciones = new ArrayList<Transaccion>();
 		try {
-			transacciones = transaccionDAO.ragoFecha(fechaInicial, fechaFinal);
+			transacciones = transaccionDAO.ragoFecha(clienteId,fechaInicial, fechaFinal);
 		} catch (SQLException e) {
 			new SQLException("Se ha generado un error al consutar el estado de cuenta.");
 		} finally {

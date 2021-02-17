@@ -49,7 +49,6 @@ public class LoginBean implements Serializable {
 		} catch (GeneralException e) {
 			MessagesUtil.agregarMensajeError("El Correo o la contraseña es incorrecto");
 		}finally {
-			System.out.println(user);
 			user = userUsuario;
 		}
 		return page;
@@ -57,7 +56,7 @@ public class LoginBean implements Serializable {
 	
 	public String logoutUser() {
 		user = new Usuario();
-		return "login.xhtml";
+		return "/login.xhtml?faces-redirect=true";
 	}
 	
 	public String getUsernameString() {

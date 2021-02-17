@@ -68,6 +68,7 @@ public class ClienteBean implements Serializable {
 	private List<Poliza>listPoliza;
 	private List<Interbancario> bancos;
 	private List<Cliente> clientes;
+	private List<Transaccion> rangoFecha;
 	
 	private Date fechaInicial;
 	private Date fechaFinal;
@@ -76,32 +77,42 @@ public class ClienteBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		fechaInicial=new Date();
-		cargarListas();
-		listPoliza = new ArrayList<Poliza>();
-		bancos = new ArrayList<Interbancario>();
-		clientes = new ArrayList<Cliente>();
-		
-		interbancario = new Interbancario();
-		cliente = new Cliente();
-		usuario = new Usuario();
-		fecha = new Date();
-		factual = new Date();
-		usuario = new Usuario();
-		cliente = new Cliente();
-		usuarioSeleccionado = new Usuario();
-		listaUsuarios = new ArrayList<Usuario>();
-		estadocta = new ArrayList<Transaccion>();
-		transaccion = new Transaccion();
-		transferencia = new Transferencia();
-		
-		estadoCuenta();
-		listarPoliza();
-		cargarBancos();
-		saldo();
-		listarClientes();
-		cliente.setFechaRegistroDate(fecha);
-		cliente.setCuenta(obtenerNumeroCuenta());
+		if (session.getUser()!=null) {
+			fechaInicial=new Date();
+			cargarListas();
+			listPoliza = new ArrayList<Poliza>();
+			bancos = new ArrayList<Interbancario>();
+			clientes = new ArrayList<Cliente>();
+			
+			interbancario = new Interbancario();
+			cliente = new Cliente();
+			usuario = new Usuario();
+			fecha = new Date();
+			factual = new Date();
+			usuario = new Usuario();
+			cliente = new Cliente();
+			usuarioSeleccionado = new Usuario();
+			listaUsuarios = new ArrayList<Usuario>();
+			estadocta = new ArrayList<Transaccion>();
+			transaccion = new Transaccion();
+			transferencia = new Transferencia();
+			rangoFecha = new ArrayList<Transaccion>();
+			
+			estadoCuenta();
+			listarPoliza();
+			cargarBancos();
+			saldo();
+			listarClientes();
+			cliente.setFechaRegistroDate(fecha);
+			cliente.setCuenta(obtenerNumeroCuenta());
+		}else {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	public void listarPoliza() {
 		
@@ -346,7 +357,16 @@ public class ClienteBean implements Serializable {
 			}		
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void filtarEstCta() {
+		try {
+			cliente=gestionClienteON.buscar(session.getUser().getCedulaString());
+			rangoFecha = gestionTransaccionON.listarRangoFechaEstCta(cliente.getIdClienteLong(), fechaInicial, fechaFinal);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public List<Usuario> getListaUsuarios() {
@@ -501,6 +521,12 @@ public class ClienteBean implements Serializable {
 	}
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
+	}
+	public List<Transaccion> getRangoFecha() {
+		return rangoFecha;
+	}
+	public void setRangoFecha(List<Transaccion> rangoFecha) {
+		this.rangoFecha = rangoFecha;
 	}
 	
 }

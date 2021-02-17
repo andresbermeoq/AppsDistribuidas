@@ -98,12 +98,13 @@ public class TransaccionDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<Transaccion> ragoFecha(Date fechaInicial, Date fechaFinal)throws SQLException{
+	public List<Transaccion> ragoFecha(long clienteId,Date fechaInicial, Date fechaFinal)throws SQLException{
 		Transaccion transaccion = new Transaccion();
 		List<Transaccion> list = new ArrayList<Transaccion>();
 		String sql = "SELECT t FROM Transaccion t "
-				+ "WHERE tra_fecha BETWEEN :finicial AND :ffin";
+				+ "WHERE tra_fk_cliente=:clienteId AND tra_fecha BETWEEN :finicial AND :ffin";
 		list=em.createQuery(sql,Transaccion.class)
+				.setParameter("clienteId", clienteId)
 				.setParameter("finicial", fechaInicial)
 				.setParameter("ffin", fechaFinal)
 				.getResultList();

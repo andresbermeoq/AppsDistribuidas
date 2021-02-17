@@ -32,7 +32,7 @@
 		        		<a class="nav-link" href="../solicitudPoliza.xhtml">Poliza</a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="../simulapoliza.xhtml">Simular poliza</a>
+		        		<a class="nav-link" href="../../simulapoliza.xhtml">Simular poliza</a>
 		      	</li>
 		      	<li class="nav-item">
 		        		<a class="nav-link" href="../ClienteView.xhtml">Regresar</a>
@@ -55,11 +55,15 @@
 			<h:outputLabel value="Fecha final" />
 			<p:calendar pattern="dd/MM/yyyy" value="#{clienteBean.fechaFinal}"></p:calendar>
 			
-			<h:commandButton action="#" value="Consultar" />
+			<h:commandButton action="#{clienteBean.filtarEstCta()}" value="Consultar" />
 		</h:panelGrid>
+		<hr/>
+		<h:outputLabel value="Saldo actual: $" />
+		<h:outputLabel value="#{clienteBean.saldo}" />
+		<hr/>
 		<h6>Estado de cuenta</h6>
 		<div id="Layer1" style="width:1000px; height:300px; overflow: scroll;">
-			<h:dataTable value="#{clienteBean.estadocta}" var="transaccion" class="table table-striped">
+			<h:dataTable value="#{clienteBean.rangoFecha}" var="transaccion" class="table table-striped">
 				<h:column>
 					<f:facet name="header" scope="col">
 					ID
@@ -92,7 +96,7 @@
 				</h:column>
 				<h:column>
 				<f:facet name="header" scope="col">
-				Saldo actual
+				Saldo final
 				</f:facet>
 				<h:outputLabel value="#{transaccion.sladoActual}" scope="row"/>
 				</h:column>
