@@ -1,10 +1,12 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import ec.ups.edu.sistemafinanciero.exceptions.GeneralException;
@@ -56,7 +58,13 @@ public class LoginBean implements Serializable {
 	
 	public String logoutUser() {
 		user = new Usuario();
-		return "/login.xhtml?faces-redirect=true";
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true";
 	}
 	
 	public String getUsernameString() {

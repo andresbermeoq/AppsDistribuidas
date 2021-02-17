@@ -1,8 +1,10 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
+import java.io.IOException;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,17 +18,29 @@ public class UsuarioBean {
 
 	@Inject
 	private GestionUsuarioON usuarioON;
+	@Inject
+	private LoginBean session;
 
 	private Usuario usuario;
 	private Cajero cajero;
 	private Date factual;
 	private String tipo;
 	
+	
 	@PostConstruct
 	public void init() {
-		factual = new Date();
-		usuario = new Usuario();
-		cajero = new Cajero();
+		if(session.getUser()!=null) {
+			factual = new Date();
+			usuario = new Usuario();
+			cajero = new Cajero();
+		}else {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public Usuario getUsuario() {

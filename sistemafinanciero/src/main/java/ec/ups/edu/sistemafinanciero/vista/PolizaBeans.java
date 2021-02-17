@@ -1,5 +1,6 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,12 +63,21 @@ public class PolizaBeans{
 	
 	@PostConstruct
 	public void init() {
+		if(session.getUser()!=null) {
 		cliente = new Cliente();
 		poliza = new Poliza();
 		interes = new Interes();
 		acta = new AsesorCta();
 		thisDate = new Date();
 		show=false;
+		}else {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	/**
 	 * Metodo para buscar el interes de acuerdo al plazo.

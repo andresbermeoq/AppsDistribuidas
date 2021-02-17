@@ -1,5 +1,6 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -35,14 +36,24 @@ public class CajeroBean {
 	private String cedula;
 	private String cuenta;
 	private double saldo;
-	
+
 	@PostConstruct
 	public void init() {
-		saldo = 0.00;
-		cliente = new Cliente();;
-		transaccion = new Transaccion();
+		if (session.getUser() != null) {
+			saldo = 0.00;
+			cliente = new Cliente();
+			transaccion = new Transaccion();
+		} else {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext()
+						.redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param cadena Texto a evaluar si contiene numeros o letras
@@ -56,9 +67,11 @@ public class CajeroBean {
 			return false;
 		}
 	}
+
 	/**
 	 * 
-	 * @param cadena Texto a evaluar si contiene dato de tipo double, letras o enteros
+	 * @param cadena Texto a evaluar si contiene dato de tipo double, letras o
+	 *               enteros
 	 * @return true, si es correcto, false, si no es double
 	 */
 	private static boolean isDouble(String cadena) {
@@ -69,8 +82,10 @@ public class CajeroBean {
 			return false;
 		}
 	}
+
 	/**
-	 * Realiza la busqueda del cliente mediente su numero de cedula y numero de cuenta bancaria.
+	 * Realiza la busqueda del cliente mediente su numero de cedula y numero de
+	 * cuenta bancaria.
 	 */
 	public void buscarCliente() {
 		try {
@@ -102,20 +117,20 @@ public class CajeroBean {
 					new FacesMessage("El numero de cedula o cuenta no pertenece a ningun cliente registrado."));
 		}
 	}
+
 	/**
 	 * Metodo para realizar depositos en cuentas de los clientes.
 	 */
 	public void depositar() {
 		try {
-			if (cedula.length()>0&&cuenta.length()>0) {
-				if (transaccion.getNombre().length()>0&&
-						transaccion.getIdentificacion().length()==10&&
-						transaccion.getMonto()>0) {
+			if (cedula.length() > 0 && cuenta.length() > 0) {
+				if (transaccion.getNombre().length() > 0 && transaccion.getIdentificacion().length() == 10
+						&& transaccion.getMonto() > 0) {
 					Date fechaActual = new Date();
 					boolean estado = true;
 					Cajero cajero = new Cajero();
 					cajero = gusuarioon.buscarCajero(session.getUser().getIdUsuarioLong());
-					
+
 					transaccion.setAgencia("EN LINEA");
 					transaccion.setOperacion("DEPOSITO");
 					transaccion.setFecha(fechaActual);
@@ -123,54 +138,56 @@ public class CajeroBean {
 					transaccion.setCliente(cliente);
 					transaccion.setCajero(cajero);
 					estado = gtransaccion.transaccion(transaccion);
-					if (estado==true) {
+					if (estado == true) {
 						FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
 								new FacesMessage("Deposito realizado exitosamente!. "));
 						cliente = new Cliente();
-						cedula="";
-						cuenta="";
+						cedula = "";
+						cuenta = "";
 						transaccion = new Transaccion();
 					}
-				}else {
+				} else {
 					FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
 							new FacesMessage("Por favor ingrese el nombre del depositante, cedula del depositante, \n"
 									+ " y el monto que sea mayor a 0 "));
 				}
-			}else {
+			} else {
 				FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
 						new FacesMessage("Primero ingrese el numero de cedula y numero de cuenta del \n "
 								+ "cliente a depositar por favor."));
 			}
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
-					new FacesMessage("Se ha generado un error al realizar el deposito. "+e.getLocalizedMessage()));
+					new FacesMessage("Se ha generado un error al realizar el deposito. " + e.getLocalizedMessage()));
 		}
-		
+
 	}
+
 	public double saldo(long clienteId) {
 		try {
 			saldo = gtransaccion.saldoActual(clienteId);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			return saldo;
 		}
 	}
+
 	public void buscarReitiro() {
 		buscarCliente();
 		saldo(cliente.getIdClienteLong());
 	}
+
 	public void retirar() {
 		try {
-			if (cedula.length()>0&&cuenta.length()>0) {
-				if (transaccion.getNombre().length()>0&&
-						transaccion.getIdentificacion().length()==10&&
-						transaccion.getMonto()>0) {
+			if (cedula.length() > 0 && cuenta.length() > 0) {
+				if (transaccion.getNombre().length() > 0 && transaccion.getIdentificacion().length() == 10
+						&& transaccion.getMonto() > 0) {
 					Date fechaActual = new Date();
 					boolean estado = true;
 					Cajero cajero = new Cajero();
 					cajero = gusuarioon.buscarCajero(session.getUser().getIdUsuarioLong());
-					
+
 					transaccion.setAgencia("EN LINEA");
 					transaccion.setOperacion("RETIRO");
 					transaccion.setFecha(fechaActual);
@@ -178,30 +195,31 @@ public class CajeroBean {
 					transaccion.setCliente(cliente);
 					transaccion.setCajero(cajero);
 					estado = gtransaccion.transaccion(transaccion);
-					if (estado==true) {
+					if (estado == true) {
 						FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
 								new FacesMessage("La transación se ha realizado exitosamente!. "));
 						cliente = new Cliente();
-						cedula="";
-						cuenta="";
+						cedula = "";
+						cuenta = "";
 						transaccion = new Transaccion();
 					}
-				}else {
+				} else {
 					FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
 							new FacesMessage("Por favor ingrese el nombre del beneficiario, cedula del beneficiario, \n"
 									+ " y el monto que sea mayor a 0 "));
 				}
-			}else {
+			} else {
 				FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
 						new FacesMessage("Primero ingrese el numero de cedula y numero de cuenta del \n "
 								+ "cliente a retirar por favor."));
 			}
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("formDatBusqueda",
-					new FacesMessage("Se ha generado un error al realizar el retirio. "+e.getLocalizedMessage()));
+					new FacesMessage("Se ha generado un error al realizar el retirio. " + e.getLocalizedMessage()));
 		}
-		
+
 	}
+
 	public Transaccion getTransaccion() {
 		return transaccion;
 	}
@@ -273,5 +291,5 @@ public class CajeroBean {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
-	
+
 }

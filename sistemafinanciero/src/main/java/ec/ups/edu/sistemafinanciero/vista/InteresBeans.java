@@ -1,5 +1,6 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,23 @@ public class InteresBeans {
 	private Interes interes;
 	private String tInteres;
 	private List<Interes> intereses;
+	private LoginBean session;
 
 	@PostConstruct
 	public void init() {
-		interes = new Interes();
-		intereses = new ArrayList<Interes>();
-		listar();
+		if (session.getUser() != null) {
+			interes = new Interes();
+			intereses = new ArrayList<Interes>();
+			listar();
+		} else {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext()
+						.redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public String doSave() {
@@ -37,15 +49,16 @@ public class InteresBeans {
 			if (interes.getTipo().equals("0")) {
 				FacesContext.getCurrentInstance().addMessage("formlist",
 						new FacesMessage("Seleccione un tipo de interes"));
-			}if(interes.getTipo().equals("1")||interes.getTipo().equals("2")) {
+			}
+			if (interes.getTipo().equals("1") || interes.getTipo().equals("2")) {
 				if (interes.getTiempofin() != interes.getTiempoInicial()) {
 					if (interes.getTiempofin() > 0) {
 						if (interes.getTiempoInicial() >= 0) {
 							System.out.println("intertar");
-							if(gInter.saveIntereses(interes)==true) {
+							if (gInter.saveIntereses(interes) == true) {
 								clearInteres();
 								listar();
-							}else {
+							} else {
 								FacesContext.getCurrentInstance().addMessage("formlist",
 										new FacesMessage("Error al guardar"));
 							}
@@ -64,7 +77,7 @@ public class InteresBeans {
 			}
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("formlist",
-					new FacesMessage("Error "+e.getLocalizedMessage()));
+					new FacesMessage("Error " + e.getLocalizedMessage()));
 		}
 		return null;
 	}
