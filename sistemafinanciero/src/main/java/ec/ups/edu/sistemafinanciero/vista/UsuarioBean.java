@@ -1,14 +1,19 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.ups.edu.sistemafinanciero.gestion.GestionUsuarioON;
+import ec.ups.edu.sistemafinanciero.modelo.Acceso;
 import ec.ups.edu.sistemafinanciero.modelo.Cajero;
 import ec.ups.edu.sistemafinanciero.modelo.Usuario;
 
@@ -20,12 +25,14 @@ public class UsuarioBean {
 	private GestionUsuarioON usuarioON;
 	@Inject
 	private LoginBean session;
+	
 
 	private Usuario usuario;
 	private Cajero cajero;
 	private Date factual;
 	private String tipo;
-	
+	private Acceso acceso;
+	private List<Acceso> accesos;
 	
 	@PostConstruct
 	public void init() {
@@ -33,6 +40,8 @@ public class UsuarioBean {
 			factual = new Date();
 			usuario = new Usuario();
 			cajero = new Cajero();
+			acceso = new Acceso();
+			accesos = new ArrayList<Acceso>();
 		}else {
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
@@ -42,7 +51,32 @@ public class UsuarioBean {
 			}
 		}
 	}
-
+	public void buscarUsuario() {
+		try {
+			this.usuario = usuarioON.buscarUsuario(usuario.getNombreUsuarioString());
+		} catch (Exception e) {
+		}
+	}
+	public void desbloquear() {
+		try {
+			usuario.setBloqueado(false);
+			usuario.setIntentos(0);
+			usuarioON.actualizarUsuario(usuario);
+			FacesContext.getCurrentInstance().addMessage("formdesbloqueo",
+					new FacesMessage("Usuario desbloqueado"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage("formdesbloqueo",
+					new FacesMessage("Error "+e.getLocalizedMessage()));
+		}
+	}
+	public void listaAccesos() {
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public Usuario getUsuario() {
 		return usuario;
 	}

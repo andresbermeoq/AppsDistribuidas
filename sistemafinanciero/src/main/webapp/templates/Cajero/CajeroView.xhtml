@@ -34,16 +34,14 @@
 		        		<a class="nav-link" href="Cajero/CrearCuenta.xhtml">Creacion de Cuentas</a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Pricing</a>
+		        		<h:form>
+		        			<h:commandLink action="#{cajeroBean.vistaRetirar()}" value="Depositar" />
+		        		</h:form>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="Cajero/depositar.xhtml">Depositar</a>
-		      	</li>
-		      	<li class="nav-item">
-		        		<a class="nav-link" href="Cajero/retirar.xhtml">Retirar</a>
-		      	</li>
-		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Transferir</a>
+		        		<h:form>
+		        			<h:commandLink action="#{cajeroBean.vistaRetirar()}" value="Retirar" />
+		        		</h:form>
 		      	</li>
 		    </ul>
 	  </div>

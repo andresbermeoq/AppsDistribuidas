@@ -17,9 +17,16 @@ public class UsuarioDAO {
 	
 	@Inject
 	private EntityManager entityManager;
-
-	public void guardarUsuario(Usuario usuario) throws SQLException {
+	
+	public boolean guardarUsuario(Usuario usuario) throws SQLException {
+		usuario.setBloqueado(false);
+		usuario.setIntentos(0);
 		entityManager.persist(usuario);
+		return true;
+	}
+	public boolean update(Usuario usuario)throws SQLException{
+		entityManager.merge(usuario);
+		return true;
 	}
 	
 	public List<Usuario> obtenerTodosUsuariosList() throws GeneralException {

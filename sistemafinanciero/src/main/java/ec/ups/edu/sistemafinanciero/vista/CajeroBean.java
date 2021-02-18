@@ -219,6 +219,33 @@ public class CajeroBean {
 		}
 
 	}
+	public void vistaDepositar() {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("/sistemafinanciero/faces/templates/Cajero/depositar.xhtml?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void vistaRetirar() {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("/sistemafinanciero/faces/templates/Cajero/retirar.xhtml?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void vistaRegistroClientes() {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("/sistemafinanciero/faces/templates/Cajero/CrearCuenta.xhtml?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Transaccion getTransaccion() {
 		return transaccion;

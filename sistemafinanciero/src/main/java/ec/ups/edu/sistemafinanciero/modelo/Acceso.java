@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQuery(name = "Acceso.todoslosAccesos", query = "SELECT a from Acceso a ORDER BY a.idAccesoLong")
 @Table(name = "ACCESO", schema = "public")
 public class Acceso implements Serializable {
 	
@@ -33,6 +35,12 @@ public class Acceso implements Serializable {
 	@Column(name = "acceso_fecha")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date accessDate;
+	
+	@Column(name = "acceso_veces_intento")
+	private int contador;
+	
+	@Column(name = "acceso_cuenta_bloqueado")
+	private boolean bloqueo;
 	
 	@Column(name = "acceso_tipo")
 	private String typeAccessString;
@@ -81,5 +89,39 @@ public class Acceso implements Serializable {
 	public void setObservationString(String observationString) {
 		this.observationString = observationString;
 	}
-	
+
+	public int getContador() {
+		return contador;
+	}
+
+	public void setContador(int contador) {
+		this.contador = contador;
+	}
+
+	public boolean isBloqueo() {
+		return bloqueo;
+	}
+
+	public void setBloqueo(boolean bloqueo) {
+		this.bloqueo = bloqueo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Acceso [idAccesoLong=" + idAccesoLong + ", accessDate=" + accessDate + ", contador=" + contador
+				+ ", bloqueo=" + bloqueo + ", typeAccessString=" + typeAccessString + ", observationString="
+				+ observationString + ", usuario=" + usuario + "]";
+	}	
 }

@@ -24,6 +24,7 @@ public class InteresBeans {
 	private Interes interes;
 	private String tInteres;
 	private List<Interes> intereses;
+	@Inject
 	private LoginBean session;
 
 	@PostConstruct

@@ -35,7 +35,9 @@
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
+		  	<h:form>
+		  		<h:commandLink action="#{loginBean.logoutUser()}" value="Cerrar sessión" />
+		  	</h:form>
 	  </span>
 	</nav>
 	

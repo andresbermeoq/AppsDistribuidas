@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+      
+<!-- Bootstrap -->
+<h:outputStylesheet library="webjars" name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
+
+
+<h:head>
+	<title>Desbloqueo de Cuentas</title>
+</h:head> 
+<body> 
+	<h1>Desbloqueo de Cuentas</h1>
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="../../index.xhtml">Banco Nacional</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      	<li class="nav-item active">
+		        		<a class="nav-link" href="registroPersona.xhtml">Crear Usuarios<span class="sr-only">(current)</span></a>
+		      	</li>
+		      	<li class="nav-item">
+		        		<a class="nav-link" href="BloquearCuenta.xhtml">Obtener Accesos</a>
+		      	</li>
+		    </ul>
+	  </div>
+	  <span class="navbar-text">
+		  	<h:form>
+		  		<h:commandLink action="#{loginBean.logoutUser()}" value="Cerrar sessión" />
+		  	</h:form>
+	  </span>
+	</nav>
+	<div>
+		<h:form id="formdesbloqueo">
+		<h:messages id="formdesbloqueo"/>
+			<h:outputLabel value="Usuario" />
+			<h:inputText value="#{usuarioBean.usuario.nombreUsuarioString}" />
+			<h:commandButton action="#{usuarioBean.buscarUsuario()}" value="Buscar" />
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nombre" />
+				<h:outputLabel value="#{usuarioBean.usuario.nombre}" />
+				<h:outputLabel value="Apellido" />
+				<h:outputLabel value="#{usuarioBean.usuario.apellido}" />
+				
+				<h:commandButton action="#{usuarioBean.desbloquear()}" value="Desbloquear" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+</body>
+</html>
