@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<!-- Bootstrap -->
+<h:outputStylesheet library="webjars"
+	name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
+
+<h:head>
+	<title>Transferencia externas</title>
+</h:head>
+<body>
+	<h4>Bien venido</h4>
+	<h:form>
+		<h:outputLabel
+			value="#{loginBean.user.nombre} #{loginBean.user.apellido}"
+			style="background-color:#ADFBF3" />
+	</h:form>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
+		class="navbar-brand" href="#">Banco Nacional</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarNav" aria-controls="navbarNav"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active"><a class="nav-link"
+				href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="../ClienteView.xhtml">Regresar</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Transferir</a>
+			</li>
+		</ul>
+	</div>
+	<span class="navbar-text"> <h:form>
+			<h:commandLink action="#{loginBean.logoutUser()}"
+				value="Cerrar sesión" />
+		</h:form>
+	</span> </nav>
+	<div>
+		<a class="btn btn-info" href="regBancos.xhtml">Registrar cuenta</a>
+		
+		
+		<h:form id="formDatBancos">
+		<h:messages id="formDatBancos" class="alert alert-danger" />
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Saldo disponible: $" />
+				<h:outputLabel value=" #{clienteBean.saldo}"
+					style="font-weight: bold;" />
+
+				<h:outputLabel value="Beneficiario" />
+				<h:selectOneMenu value="#{clienteBean.interbancario.id}">
+					<f:selectItems value="#{clienteBean.bancos}" var="interbancario"
+						itemLabel="• #{interbancario.banco} | Tipo cta:  #{interbancario.tipoCta} | #{interbancario.cuenta} | #{interbancario.dniTitular} | #{interbancario.nombreTitular}"
+						itemValue="#{interbancario.id}">
+					</f:selectItems>
+				</h:selectOneMenu>
+
+				<h:outputLabel value="Monto " />
+				<h:inputText value="#{clienteBean.transaccion.monto}" />
+
+				<h:outputLabel value="Observaciones" />
+				<h:inputText value="#{clienteBean.transaccion.observacion}" />
+
+				<h:commandButton action="#{clienteBean.realizarTransferferencia()}"
+					value="Transferir" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+</body>
+</html>

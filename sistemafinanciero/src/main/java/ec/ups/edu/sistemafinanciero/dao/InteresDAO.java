@@ -41,8 +41,12 @@ public class InteresDAO {
 		interes = em.find(Interes.class, id);
 		return interes;
 	}
-	public boolean delete(int id)throws SQLException {
-		em.remove(id);
+	public boolean delete(Interes interes)throws SQLException {
+		try {
+			em.remove(em.contains(interes) ? interes : em.merge(interes));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return true;		
 	}
 	

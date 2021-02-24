@@ -3,65 +3,93 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:p="http://primefaces.org/ui">
+
+
+<!-- Bootstrap -->
+<h:outputStylesheet library="webjars"
+	name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
 
 <h:head>
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-		crossorigin="anonymous" />
+	<title>Solicitud de polizas</title>
 </h:head>
 <body>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Capital" class="col-sm-2 col-form-label" />
-			<h:inputText type="text" value="#{polizaBeans.poliza.capital}"
-				class="form-control mb-2 mr-sm-2" />
+	
+	<h4>Usuario:</h4>
+	<h:outputLabel
+		value="#{polizaBeans.session.user.nombre} #{polizaBeans.session.user.apellido}" />
 
-			<h:outputLabel value="Tiempo (dias)" class="col-sm-2 col-form-label" />
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
+		class="navbar-brand" href="#">Banco Nacional</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarNav" aria-controls="navbarNav"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active"><a class="nav-link"
+				href="faces/index.xhtml">Inicio <span class="sr-only">(current)</span></a>
+			</li>
+			<li><a class="nav-link" href="templates/ClienteView.xhtml">Regresar</a>
+			</li>
+		</ul>
+	</div>
+	<span class="navbar-text">
+		  	<h:form>
+		  		<h:commandLink action="#{loginBean.logoutUser()}" value="Cerrar session" />
+		  	</h:form>
+	  </span>
+	</nav>
+	<div>
+		<h:form id="formsolicitud">
+			<h:messages id="formsolicitud" />
+			<h:panelGrid columns="2" id="formulario">
+				<h:outputLabel value="Capital" class="col-sm-2 col-form-label" />
+				<h:inputText type="text" value="#{polizaBeans.capital}"
+					class="form-control mb-2 mr-sm-2" required="true" style="width: 150px; " />
 
-			<h:inputText type="text" value="#{polizaBeans.plazo}"
-				class="form-control mb-2 mr-sm-2" placeholder="Numero de dias (*)" />
+				<h:outputLabel value="Tiempo (dias)" class="col-sm-2 col-form-label" />
+
+				<h:inputText type="number" value="#{polizaBeans.plazo}"
+					class="form-control mb-2 mr-sm-2" placeholder="Numero de dias (*)" required="true" style="width: 70px; " maxlength="5"/>
 
 
-			<h:outputLabel value="Interes" class="col-sm-2 col-form-label" />
+				<h:outputLabel value="Interes" class="col-sm-2 col-form-label" />
 
-			<h:outputLabel id="interes" value="#{polizaBeans.interes.porcentaje}"
-				class="form-control mb-2 mr-sm-2" />
+				<h:inputText id="interes" value="#{polizaBeans.porcentinter}"
+					class="form-control mb-2 mr-sm-2" required="true" style="width: 100px; " maxlength="10" />
 
-			<h:outputLabel value="Interes ganado" class="col-sm-2 col-form-label" />
+				<h:outputLabel value="Interes ganado"
+					class="col-sm-2 col-form-label" />
 
-			<h:outputLabel id="intganado" value="#{polizaBeans.poliza.vinteres}"
-				class="form-control mb-2 mr-sm-2" />
+				<h:inputText id="intganado" value="#{polizaBeans.valInteres}" 
+					class="form-control mb-2 mr-sm-2"  required="true" style="width: 100px; " maxlength="10"  />
+				<h:outputLabel value="Total" class="col-sm-2 col-form-label" style="font-weight:bold;" />
 
-			<h:outputLabel value="Fecha solitud" class="col-sm-2 col-form-label" />
+				<h:inputText id="total" value="#{polizaBeans.valTotal}"
+					class="form-control mb-2 mr-sm-2" style="width: 100px; font-weight:bold; " maxlength="10" />
+				<h:outputLabel value="Fecha de solitud"
+					class="col-sm-2 col-form-label" />
 
-			<h:outputLabel id="date" value="#{polizaBeans.thisDate}"
-				class="form-control mb-2 mr-sm-2">
-				<f:convertDateTime pattern="yyyy/MM/dd" />
-			</h:outputLabel>
+				<h:inputText id="date" value="#{polizaBeans.thisDate}"
+					class="form-control mb-2 mr-sm-2" required="true"  style="width: 150px; " >
+					<f:convertDateTime pattern="yyyy/MM/dd" />
+				</h:inputText>
 
+				<h:outputLabel value="Fecha de vencimiento"
+					class="col-sm-2 col-form-label" />
 
-			<h:outputLabel value="Fecha de vencimiento"
-				class="col-sm-2 col-form-label" />
-
-			<h:outputLabel id="dateFin"
-				value="#{polizaBeans.poliza.fvencimiento}"
-				class="form-control mb-2 mr-sm-2">
-				<f:convertDateTime pattern="yyyy/MM/dd" />
-			</h:outputLabel>
-
-			<h:outputLabel value="Total" class="col-sm-2 col-form-label" />
-
-			<h:outputLabel id="total" value="#{polizaBeans.poliza.total}"
-				class="form-control mb-2 mr-sm-2" />
-
-			<h:commandButton action="#{polizaBeans.calInteres()}"
-				class="btn btn-primary mb-2" value="Generar" />
-
-			<h:commandButton action="#" class="btn btn-danger" value="Cancelar" />
-		</h:panelGrid>
-	</h:form>
+				<h:inputText id="dateFin" value="#{polizaBeans.finDate}" 
+					class="form-control mb-2 mr-sm-2"  style="width: 150px;">
+					<f:convertDateTime pattern="yyyy/MM/dd" />
+				</h:inputText>
+				<h:commandButton id="btngenerar" class="btn btn-primary mb-2"
+					value="Generar" action="#{polizaBeans.calInteres()}">
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</div>
 </body>
 </html>

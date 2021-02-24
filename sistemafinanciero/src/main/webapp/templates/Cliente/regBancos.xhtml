@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<!-- Bootstrap -->
+<h:outputStylesheet library="webjars"
+	name="bootstrap/4.5.2/css/bootstrap.css" />
+<h:outputScript library="webjars" name="bootstrap/4.5.2/js/bootstrap.js" />
+
+<h:head>
+	<title>Registro externas</title>
+</h:head>
+<body>
+	<h4>Bien venido</h4>
+	<h:form>
+		<h:outputLabel
+			value="#{loginBean.user.nombre} #{loginBean.user.apellido}"
+			style="background-color:#ADFBF3" />
+	</h:form>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
+		class="navbar-brand" href="#">Banco Nacional</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarNav" aria-controls="navbarNav"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active"><a class="nav-link"
+				href="faces/index.xhtml">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="../ClienteView.xhtml">Regresar</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Transferir</a>
+			</li>
+		</ul>
+	</div>
+	<span class="navbar-text"> <h:form>
+			<h:commandLink action="#{loginBean.logoutUser()}"
+				value="Cerrar sesión" />
+		</h:form>
+	</span> </nav>
+	<div>
+		<h:message for="formDatBancos" class="alert alert-danger" />
+		<h:form id="formDatBancos">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Banco" />
+				<h:inputText value="#{clienteBean.interbancario.banco}" />
+
+				<h:outputLabel value="Tipo de cuenta" />
+				<h:selectOneMenu value="#{clienteBean.interbancario.tipoCta}"
+					class="form-control">
+					<f:selectItem id="tipoDefault" itemLabel="Seleccionar"
+						itemValue="#{null}" itemDisable="true" noSelectionOption="true" />
+					<f:selectItem id="ahorros" itemLabel="Ahorros" itemValue="ahorros"
+						itemDisable="true" noSelectionOption="true" />
+					<f:selectItem id="corriente" itemLabel="Corriente"
+						itemValue="coriiente" itemDisable="true" noSelectionOption="true" />
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Numero de cuenta" />
+				<h:inputText value="#{clienteBean.interbancario.cuenta}" />
+				
+				<h:outputLabel value="Cedula titula" />
+				<h:inputText value="#{clienteBean.interbancario.dniTitular}" />
+				
+				<h:outputLabel value="Nombre del titular" />
+				<h:inputText value="#{clienteBean.interbancario.nombreTitular}" />
+				<h:commandButton action="#{clienteBean.guardarBanco()}" value="Guardar" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+</body>
+</html>

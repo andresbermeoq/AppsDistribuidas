@@ -42,8 +42,8 @@ public class Transferencia implements Serializable{
 	@JoinColumn(name = "taf_fk_transaccion")
 	private Transaccion transaccion;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "taf_fk_interbancario")
+	@ManyToOne(optional = false, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "taf_fk_interbancario", nullable = true)
 	private Interbancario interbancario;
 	
 	public Transferencia() {

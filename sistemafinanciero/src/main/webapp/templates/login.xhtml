@@ -43,7 +43,8 @@
 	</nav>
 	
 	<div class="container">
-		<h:form>
+		<h:form id="formlogin">
+		<h:messages id="formlogin"></h:messages>
 		<div class="form-group">
 			<label for="exampleInputEmail1">Nombre de Usuario</label>
 			<h:inputText class="form-control" value="#{loginBean.usernameString}" />

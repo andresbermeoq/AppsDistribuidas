@@ -3,6 +3,7 @@ package ec.ups.edu.sistemafinanciero.dao;
 import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -23,24 +24,7 @@ public class TransaccionDAO {
 	 * @throws SQLException
 	 */
 	public boolean insert(Transaccion transaccion) throws SQLException {
-		String sql = "INSERT INTO Transacciones ("
-				+ "tra_id, tra_agencia, tra_fecha, tra_identificacion, tra_monto, tra_name, tra_observacion,"
-				+ " tra_operacion, tra_santerior, tra_sactual, tra_fk_cajero, tra_fk_cliente)"
-				+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";		
-		em.createNativeQuery(sql)
-		.setParameter(1, transaccion.getId())
-		.setParameter(2, transaccion.getAgencia())
-		.setParameter(3, transaccion.getFecha())
-		.setParameter(4, transaccion.getIdentificacion())
-		.setParameter(5, transaccion.getMonto())
-		.setParameter(6, transaccion.getNombre())
-		.setParameter(7, transaccion.getObservacion())
-		.setParameter(8, transaccion.getOperacion())
-		.setParameter(9, transaccion.getSaldoAnterior())
-		.setParameter(10, transaccion.getSladoActual())
-		.setParameter(11, transaccion.getCajero().getId())
-		.setParameter(12, transaccion.getCliente().getIdClienteLong())
-		.executeUpdate();
+		em.persist(transaccion);
 		return true;
 	}
 	/**
@@ -81,7 +65,8 @@ public class TransaccionDAO {
 	 */
 	public List<Transaccion> list(String operacion, long clienteId){
 		List<Transaccion> transacciones = new ArrayList<Transaccion>(); 
-		String sql = "SELECT t FROM Transaccion t WHERE tra_operacion like:oper and tra_fk_cliente=:clientId";
+		String sql = "SELECT t FROM Transaccion t WHERE tra_operacion like:oper and tra_fk_cliente=:clientId"
+				+ " ORDER BY tra_fecha DESC";
 		transacciones = em.createQuery(sql,Transaccion.class)
 				.setParameter("oper", operacion)
 				.setParameter("clientId", clienteId).getResultList();
@@ -105,5 +90,24 @@ public class TransaccionDAO {
 			transaccion = transaccion2;
 		}
 		return transaccion;
+	}
+	/**
+	 * 
+	 * @param fechaInicial Rango inicial de fecha.
+	 * @param fechaFinal Rango final de fecha.
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Transaccion> ragoFecha(long clienteId,Date fechaInicial, Date fechaFinal)throws SQLException{
+		Transaccion transaccion = new Transaccion();
+		List<Transaccion> list = new ArrayList<Transaccion>();
+		String sql = "SELECT t FROM Transaccion t "
+				+ "WHERE tra_fk_cliente=:clienteId AND tra_fecha BETWEEN :finicial AND :ffin";
+		list=em.createQuery(sql,Transaccion.class)
+				.setParameter("clienteId", clienteId)
+				.setParameter("finicial", fechaInicial)
+				.setParameter("ffin", fechaFinal)
+				.getResultList();
+		return list;		
 	}
 }

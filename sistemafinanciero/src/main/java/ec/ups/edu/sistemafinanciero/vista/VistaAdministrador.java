@@ -1,6 +1,7 @@
 package ec.ups.edu.sistemafinanciero.vista;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +28,16 @@ public class VistaAdministrador {
 	
 	@PostConstruct
 	public void init() {
-		usuario = new Usuario();
+		if (session.getUser()!=null) {
+			usuario = new Usuario();
+		}else {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/sistemafinanciero/faces/templates/login.xhtml?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	public void saludar() {
 		/*response.setContentType("text/html;charset=UTF-8");

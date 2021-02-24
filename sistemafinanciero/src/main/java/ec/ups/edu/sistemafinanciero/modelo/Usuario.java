@@ -54,8 +54,14 @@ public class Usuario implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistroDate;
 	
+	@Column(name = "usuario_bloqueado", nullable = true)
+	private boolean bloqueado;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Column(name = "usuario_int_fallidos", nullable = true)
+	private int intentos;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_acceso_fk")
 	private Set<Acceso> accesos;
 	
@@ -123,12 +129,24 @@ public class Usuario implements Serializable {
 	public void setAccesos(Set<Acceso> accesos) {
 		this.accesos = accesos;
 	}
-	
+	public boolean isBloqueado() {
+		return bloqueado;
+	}
+	public void setBloqueado(boolean bloqueado) {
+		this.bloqueado = bloqueado;
+	}
+	public int getIntentos() {
+		return intentos;
+	}
+	public void setIntentos(int intentos) {
+		this.intentos = intentos;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [idUsuarioLong=" + idUsuarioLong + ", cedulaString=" + cedulaString + ", nombre=" + nombre
 				+ ", apellido=" + apellido + ", email=" + email + ", tipoString=" + tipoString + ", passwordString="
 				+ passwordString + ", nombreUsuarioString=" + nombreUsuarioString + ", fechaRegistroDate="
-				+ fechaRegistroDate + "]";
+				+ fechaRegistroDate + ", bloqueado=" + bloqueado + ", intentos=" + intentos + ", accesos=" + accesos
+				+ "]";
 	}
 }

@@ -17,6 +17,8 @@
 </h:head> 
 <body> 
 	<h1>Registro de Cuentas</h1>
+	<br />
+	<h4>Bien venido </h4><h:outputLabel value="#{loginBean.user.nombre} #{loginBean.user.apellido}" />
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="faces/index.xhtml">Banco Nacional</a>
@@ -29,25 +31,31 @@
 		        		<a class="nav-link" href="CajeroView.xhtml">Listado<span class="sr-only">(current)</span></a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="CrearCuenta.xhtml">Creacion de Cuentas</a>
+		        		<a class="nav-link" href="Cajero/CrearCuenta.xhtml">Creacion de Cuentas</a>
 		      	</li>
 		      	<li class="nav-item">
-		        		<a class="nav-link" href="#">Pricing</a>
+		        		<h:form>
+		        			<h:commandLink action="#{cajeroBean.vistaRetirar()}" value="Depositar" />
+		        		</h:form>
 		      	</li>
-		      	<li class="nav-item justify-content-end">
-		        		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+		      	<li class="nav-item">
+		        		<h:form>
+		        			<h:commandLink action="#{cajeroBean.vistaRetirar()}" value="Retirar" />
+		        		</h:form>
 		      	</li>
 		    </ul>
 	  </div>
 	  <span class="navbar-text">
-		  	<h:outputLink class="btn btn-outline-primary" value="faces/registroPersona.xhtml">Iniciar</h:outputLink>
+		  	<h:form>
+		  		<h:commandLink action="#{loginBean.logoutUser()}" value="Cerrar session" />
+		  	</h:form>
 	  </span>
 	</nav>
 	
 	<br />
 	<div class="container justify-content-center align-items-center">
 		<h2>Busqueda de Cuentas</h2>
-		<h:form class="form-inline" id="form">
+		<h:form class="form-inline" id="formDatBusqueda">
 			<div class="form-group mb-2 mx-sm-3">
 				<label for="cedula">Cedula Usuario</label>
 				<h:inputText id="cedula" class="form-control mx-sm-3" value="#{clienteBean.cedulaCliente}" o:placeholder="Cedula">
